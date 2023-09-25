@@ -1,0 +1,61 @@
+.btn {
+  padding: 5px 15px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 0.2s opacity;
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(2px);
+  }
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+  opacity: 1;
+}
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+  border: 2px solid var(--secondary);
+  opacity: 1;
+}
+
+.btn-reverse-primary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background-color: white;
+}
+
+.card {
+  border-radius: var(--border-radius);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+.text-white {
+  color: white;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+input {
+  padding: 10px 15px;
+  border: 2px solid var(--gray-2);
+  border-radius: var(--border-radius);
+}
+
+.form-error {
+  margin: 0px;
+  padding-top: 10px;
+  color: var(--red-1);
+  font-weight: 500;
+  font-size: 12px;
+  height: 1rem;
+}
