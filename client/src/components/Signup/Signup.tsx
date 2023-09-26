@@ -11,27 +11,28 @@ interface UserInput {
   generic: { generic: { message: string } };
 }
 
-const defaultValues: UserInput = {
-  name: "",
-  email: "",
-  password: "",
-  generic: null,
-};
-
-const validationSchema = yup.object({
-  name: yup
-    .string()
-    .required("Le nom est requis")
-    .max(10, "Le nom est trop long"),
-  email: yup.string().required("L'email est requis"),
-  password: yup
-    .string()
-    .required("Il faut indiquer un mot de passe")
-    .min(6, "Le mot de passe est trop court"),
-});
-
 function Signup() {
   const navigate = useNavigate();
+
+  const validationSchema = yup.object({
+    name: yup
+      .string()
+      .required("Le nom est requis")
+      .max(10, "Le nom est trop long"),
+    email: yup.string().required("L'email est requis"),
+    password: yup
+      .string()
+      .required("Il faut indiquer un mot de passe")
+      .min(6, "Le mot de passe est trop court"),
+  });
+
+  const defaultValues: UserInput = {
+    name: "",
+    email: "",
+    password: "",
+    generic: null,
+  };
+
   const {
     register,
     handleSubmit,
@@ -47,7 +48,7 @@ function Signup() {
     try {
       clearErrors();
       await createUser(user);
-      // navigate('/signin');
+      navigate("/home"); // here we try to navigate to home but like user is not registed on auth provider whe are redirected to login (Signin by default)
     } catch (message) {
       setError("generic", { type: "generic", message });
     }
@@ -86,9 +87,9 @@ function Signup() {
         </div>
         <div>
           <div className="mb-10">
-          <p className="form-error">
-            {errors.generic ? errors.generic.message : null}
-          </p>
+            <p className="form-error">
+              {errors.generic ? errors.generic.message : null}
+            </p>
           </div>
         </div>
         <div className="mt-10">

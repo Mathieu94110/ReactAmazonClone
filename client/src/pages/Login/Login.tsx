@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import DynamicComponent from "../../utils/DynamicComponent";
 import styles from "./Login.module.scss";
 const Login = () => {
-  const [component, setComponent] = useState("signup");
+  const [component, setComponent] = useState("signin");
 
   function changeComponent() {
-    const switchComponent = component === "signup" ? "signin" : "signup";
+    const switchComponent = component === "signin" ? "signup" : "signin";
     setComponent(switchComponent);
   }
   return (
     <div
       className={`flex-fill d-flex flex-column align-items-center justify-content-center full-screen ${styles.loginBackground}`}
     >
-      <DynamicComponent component={component} />
+      <DynamicComponent component={component}/>
       <button
         onClick={() => changeComponent()}
         className="btn btn-secondary my-30"

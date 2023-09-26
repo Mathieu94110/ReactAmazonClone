@@ -1,6 +1,6 @@
 import React from "react";
-import Signin from "../pages/Signin/Signin";
-import Signup from "../pages/Signup/Signup";
+import Signin from "../components/Signin/Signin";
+import Signup from "../components/Signup/Signup";
 
 const components = {
   signin: Signin,
