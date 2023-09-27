@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DynamicComponent from "../../utils/DynamicComponent";
-import styles from "./Login.module.scss";
+import styles from "./LoginPage.module.scss";
 const Login = () => {
   const [component, setComponent] = useState("signin");
 
@@ -12,7 +12,7 @@ const Login = () => {
     <div
       className={`flex-fill d-flex flex-column align-items-center justify-content-center full-screen ${styles.loginBackground}`}
     >
-      <DynamicComponent component={component}/>
+      <DynamicComponent component={component} />
       <button
         onClick={() => changeComponent()}
         className="btn btn-secondary my-30"

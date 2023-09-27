@@ -1,0 +1,12 @@
+.loadingBox{
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    width: 100%;
+    padding: 30px 0;
+}
+
+.loadingBox > .MuiSvgIcon-root{
+    color: orange;
+    font-size: 40px !important;
+}

@@ -2,9 +2,9 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { rootLoader } from "./loaders/rootLoader";
 import App from "./App";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "./utils/ProtectedRoute/ProtectedRoute";
 
-const Login = lazy(() => import("./pages/Login/Login"));
+const Login = lazy(() => import("./pages/LoginPage/LoginPage"));
 const Home = lazy(() => import("./pages/HomePage/HomePage"));
 
 export const router = createBrowserRouter([

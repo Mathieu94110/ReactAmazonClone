@@ -26,7 +26,7 @@ export async function getCurrentUser() {
 }
 
 export async function signout() {
-    await fetch(API_AUTH, {
-      method: 'DELETE',
-    });
-  }
+  await fetch(API_AUTH, {
+    method: "DELETE",
+  });
+}
