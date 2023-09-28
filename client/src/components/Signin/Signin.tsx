@@ -54,7 +54,7 @@ function Signin() {
   return (
     <>
       {user ? (
-        <Navigate to="/home" />
+        <Navigate to="/" />
       ) : (
         <div>
           <form onSubmit={submit} className="d-flex flex-column card p-20">

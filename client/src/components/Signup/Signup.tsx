@@ -48,7 +48,7 @@ function Signup() {
     try {
       clearErrors();
       await createUser(user);
-      navigate("/home"); // here we try to navigate to home but like user is not registed on auth provider whe are redirected to login (Signin by default)
+      navigate("/"); // here we try to navigate to home but like user is not registed on auth provider whe are redirected to login (Signin by default)
     } catch (message) {
       setError("generic", { type: "generic", message });
     }
