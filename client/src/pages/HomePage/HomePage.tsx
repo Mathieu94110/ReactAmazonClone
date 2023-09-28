@@ -13,7 +13,6 @@ const Home = () => {
   useEffect(() => {
     async function getProducts() {
       const products = await getProductsList();
-      console.log(products);
       setProductList(products);
     }
     getProducts();
@@ -95,7 +94,7 @@ const Home = () => {
       <ProductList products={productList} />
 
       <div className={styles.homeProductSlider}>
-        <h2 className={styles.secTitle}>More Products</h2>
+        <h2 className={styles.secTitle}>Plus de produits</h2>
 
         <Slider {...settings2}>
           {productList.length > 0

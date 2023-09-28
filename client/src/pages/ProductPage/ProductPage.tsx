@@ -27,7 +27,6 @@ const ProductPage = (props) => {
     async function getProductsDetails() {
       setLoading(true);
       const productsDetails = await getProductDetails(productID);
-      console.log(productsDetails);
       setProduct(productsDetails);
       setLoading(false);
     }
