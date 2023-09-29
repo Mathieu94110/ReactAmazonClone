@@ -1,0 +1,72 @@
+.userProfileContainer {
+  max-width: 600px;
+  margin: auto;
+  height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.formContainer {
+  height: auto;
+  margin: auto;
+}
+.UserProfileMessage {
+  height: 30px;
+}
+.form {
+  min-width: 260px;
+  margin: 10px;
+  padding: 30px;
+  border: solid 2px grey;
+  border-radius: 4px;
+  background-color: rgb(238, 238, 238);
+  > h1 {
+    text-align: center;
+  }
+}
+.formIpSec {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.formIpSec input {
+  padding: 12px;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.updateBtn {
+  background-color: #f0c040;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+  font-size: 18px;
+  outline: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 500px) {
+  .userProfileContainer {
+    height: 100%;
+  }
+  .form {
+    padding: 10px;
+    > h1 {
+      font-size: 16px;
+    }
+  }
+  .formIpSec input {
+    padding: 8px;
+    font-size: 12px;
+  }
+  .updateBtn {
+    padding: 6px;
+    font-size: 14px;
+  }
+}

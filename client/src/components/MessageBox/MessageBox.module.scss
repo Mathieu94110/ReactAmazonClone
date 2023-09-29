@@ -2,21 +2,22 @@
   color: #a02020;
 }
 .alert {
-  padding: 16px;
+  padding: 5px;
   border: 0.1rem solid transparent;
   border-radius: 0.5rem;
   background-color: #ffbebe;
-  margin-top: 16px;
+  font-weight: 600;
+  text-align: center;
 }
-.alert-info {
+.alertInfo {
   color: #2020a0;
   background-color: #e0e0ff;
 }
-.alert-danger {
+.alertDanger {
   color: #a02020;
   background-color: #ffbebe;
 }
-.alert-success {
+.alertSuccess {
   color: #109710;
   background-color: #beff89 !important;
 }

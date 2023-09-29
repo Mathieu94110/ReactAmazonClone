@@ -1,10 +1,10 @@
-const API_USERS = '/api/users';
+const API_USERS = "/api/users";
 
 export async function createUser(newUser) {
   const response = await fetch(API_USERS, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(newUser),
   });
@@ -15,7 +15,18 @@ export async function createUser(newUser) {
     if (body) {
       throw body;
     } else {
-      throw new Error('Error api createUser');
+      throw new Error("Error api createUser");
     }
   }
+}
+
+export async function updateUserProfile(user) {
+  const response = await fetch(`${API_USERS}/profile`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  return response;
 }
