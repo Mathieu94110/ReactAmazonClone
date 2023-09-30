@@ -2,13 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ArrowDropDown, Search } from "@mui/icons-material";
+import { useWindowSize } from "../../hooks/windowDimensions";
+import {
+  ArrowDropDown,
+  Search,
+  Headphones,
+  PersonalVideo,
+  PhoneIphone,
+  LaptopMac,
+  EarbudsBattery,
+} from "@mui/icons-material";
 import styles from "./Header.module.scss";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const { user, signout } = useContext(AuthContext);
+
+  const { width } = useWindowSize();
 
   // creating ref and useEffect below in order to close dropdown on click outside
   const headerDropdownRef = useRef(null);
@@ -74,23 +85,29 @@ const Header = () => {
         <div className={styles.categoryContainer}>
           <ul>
             <li>
-              <Link to="/category/téléphones-mobiles">Téléphones mobiles</Link>
+              <Link to="/category/téléphones-mobiles">
+                {width < 600 ? <PhoneIphone /> : "Téléphones mobiles"}
+              </Link>
             </li>
             <li>
               <Link to="/category/ordinateurs-portables">
-                Ordinateurs portables
+                {width < 600 ? <LaptopMac /> : "Ordinateurs portables"}
               </Link>
             </li>
             <li>
-              <Link to="/category/télévisions">Télévisions</Link>
+              <Link to="/category/télévisions">
+                {width < 600 ? <PersonalVideo /> : "Télévisions"}
+              </Link>
             </li>
             <li>
               <Link to="/category/accessoires-d_ordinateurs">
-                Accesoires d'ordinateurs
+                {width < 600 ? <EarbudsBattery /> : "Télévisions"}
               </Link>
             </li>
             <li>
-              <Link to="/category/écouteurs">Écouteurs</Link>
+              <Link to="/category/écouteurs">
+                {width < 600 ? <Headphones /> : "Télévisions"}
+              </Link>
             </li>
           </ul>
         </div>

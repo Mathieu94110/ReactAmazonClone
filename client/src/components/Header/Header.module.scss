@@ -41,15 +41,6 @@ header .innerContent {
   font-size: 18px;
 }
 
-@media (max-width: 760px) {
-  header .innerContent {
-    flex-direction: column !important;
-  }
-  .brand {
-    margin-bottom: 30px;
-  }
-}
-
 header a {
   color: white;
   font-size: 1.1rem;
@@ -94,6 +85,7 @@ header .brand a {
   display: block;
   color: #000000;
   padding: 6px;
+  display: flex;
 }
 
 header .navLinks {
@@ -175,7 +167,32 @@ header .nav-Links li {
   margin-left: 6px;
 }
 
-@media (max-width: 900px) {
+@media only screen and (max-width: 600px) and (min-width: 280px) {
+  .categoryContainer {
+    & > ul {
+      display: flex;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+  }
+}
+@media only screen and (max-width: 601px) and (min-width: 760px) {
+  .categoryContainer {
+    & > ul {
+      display: flex;
+      justify-content: space-between;
+      overflow-x: scroll;
+    }
+  }
+  header .innerContent {
+    flex-direction: column !important;
+  }
+  .brand {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 761px) {
   .searchBar {
     width: 100%;
     margin-bottom: 30px;
@@ -199,6 +216,14 @@ header .nav-Links li {
 
   .categoryContainer ul {
     display: flex;
-    overflow-x: scroll;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  header .innerContent {
+    flex-direction: column;
+  }
+  .searchBar {
+    margin: 20px 0;
   }
 }
