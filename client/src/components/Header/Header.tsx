@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -6,14 +6,25 @@ import { ArrowDropDown, Search } from "@mui/icons-material";
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  const [dropdown, setDropDown] = useState(false);
-  const { user, signout } = useContext(AuthContext);
-  const showDropDown = () => {
-    if (dropdown) setDropDown(false);
-    else setDropDown(true);
-  };
-
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const { user, signout } = useContext(AuthContext);
+
+  // creating ref and useEffect below in order to close dropdown on click outside
+  const headerDropdownRef = useRef(null);
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!headerDropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.addEventListener("mousedown", handler);
+    };
+  });
 
   return (
     <header>
@@ -37,55 +48,49 @@ const Header = () => {
               </Link>
             </div>
           </div>
-
-          <ul className={styles.navLinks}>
-            <li>
-              <div className={styles.headerDropdown}>
-                <p onClick={showDropDown}>
-                  {user.name}
-                  <ArrowDropDown />
-                </p>
-
-                <ul
-                  className={
-                    dropdown
-                      ? `${styles.dropdownContent} ${styles.show}`
-                      : `${styles.dropdownContent}`
-                  }
-                >
-                  <li>
-                    <Link to="/profile">Compte</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderhistory">Historique des commandes</Link>
-                  </li>
-                  <li>
-                    <Link to="/" onClick={() => signout()}>
-                      Se déconnecter
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+          <div className={styles.headerDropdown} ref={headerDropdownRef}>
+            <p onClick={() => setOpen(!open)}>
+              {user.name}
+              <ArrowDropDown />
+            </p>
+            {open ? (
+              <ul className={`${styles.dropdownContent} ${styles.show}`}>
+                <li onClick={() => setOpen(!open)}>
+                  <Link to="/profile">Compte</Link>
+                </li>
+                <li onClick={() => setOpen(!open)}>
+                  <Link to="/orderhistory">Historique des commandes</Link>
+                </li>
+                <li onClick={() => setOpen(!open)}>
+                  <Link to="/" onClick={() => signout()}>
+                    Se déconnecter
+                  </Link>
+                </li>
+              </ul>
+            ) : null}
+          </div>
         </div>
 
         <div className={styles.categoryContainer}>
           <ul>
             <li>
-              <Link to="/category/mobile">Téléphones</Link>
+              <Link to="/category/téléphones-mobiles">Téléphones mobiles</Link>
             </li>
             <li>
-              <Link to="/category/laptop">Ordinateurs</Link>
+              <Link to="/category/ordinateurs-portables">
+                Ordinateurs portables
+              </Link>
             </li>
             <li>
-              <Link to="/category/monitor">Télévisions</Link>
+              <Link to="/category/télévisions">Télévisions</Link>
             </li>
             <li>
-              <Link to="/category/accessories">Accesoires d'ordinateurs</Link>
+              <Link to="/category/accessoires-d_ordinateurs">
+                Accesoires d'ordinateurs
+              </Link>
             </li>
             <li>
-              <Link to="/category/earphones">Écouteurs</Link>
+              <Link to="/category/écouteurs">Écouteurs</Link>
             </li>
           </ul>
         </div>

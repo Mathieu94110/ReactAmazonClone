@@ -11,14 +11,6 @@ router.get(
 );
 
 router.get(
-  "/seed",
-  expressAsyncHandler(async (req, res) => {
-    const createdProducts = await ProductsModel.insertMany(products);
-    res.send({ createdProducts });
-  })
-);
-
-router.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
     const product = await ProductsModel.findById(req.params.id);

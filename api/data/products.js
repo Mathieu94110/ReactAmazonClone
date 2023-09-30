@@ -5,7 +5,7 @@ const products = [
     name: "Ordinateur portable HP",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: "Ordinateur portable",
+    category: "Ordinateurs portables",
     brand: "HP",
     price: 999,
     rating: 5,
@@ -18,12 +18,24 @@ const products = [
     name: "Ordinateur portable Lenovo",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: "Ordinateur portable",
+    category: "Ordinateurs portables",
     brand: "Lenovo",
     price: 580,
     rating: 4.5,
     numRev: 25,
     stock: 20,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/71vCYXh6IXL._AC_UL320_.jpg",
+    name: "Ordinateur portable Lenovo",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: "Ordinateurs portables",
+    brand: "iSTYLE",
+    price: 400,
+    rating: 4.5,
+    numRev: 25,
+    stock: 15,
   },
   {
     image:
@@ -39,14 +51,13 @@ const products = [
     stock: 2,
   },
   {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhX93oPl7ke3pW30m6Bf8yuVtZXLztiDg4Jw&usqp=CAU",
-    name: "Télévision",
+    image: "https://m.media-amazon.com/images/I/71hhHx4BSkL._AC_UY218_.jpg",
+    name: "Télévision Sony Bravia XR OLED",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: "Télévision",
-    brand: "Samsung",
-    price: 270,
+    category: "Télévisions",
+    brand: "Sony",
+    price: 770,
     rating: 4.5,
     numRev: 17,
     stock: 9,
@@ -58,12 +69,38 @@ const products = [
     rating: "5",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: "Téléphone mobile & Tablettes",
+    category: "Téléphones mobiles",
     brand: "Oppo",
     price: 300,
     rating: 2,
     numRev: 33,
     stock: 0,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/71zkY0wuu5L._AC_UL320_.jpg",
+    name: "Téléphone mobile",
+    rating: "4.5",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: "Téléphones mobiles",
+    brand: "Samsung",
+    price: 302.42,
+    rating: 4,
+    numRev: 33,
+    stock: 10,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/610pghkO81L._AC_UL320_.jpg",
+    name: "Téléphone mobile",
+    rating: "4.5",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: "Téléphones mobiles",
+    brand: "Apple",
+    price: 1300,
+    rating: 4.5,
+    numRev: 33,
+    stock: 30,
   },
   {
     image:
@@ -108,12 +145,24 @@ const products = [
   {
     image:
       "https://specials-images.forbesimg.com/imageserve/5ede6a4407e58a0007201a40/960x0.jpg?cropX1=33&cropX2=1935&cropY1=0&cropY2=1267",
-    name: "Télévision Ultrawide ",
+    name: "Télévision Ultrawide",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    category: "Télévision",
+    category: "Télévisions",
     brand: "LG",
     price: 320,
+    rating: 4.0,
+    numRev: 60,
+    stock: 14,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/81m+F5v-n9L._AC_UL320_.jpg",
+    name: "Télévision Toshiba",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: "Télévisions",
+    brand: "LG",
+    price: 356,
     rating: 4.0,
     numRev: 60,
     stock: 14,
@@ -127,6 +176,18 @@ const products = [
     category: "Écouteurs",
     brand: "Tiitan",
     price: 80,
+    rating: 5,
+    numRev: 14,
+    stock: 160,
+  },
+  {
+    image: "https://m.media-amazon.com/images/I/71Nb5eyKrpL._AC_UL320_.jpg",
+    name: "Écouteur Qxq",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    category: "Écouteurs",
+    brand: "QXQ",
+    price: 70,
     rating: 5,
     numRev: 14,
     stock: 160,
