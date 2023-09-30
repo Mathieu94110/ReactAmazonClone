@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import styles from "./UserProfile.module.scss";
+import styles from "./UserProfilePage.module.scss";
 import { AuthContext } from "../../components/context/AuthContext";
 import { updateUserProfile } from "../../apis/users";
 import MessageBox from "../../components/MessageBox/MessageBox";
 
-const UserProfile = () => {
+const UserProfilePage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -106,4 +106,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserProfilePage;

@@ -1,0 +1,68 @@
+.searchPageContainer {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterOptionsContainer {
+  background-color: rgb(235, 235, 235);
+  border: 1px solid grey;
+  padding: 20px;
+  flex-basis: 20%;
+  height: fit-content;
+}
+
+.filterOptionsContainer h3 {
+  margin-bottom: 20px;
+}
+
+.searchPageProductContainer {
+  background-color: rgb(235, 235, 235);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  flex-basis: 76%;
+}
+
+.searchProductContainer {
+  margin: 60px 26px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+}
+
+.clearFilterBtn {
+  background-color: #f0c040;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 0;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+  .searchPageContainer {
+    flex-direction: column;
+  }
+  .filterOptionsContainer {
+    margin-bottom: 30px;
+  }
+
+  .searchProductContainer {
+    margin: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .searchPageContainer .secTitle {
+    margin: 20px;
+  }
+
+  .filterOptionsContainer h3 {
+    margin-bottom: 10px;
+    margin-top: 8px;
+  }
+}
