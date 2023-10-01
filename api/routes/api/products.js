@@ -1,12 +1,12 @@
 const ProductsModel = require("../../database/models/products.model");
-const products = require("../../data/products");
 const router = require("express").Router();
 const expressAsyncHandler = require("express-async-handler");
 
 router.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    res.json(products);
+    const products = await ProductsModel.find({});
+    res.send(products);
   })
 );
 

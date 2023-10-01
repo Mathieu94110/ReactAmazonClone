@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import LoadingBox from "../../components/LoadingBox/LoadingBox";
 import MessageBox from "../../components/MessageBox/MessageBox";
 import styles from "./ProductPage.module.scss";
 import { getProductDetails } from "../../apis/product";
-
+import { ArrowBack } from "@mui/icons-material";
 interface ProductInterface {
   image: string;
   name: string;
@@ -26,14 +26,18 @@ const ProductPage = (props) => {
   useEffect(() => {
     async function getProductsDetails() {
       setLoading(true);
-      const productsDetails = await getProductDetails(productID);
+      const productsDetails = await getProductDetails(id);
       setProduct(productsDetails);
       setLoading(false);
     }
     getProductsDetails();
   }, []);
 
-  const productID = props.match.params.id;
+  useEffect(() => {
+    console.log(product);
+  }, [product]);
+
+  const { id } = useParams();
 
   const [qty, setQty] = useState(1);
 
@@ -43,14 +47,14 @@ const ProductPage = (props) => {
 
   return (
     <div>
-      {loading ? (
+      {loading || !product ? (
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
           <Link to="/" className={styles.backRes}>
-            Back to result
+            <ArrowBack /> <span>Revenir aux résultats</span>
           </Link>
           <div className={styles.row}>
             <div className={styles.col1}>
@@ -62,7 +66,7 @@ const ProductPage = (props) => {
                 <li className={styles.pdRating}>
                   <Rating rating={product.rating} numRev={product.numRev} />
                 </li>
-                <li className={styles.pdPrice}>${product.price}</li>
+                <li className={styles.pdPrice}>{product.price}€</li>
                 <li className={styles.pdDesc}>
                   Description :<p>{product.description}</p>
                 </li>
@@ -72,26 +76,24 @@ const ProductPage = (props) => {
               <div className={`${styles.card} ${styles.cardBody}`}>
                 <ul>
                   <li>
-                    <p>Total amount</p>
-                    <div className={styles.price}>${product.price * qty}</div>
+                    <p>Montant total</p>
+                    <div className={styles.price}>{product.price * qty}€</div>
                   </li>
                   <li>
                     <p>Stock</p>
                     {product.stock > 10 ? (
-                      <span className={styles.mSuccess}>In stock</span>
+                      <span className={styles.mSuccess}>En stock</span>
                     ) : product.stock < 10 && product.stock > 0 ? (
-                      <span className={styles.mSuccess}>
-                        Hurry! Few in stock
-                      </span>
+                      <span className={styles.mSuccess}>Beaucoup de stock</span>
                     ) : (
-                      <span className={styles.error}>Out of stock</span>
+                      <span className={styles.error}>En rupture de stock</span>
                     )}
                   </li>
 
                   {product.stock > 0 && (
                     <>
                       <li>
-                        <p>Qty</p>
+                        <p>Quantitée</p>
                         <div className={styles.qtySelect}>
                           <select value={qty} onChange={(e) => setQty(qty + 1)}>
                             <option>{qty}</option>
@@ -100,7 +102,7 @@ const ProductPage = (props) => {
                       </li>
                       <li>
                         <button className={styles.addToCart}>
-                          Add to cart
+                          Ajouter au panier
                         </button>
                       </li>
                     </>

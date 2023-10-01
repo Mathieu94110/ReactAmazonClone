@@ -3,8 +3,14 @@ import { createBrowserRouter } from "react-router-dom";
 import { rootLoader } from "./loaders/rootLoader";
 import App from "./App";
 import ProtectedRoute from "./utils/ProtectedRoute/ProtectedRoute";
-import UserProfile from "./pages/UserProfilePage/UserProfilePage";
-import CategoryBased from "./pages/CategoryBasedPage/CategoryBasedPage";
+
+const UserProfile = lazy(
+  () => import("./pages/UserProfilePage/UserProfilePage")
+);
+const CategoryBased = lazy(
+  () => import("./pages/CategoryBasedPage/CategoryBasedPage")
+);
+const Product = lazy(() => import("./pages/ProductPage/ProductPage"));
 const Login = lazy(() => import("./pages/LoginPage/LoginPage"));
 const Home = lazy(() => import("./pages/HomePage/HomePage"));
 
@@ -31,6 +37,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <UserProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/products/product/:id",
+        element: (
+          <ProtectedRoute>
+            <Product />
           </ProtectedRoute>
         ),
       },

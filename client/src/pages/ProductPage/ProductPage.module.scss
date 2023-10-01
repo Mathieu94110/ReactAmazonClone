@@ -6,8 +6,16 @@
 }
 
 .backRes {
-  color: grey;
+  color: #000;
   margin: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0c040;
+  & > span {
+    margin-left: 10px;
+  }
 }
 
 .col1 {
@@ -75,7 +83,7 @@
   font-weight: 800;
 }
 
-.qtySelectSelect {
+.qtySelect select {
   padding: 10px 16px;
   font-size: 18px;
   font-weight: bold;
