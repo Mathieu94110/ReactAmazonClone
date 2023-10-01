@@ -101,12 +101,12 @@ const Header = () => {
             </li>
             <li>
               <Link to="/category/accessoires-d_ordinateurs">
-                {width < 600 ? <EarbudsBattery /> : "Télévisions"}
+                {width < 600 ? <EarbudsBattery /> : "Accessoires d'ordinateurs"}
               </Link>
             </li>
             <li>
               <Link to="/category/écouteurs">
-                {width < 600 ? <Headphones /> : "Télévisions"}
+                {width < 600 ? <Headphones /> : "Écouteurs"}
               </Link>
             </li>
           </ul>

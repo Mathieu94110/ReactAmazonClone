@@ -1,3 +1,5 @@
+@use "../../assets/styles/mixins" as mixins;
+
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +11,7 @@ a {
 }
 
 header {
-  background-color: #131a22;
+  background-color: var(--primary);
   margin-bottom: 20px;
 }
 
@@ -18,6 +20,9 @@ header .innerContent {
   justify-content: space-between;
   align-items: center;
   padding: 14px 22px;
+  @include mixins.md-lt {
+    flex-direction: column;
+  }
 }
 
 .categoryContainer {
@@ -25,10 +30,23 @@ header .innerContent {
   padding: 14px 22px;
   font-weight: 500;
   color: white;
+  @include mixins.xs {
+    & > ul {
+      display: flex;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+  }
+  @include mixins.md {
+    margin-top: 16px;
+  }
 }
 
 .categoryContainer ul {
   list-style-type: none;
+  @include mixins.md {
+    display: flex;
+  }
 }
 
 .categoryContainer ul li {
@@ -52,9 +70,19 @@ header a:hover {
   opacity: 0.7;
 }
 
+header .brand {
+  @include mixins.md {
+    margin-bottom: 10px;
+  }
+}
+
 header .brand a {
   font-weight: 700;
   font-size: 1.5rem;
+
+  @include mixins.md {
+    font-size: 1.2rem;
+  }
 }
 
 .searchBar {
@@ -63,7 +91,17 @@ header .brand a {
   border-radius: 6px;
   overflow: hidden;
   width: 60%;
-  background-color: #f0c040;
+  background-color: var(--secondary);
+  @include mixins.xs {
+    width: auto;
+  }
+  @include mixins.md {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  @include mixins.md-lt {
+    margin: 20px 0;
+  }
 }
 
 .searchInput {
@@ -72,6 +110,9 @@ header .brand a {
   width: 100%;
   outline: 0;
   border: 0;
+  @include mixins.xs {
+    font-size: 14px;
+  }
 }
 
 .searchBtn {
@@ -95,6 +136,11 @@ header .navLinks {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @include mixins.md {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
 }
 
 header .nav-Links li {
@@ -119,7 +165,7 @@ header .nav-Links li {
 }
 
 .dropdownContent {
-  background-color: #131a22;
+  background-color: var(--primary);
   position: absolute;
   display: none;
   right: 0;
@@ -135,7 +181,7 @@ header .nav-Links li {
 }
 
 .dropdownContent.show {
-  background-color: #131a22;
+  background-color: var(--primary);
   position: absolute;
   display: block;
   right: 0;
@@ -165,65 +211,4 @@ header .nav-Links li {
   text-align: center;
   border-radius: 50%;
   margin-left: 6px;
-}
-
-@media only screen and (max-width: 600px) and (min-width: 280px) {
-  .categoryContainer {
-    & > ul {
-      display: flex;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-  }
-}
-@media only screen and (max-width: 601px) and (min-width: 760px) {
-  .categoryContainer {
-    & > ul {
-      display: flex;
-      justify-content: space-between;
-      overflow-x: scroll;
-    }
-  }
-  header .innerContent {
-    flex-direction: column !important;
-  }
-  .brand {
-    margin-bottom: 30px;
-  }
-}
-
-@media only screen and (max-width: 900px) and (min-width: 761px) {
-  .searchBar {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .navLinks {
-    flex-direction: row-reverse;
-    justify-content: center;
-  }
-
-  header .brand a {
-    font-size: 1.2rem;
-  }
-  header .brand {
-    margin-bottom: 10px;
-  }
-
-  .categoryContainer {
-    margin-top: 16px;
-  }
-
-  .categoryContainer ul {
-    display: flex;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  header .innerContent {
-    flex-direction: column;
-  }
-  .searchBar {
-    margin: 20px 0;
-  }
 }

@@ -1,40 +1,42 @@
-.homePageContainer{
-    max-width: 1600px;
-    margin: auto;
+.homePageContainer {
+  max-width: 1600px;
+  margin: auto;
 }
 
-.bannerContainer{
-    margin-bottom: 40px;
+.bannerContainer {
+  margin-bottom: 40px;
 }
-.banners{
-    height: 26vw;
-}
-
-.banners img{
-    width: 100%;
-    height: 100%;
+.banners {
+  height: 26vw;
 }
 
-.homeProductSlider{
+.banners img {
+  width: 100%;
+  height: 100%;
+}
+
+.homeProductSlider {
   padding: 20px;
   background-color: rgb(235, 235, 235);
 }
-
 
 .slides .slickPrev,
 .slides .slickNext {
   top: 50%;
 }
-
-.slickNext{
+.secTitle {
+  margin-bottom: 80px;
+  margin-left: 26px;
+}
+.slickNext {
   margin-right: 5%;
 }
 
-.slickPrev{
+.slickPrev {
   margin-left: 5%;
   z-index: 99;
 }
 
-.slickSlide .productCard{
+.slickSlide .productCard {
   margin: 0 10px;
 }

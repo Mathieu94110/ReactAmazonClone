@@ -1,3 +1,12 @@
+@use "../../assets/styles/mixins" as mixins;
+.priceRangeContainer {
+  @include mixins.md-lt {
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+  }
+}
+
 .priceRangeCheckbox {
   padding: 4px;
   background-color: white;
@@ -16,21 +25,12 @@
   & > label {
     margin-bottom: 0px;
   }
+  @include mixins.md-lt {
+    margin-bottom: 16px;
+    margin-right: 4px;
+  }
 }
 
 .priceRangeCheckbox label {
   margin-left: 6px;
-}
-
-@media (max-width: 900px) {
-  .priceRangeContainer {
-    display: flex;
-    align-items: center;
-    overflow-x: scroll;
-  }
-
-  .priceRangeCheckbox {
-    margin-bottom: 16px;
-    margin-right: 4px;
-  }
 }

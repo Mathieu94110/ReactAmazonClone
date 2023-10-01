@@ -1,30 +1,29 @@
-.ratingContainer{
-    display: flex;
+@use "../../assets/styles/mixins" as mixins;
+
+.ratingContainer {
+  display: flex;
+  @include mixins.md-lt {
+    flex-direction: column;
+  }
 }
 
-.rating{
-    display: flex;
-    align-items: center;
+.rating {
+  display: flex;
+  align-items: center;
 }
 
-.rating > .MuiSvgIcon-root{
-    font-size: 22px !important;
-    color: rgb(255, 166, 0) ;
+.rating > .MuiSvgIcon-root {
+  font-size: 22px !important;
+  color: rgb(255, 166, 0);
 }
 
-.ratingContainer span{
-    margin-left: 14px !important;
-    font-size: 18px !important;
-    color: grey;
-    font-weight: 400 !important;
-}
+.ratingContainer span {
+  margin-left: 14px !important;
+  font-size: 18px !important;
+  color: grey;
+  font-weight: 400 !important;
 
-
-@media(max-width: 900px){
-    .ratingContainer{
-        flex-direction: column;
-    }
-    .ratingContainer span{
-        margin: 10px 0 !important;
-    }
+  @include mixins.md-lt {
+    margin: 10px 0 !important;
+  }
 }

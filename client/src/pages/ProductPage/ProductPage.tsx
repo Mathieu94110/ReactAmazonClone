@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import LoadingBox from "../../components/LoadingBox/LoadingBox";
-import MessageBox from "../../components/MessageBox/MessageBox";
-import styles from "./ProductPage.module.scss";
 import { getProductDetails } from "../../apis/product";
 import { ArrowBack } from "@mui/icons-material";
+import styles from "./ProductPage.module.scss";
+
 interface ProductInterface {
   image: string;
   name: string;
@@ -18,10 +18,10 @@ interface ProductInterface {
   stock: number;
 }
 
-const ProductPage = (props) => {
+const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const { id } = useParams();
 
   useEffect(() => {
     async function getProductsDetails() {
@@ -31,26 +31,18 @@ const ProductPage = (props) => {
       setLoading(false);
     }
     getProductsDetails();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     console.log(product);
   }, [product]);
 
-  const { id } = useParams();
-
   const [qty, setQty] = useState(1);
-
-  // const addToCart = () =>{
-  //     props.history.push(`/cart/${productID}?qty=${qty}`)
-  // }
 
   return (
     <div>
       {loading || !product ? (
         <LoadingBox />
-      ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
           <Link to="/" className={styles.backRes}>
@@ -95,8 +87,15 @@ const ProductPage = (props) => {
                       <li>
                         <p>Quantitée</p>
                         <div className={styles.qtySelect}>
-                          <select value={qty} onChange={(e) => setQty(qty + 1)}>
-                            <option>{qty}</option>
+                          <select
+                            value={qty}
+                            onChange={(e) => setQty(parseInt(e.target.value))}
+                          >
+                            {[...Array(product.stock).keys()].map((x) => (
+                              <option key={x + 1} value={x + 1}>
+                                {x + 1}
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </li>

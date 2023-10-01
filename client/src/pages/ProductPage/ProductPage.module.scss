@@ -1,20 +1,30 @@
+@use "../../assets/styles/mixins" as mixins;
+
 .row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-gap: 40px;
   margin: 30px 20px;
+  @include mixins.md-lt {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .backRes {
   color: #000;
   margin: 20px;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   display: inline-flex;
   align-items: center;
-  background-color: #f0c040;
+  background-color: var(--secondary);
+  border: 1px solid;
   & > span {
     margin-left: 10px;
+  }
+  @include mixins.xs {
+    display: flex;
   }
 }
 
@@ -24,7 +34,7 @@
   justify-content: center;
   align-items: center;
   border: 2px solid grey;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
 }
 
 .col1 img {
@@ -40,6 +50,9 @@
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 16px;
+  @include mixins.xs {
+    font-size: 20px;
+  }
 }
 
 .pdPrice {
@@ -92,8 +105,8 @@
 }
 
 .cardBody .addToCart {
-  background-color: #f0c040;
-  border-radius: 4px;
+  background-color: var(--secondary);
+  border-radius: var(--border-radius);
   display: block;
   width: 100%;
   text-align: center;
@@ -102,11 +115,4 @@
   margin-top: 30px;
   font-size: 18px;
   outline: 0;
-}
-
-@media (max-width: 900px) {
-  .row {
-    display: flex;
-    flex-direction: column;
-  }
 }
