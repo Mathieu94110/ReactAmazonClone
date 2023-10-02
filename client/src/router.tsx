@@ -13,6 +13,7 @@ const CategoryBased = lazy(
 const Product = lazy(() => import("./pages/ProductPage/ProductPage"));
 const Login = lazy(() => import("./pages/LoginPage/LoginPage"));
 const Home = lazy(() => import("./pages/HomePage/HomePage"));
+const Cart = lazy(() => import("./pages/Cart/Cart"));
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <CategoryBased />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/cart/:id?",
+        element: (
+          <ProtectedRoute>
+            <Cart />
           </ProtectedRoute>
         ),
       },

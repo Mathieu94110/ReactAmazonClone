@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from "./UserProfilePage.module.scss";
-import { AuthContext } from "../../components/context/AuthContext";
+import { AuthContext } from "../../components/Context/AuthContext";
 import { updateUserProfile } from "../../apis/users";
 import MessageBox from "../../components/MessageBox/MessageBox";
 

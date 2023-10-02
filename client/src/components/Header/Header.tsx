@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../Context/AuthContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useWindowSize } from "../../hooks/windowDimensions";

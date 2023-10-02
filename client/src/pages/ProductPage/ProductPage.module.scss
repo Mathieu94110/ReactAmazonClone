@@ -90,10 +90,18 @@
 .mSuccess {
   color: rgba(0, 60, 255, 0.863);
   font-weight: 800;
+  @include mixins.xs {
+    font-weight: 600;
+    font-size: 15px;
+  }
 }
 .error {
   color: rgb(255, 0, 0);
   font-weight: 800;
+  @include mixins.xs {
+    font-weight: 600;
+    font-size: 15px;
+  }
 }
 
 .qtySelect select {

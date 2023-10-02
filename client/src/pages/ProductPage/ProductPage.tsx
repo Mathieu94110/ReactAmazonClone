@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import LoadingBox from "../../components/LoadingBox/LoadingBox";
 import { getProductDetails } from "../../apis/product";
@@ -22,7 +22,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<ProductInterface | null>(null);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function getProductsDetails() {
       setLoading(true);
@@ -38,6 +38,10 @@ const ProductPage = () => {
   }, [product]);
 
   const [qty, setQty] = useState(1);
+
+  const addToCart = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <div>
@@ -73,10 +77,10 @@ const ProductPage = () => {
                   </li>
                   <li>
                     <p>Stock</p>
-                    {product.stock > 10 ? (
-                      <span className={styles.mSuccess}>En stock</span>
-                    ) : product.stock < 10 && product.stock > 0 ? (
+                    {product.stock >= 10 ? (
                       <span className={styles.mSuccess}>Beaucoup de stock</span>
+                    ) : product.stock < 10 && product.stock > 0 ? (
+                      <span className={styles.mSuccess}>En stock</span>
                     ) : (
                       <span className={styles.error}>En rupture de stock</span>
                     )}
@@ -100,7 +104,7 @@ const ProductPage = () => {
                         </div>
                       </li>
                       <li>
-                        <button className={styles.addToCart}>
+                        <button className={styles.addToCart} onClick={addToCart}>
                           Ajouter au panier
                         </button>
                       </li>
