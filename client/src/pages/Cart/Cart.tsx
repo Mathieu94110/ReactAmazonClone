@@ -15,13 +15,11 @@ const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
+
   const qty = searchParams.get("qty");
   const navigate = useNavigate();
 
-  console.log(id);
-
   function addToCart(product, quantity) {
-    console.log("HereTwo= ", product, quantity);
     const existitem = cartItems.find((c) => c._id === product._id);
     if (existitem) {
       setCartItems(
@@ -41,7 +39,6 @@ const Cart = () => {
   }
 
   function removeItemFromCart(product) {
-    console.log("Here Two= ", product);
     setCartItems(cartItems.filter((c) => c._id !== product._id));
   }
 
@@ -49,7 +46,6 @@ const Cart = () => {
     if (id) {
       async function getCartItems(id) {
         const productsDetails = await getProductDetails(id);
-        console.log(productsDetails);
         addToCart(productsDetails, Number(qty));
       }
       getCartItems(id);
@@ -93,8 +89,10 @@ const Cart = () => {
                           updateQtyCartItem(item, Number(e.target.value))
                         }
                       >
-                        {[...Array(item.stock).keys()].map((x) => (
-                          <option value={x + 1}>{x + 1}</option>
+                        {[...Array(item.stock).keys()].map((x, i) => (
+                          <option key={i} value={x + 1}>
+                            {x + 1}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -122,8 +120,8 @@ const Cart = () => {
                   Prix total (
                   {cartItems.reduce((a, c) => {
                     return a + c.qty;
-                  }, 0)}
-                  produits) :
+                  }, 0)}{" "}
+                  produit(s)) :
                 </p>
                 <p className={styles.price}>
                   {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}€

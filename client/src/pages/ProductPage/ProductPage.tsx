@@ -33,10 +33,6 @@ const ProductPage = () => {
     getProductsDetails();
   }, [id]);
 
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
-
   const [qty, setQty] = useState(1);
 
   const addToCart = () => {

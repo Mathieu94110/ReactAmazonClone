@@ -23,6 +23,18 @@ header .innerContent {
   @include mixins.md-lt {
     flex-direction: column;
   }
+  @include mixins.xs {
+    padding: 10px;
+  }
+}
+.headerMain {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  z-index: 1;
+  @include mixins.xs {
+    width: auto;
+  }
 }
 
 .categoryContainer {
@@ -70,13 +82,13 @@ header a:hover {
   opacity: 0.7;
 }
 
-header .brand {
+header .headerBrand {
   @include mixins.md {
     margin-bottom: 10px;
   }
 }
 
-header .brand a {
+header .headerBrand a {
   font-weight: 700;
   font-size: 1.5rem;
 
@@ -85,48 +97,21 @@ header .brand a {
   }
 }
 
-.searchBar {
+.shoppingCartIcon {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  border-radius: 6px;
-  overflow: hidden;
-  width: 60%;
-  background-color: var(--secondary);
+  flex: 1 1 auto;
+  margin-left: 20px;
+  > span {
+    color: var(--secondary);
+    text-align: center;
+    font-size: 13px;
+  }
   @include mixins.xs {
-    width: auto;
+    flex: none;
+    margin-left: 10px;
   }
-  @include mixins.md {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-  @include mixins.md-lt {
-    margin: 20px 0;
-  }
-}
-
-.searchInput {
-  padding: 12px;
-  font-size: 18px;
-  width: 100%;
-  outline: 0;
-  border: 0;
-  @include mixins.xs {
-    font-size: 14px;
-  }
-}
-
-.searchBtn {
-  cursor: pointer;
-  text-align: center;
-  outline: 0;
-  border: 0;
-  display: block;
-}
-.searchBtn a {
-  display: block;
-  color: #000000;
-  padding: 6px;
-  display: flex;
 }
 
 header .navLinks {
@@ -142,7 +127,23 @@ header .navLinks {
     justify-content: center;
   }
 }
-
+.searchBar {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 90%;
+  @include mixins.xs {
+    width: auto;
+  }
+  @include mixins.md {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  @include mixins.md-lt {
+    margin: 20px 0;
+  }
+}
 header .nav-Links li {
   display: inline-block;
   margin-left: 30px;
@@ -173,7 +174,7 @@ header .nav-Links li {
   margin-top: 20px;
   border: solid 1px white;
   border-radius: 6px;
-  z-index: 555;
+  z-index: 2;
 }
 
 .dropdownContent li {

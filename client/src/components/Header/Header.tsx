@@ -1,24 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import { AuthContext } from "../Context/AuthContext";
-import { useContext } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useWindowSize } from "../../hooks/windowDimensions";
+import { Search } from "../Search/Search";
+import { useWindowSize } from "../../hooks/useWindowDimensions";
 import {
   ArrowDropDown,
-  Search,
   Headphones,
   PersonalVideo,
   PhoneIphone,
   LaptopMac,
   EarbudsBattery,
+  ShoppingCartOutlined,
 } from "@mui/icons-material";
+import { AuthContext } from "../Context/AuthContext";
+import { CartContext } from "../Context/CartContext";
 import styles from "./Header.module.scss";
-
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
   const { user, signout } = useContext(AuthContext);
-
+  const { cartItems } = useContext(CartContext);
   const { width } = useWindowSize();
 
   // creating ref and useEffect below in order to close dropdown on click outside
@@ -41,23 +40,19 @@ const Header = () => {
     <header>
       <div className={styles.container}>
         <div className={styles.innerContent}>
-          <div className={styles.brand}>
+          <div className={styles.headerBrand}>
             <Link to="/">Amazon Clone</Link>
           </div>
-
-          <div className={styles.searchBar}>
-            <input
-              className={styles.searchInput}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Chercher des produits"
-              value={query}
-            ></input>
-
-            <div className={styles.searchBtn}>
-              <Link to={`/searchresults/${query}`}>
-                <Search />
-              </Link>
+          <div className={styles.headerMain}>
+            <div className={styles.searchBar}>
+              <Search />
             </div>
+            <Link to="/cart">
+              <div className={styles.shoppingCartIcon}>
+                {cartItems.length ? <span>{cartItems.length}</span> : null}
+                <ShoppingCartOutlined sx={{ color: "white", fontSize: 25 }} />
+              </div>
+            </Link>
           </div>
           <div className={styles.headerDropdown} ref={headerDropdownRef}>
             <p onClick={() => setOpen(!open)}>
