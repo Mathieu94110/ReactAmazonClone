@@ -1,6 +1,6 @@
 @use "../../../assets/styles/mixins" as mixins;
 
-form {
+.searchInputForm {
   border-radius: var(--border-radius);
   opacity: 1;
 }

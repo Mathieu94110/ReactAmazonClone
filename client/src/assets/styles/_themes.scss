@@ -8,7 +8,6 @@
     transform: translateY(2px);
   }
 }
-
 .btn-primary {
   background-color: var(--primary);
   color: white;
@@ -21,31 +20,26 @@
   border: 2px solid var(--secondary);
   opacity: 1;
 }
-
 .btn-reverse-primary {
   border: 2px solid var(--primary);
   color: var(--primary);
   background-color: white;
 }
-
 .card {
   border-radius: var(--border-radius);
 }
-
 .text-primary {
   color: var(--primary);
 }
 .text-white {
   color: white;
 }
-
 label {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 3px;
   color: rgb(78, 78, 78);
 }
-
 input {
   padding: 10px 15px;
   border: 2px solid var(--gray-2);
@@ -58,4 +52,7 @@ input {
   font-weight: 500;
   font-size: 12px;
   height: 1rem;
+}
+.full-screen {
+  height: 100vh;
 }

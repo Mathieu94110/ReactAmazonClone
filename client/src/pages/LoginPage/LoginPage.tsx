@@ -15,7 +15,7 @@ const Login = () => {
       <DynamicComponent component={component} />
       <button
         onClick={() => changeComponent()}
-        className="btn btn-secondary my-30"
+        className="btn btn-secondary my-3"
       >
         {component === "signup"
           ? "Vous avez déja un compte"

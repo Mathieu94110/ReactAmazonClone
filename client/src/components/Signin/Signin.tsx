@@ -87,7 +87,10 @@ function Signin() {
               </p>
             </div>
             <div className="mt-10">
-              <button disabled={isSubmitting} className="btn btn-primary">
+              <button
+                disabled={isSubmitting}
+                className="btn btn-secondary my-3"
+              >
                 Connexion
               </button>
             </div>

@@ -18,7 +18,7 @@ const SearchInput = ({ query, setQuery, handleSearch, products }) => {
 
   return (
     <>
-      <form>
+      <form className={styles.searchInputForm}>
         <div style={{ display: "flex" }}>
           <input
             className={styles.searchInput}
