@@ -25,14 +25,16 @@ const Header = () => {
 
   useEffect(() => {
     let handler = (e) => {
-      if (!headerDropdownRef.current.contains(e.target)) {
+      if (headerDropdownRef.current.contains(e.target)) {
+        setOpen(true);
+      } else {
         setOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
 
     return () => {
-      document.addEventListener("mousedown", handler);
+      document.removeEventListener("mousedown", handler);
     };
   });
 

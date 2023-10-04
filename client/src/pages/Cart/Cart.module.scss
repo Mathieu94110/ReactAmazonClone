@@ -34,7 +34,7 @@
   grid-gap: 20px;
   margin: 20px 0;
   align-items: center;
-  background-color: rgb(238, 238, 238);
+  background-color: rgba(238, 238, 238);
   padding: 14px;
 }
 
@@ -78,7 +78,10 @@
   font-size: 18px;
   outline: 0;
 }
-
+.continueShopping {
+  color: var(--secondary);
+  margin-left: 10px;
+}
 @media (max-width: 900px) {
   .rowContainer {
     display: flex;

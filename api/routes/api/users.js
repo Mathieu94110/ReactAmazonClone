@@ -31,7 +31,11 @@ router.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-
+      user.fullName = req.body.fullName || "";
+      user.address = req.body.address || "";
+      user.city = req.body.city || "";
+      user.postalCode = req.body.postalCode || null;
+      user.country = req.body.country || "";
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -40,6 +44,11 @@ router.put(
         _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        fullName: updatedUser.fullName,
+        address: updatedUser.address,
+        city: updatedUser.city,
+        postalCode: updatedUser.postalCode,
+        country: updatedUser.country,
       });
     }
   })

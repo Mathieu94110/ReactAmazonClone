@@ -40,8 +40,8 @@ const UserProfilePage = () => {
   };
   return (
     <div className={styles.userProfileContainer}>
-      <div className={styles.userProfileformContainer}>
-        <form className={styles.userProfileForm} onSubmit={updateDetails}>
+      <div className={styles.formContainer}>
+        <form className={styles.form} onSubmit={updateDetails}>
           <h1>Profil Utilisateur</h1>
           <div className={styles.UserProfileMessage}>
             {errorUpdate && (

@@ -1,3 +1,4 @@
+@use "./mixins";
 .btn {
   padding: 5px 15px;
   border-radius: var(--border-radius);
@@ -55,4 +56,24 @@ input {
 }
 .full-screen {
   height: 100vh;
+}
+.formIpSec {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  @include mixins.md-lt {
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+.formIpSec input {
+  padding: 12px;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: var(--border-radius);
+  @include mixins.xs {
+    padding: 8px;
+    font-size: 12px;
+  }
 }

@@ -14,7 +14,9 @@ const Product = lazy(() => import("./pages/ProductPage/ProductPage"));
 const Login = lazy(() => import("./pages/LoginPage/LoginPage"));
 const Home = lazy(() => import("./pages/HomePage/HomePage"));
 const Cart = lazy(() => import("./pages/Cart/Cart"));
-
+const ShippingAddress = lazy(
+  () => import("./pages/ShippingAdress/ShippingAdress")
+);
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Cart />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "shipping",
+        element: (
+          <ProtectedRoute>
+            <ShippingAddress />
           </ProtectedRoute>
         ),
       },

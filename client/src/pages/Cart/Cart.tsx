@@ -66,7 +66,12 @@ const Cart = () => {
           <h1>Panier</h1>
           {cartItems.length === 0 ? (
             <MessageBox>
-              Le panier est vide <Link to="/">Continuer vos achats</Link>
+              Le panier est vide{" "}
+              <Link to="/">
+                <span className={styles.continueShopping}>
+                  Continuer vos achats
+                </span>
+              </Link>
             </MessageBox>
           ) : (
             <ul>
