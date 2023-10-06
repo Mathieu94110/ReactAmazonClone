@@ -74,11 +74,11 @@ const ProductPage = () => {
                   <li>
                     <p>Stock</p>
                     {product.stock >= 10 ? (
-                      <span className={styles.mSuccess}>Beaucoup de stock</span>
+                      <span className={styles.supplySuccess}>Beaucoup de stock</span>
                     ) : product.stock < 10 && product.stock > 0 ? (
-                      <span className={styles.mSuccess}>En stock</span>
+                      <span className={styles.supplySuccess}>En stock</span>
                     ) : (
-                      <span className={styles.error}>En rupture de stock</span>
+                      <span className={styles.supplyError}>En rupture de stock</span>
                     )}
                   </li>
 

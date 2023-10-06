@@ -10,11 +10,33 @@
     width: auto;
   }
 }
+.userShippingAddress {
+  padding: 40px;
+  border: solid 2px grey;
+  border-radius: 4px;
+  background-color: var(--primary);
+  width: auto;
+
+  & > p {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.usershippingKey {
+  color: var(--secondary);
+  font-weight: 600;
+}
+.userShippingValue {
+  color: #fff;
+  font-weight: 600;
+}
+
 .shippingForm {
   padding: 40px;
   border: solid 2px grey;
   border-radius: 4px;
-  background-color: rgb(238, 238, 238);
+  background-color: var(--primary);
   width: auto;
 
   @include mixins.md-lt {
@@ -29,6 +51,11 @@
     width: auto;
   }
 }
+.shippingFormLabel {
+  color: var(--secondary);
+  font-size: 18px;
+}
+
 .formIpSecContainer {
   display: flex;
   flex-wrap: wrap;
@@ -45,25 +72,24 @@
   }
 }
 
-.continueBtnContainer {
-  @include mixins.xs {
-    display: flex;
-    justify-content: center;
-  }
+.shippingBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
-.continueBtn {
+.shippingBtn {
   background-color: #f0c040;
   border-radius: 4px;
   display: block;
-  width: 100%;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
+  margin: 10px;
   cursor: pointer;
   margin-top: 30px;
   font-size: 18px;
+  font-weight: 600;
   outline: 0;
   @include mixins.xs {
-    width: 200px;
     padding: 5px;
     font-size: 14px;
   }

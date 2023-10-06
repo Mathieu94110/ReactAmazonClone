@@ -83,24 +83,26 @@
   margin-top: 20px;
 }
 
-.success {
-  color: rgb(0, 168, 76);
-  font-weight: 800;
-}
-.mSuccess {
+.supplySuccess {
   color: rgba(0, 60, 255, 0.863);
   font-weight: 800;
   @include mixins.xs {
     font-weight: 600;
     font-size: 15px;
   }
+  @include mixins.lg {
+    font-size: 12px;
+  }
 }
-.error {
+.supplyError {
   color: rgb(255, 0, 0);
   font-weight: 800;
   @include mixins.xs {
     font-weight: 600;
     font-size: 15px;
+  }
+  @include mixins.lg {
+    font-size: 12px;
   }
 }
 

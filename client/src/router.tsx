@@ -17,6 +17,8 @@ const Cart = lazy(() => import("./pages/Cart/Cart"));
 const ShippingAddress = lazy(
   () => import("./pages/ShippingAdress/ShippingAdress")
 );
+const PaymentMethod = lazy(() => import("./pages/PaymentMethod/PaymentMethod"));
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -72,6 +74,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ShippingAddress />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <ProtectedRoute>
+            <PaymentMethod />
           </ProtectedRoute>
         ),
       },
