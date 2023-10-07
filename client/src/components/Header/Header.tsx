@@ -14,8 +14,9 @@ import {
 import { AuthContext } from "../Context/AuthContext";
 import { CartContext } from "../Context/CartContext";
 import styles from "./Header.module.scss";
+
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const { user, signout } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
   const { width } = useWindowSize();

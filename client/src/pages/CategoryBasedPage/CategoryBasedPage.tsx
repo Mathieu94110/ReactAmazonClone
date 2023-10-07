@@ -9,7 +9,7 @@ import styles from "./CategoryBasedPage.module.scss";
 
 const CategoryBasedPage = () => {
   const [productList, setProductList] = useState([]);
-  const [range, setRange] = useState([0, 50000]);
+  const [range, setRange] = useState<[number, number]>([0, 50000]);
   const [checked, setChecked] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +27,7 @@ const CategoryBasedPage = () => {
 
   const handleFilters = (filters) => {
     const data = prices;
-    let array = [];
+    let array = [] as any;
 
     for (let key in data) {
       if (data[key].id === parseInt(filters, 10)) {

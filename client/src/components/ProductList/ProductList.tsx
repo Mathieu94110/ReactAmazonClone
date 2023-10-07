@@ -1,8 +1,9 @@
-import styles from "./ProductList.module.scss";
 import Product from "../Product/Product";
 import LoadingBox from "../LoadingBox/LoadingBox";
+import { cartItemsType } from "../../types/types";
+import styles from "./ProductList.module.scss";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products }: { products: cartItemsType[] }) => {
   return (
     <div className={styles.homeProductContainer}>
       {!products ? (

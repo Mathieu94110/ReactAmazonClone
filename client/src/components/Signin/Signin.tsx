@@ -50,7 +50,7 @@ function Signin() {
       setError("generic", { type: "generic", message });
     }
   });
-
+  console.log(user);
   return (
     <>
       {user ? (

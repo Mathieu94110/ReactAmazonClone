@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
 import Header from "../Header/Header";
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div>

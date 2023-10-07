@@ -1,8 +1,4 @@
-type pricesRange = {
-  id: number;
-  name: string;
-  array: number[];
-};
+import { pricesRange } from "../types/types";
 
 export const prices: pricesRange[] = [
   {

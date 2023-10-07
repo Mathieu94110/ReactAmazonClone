@@ -1,8 +1,4 @@
-import { SetStateAction, createContext } from "react";
-
-type CartContextType = {
-  cartItems: any[];
-  setCartItems: SetStateAction<any>;
-};
+import { createContext } from "react";
+import { CartContextType } from "../../types/types";
 
 export const CartContext = createContext<CartContextType | null>(null);

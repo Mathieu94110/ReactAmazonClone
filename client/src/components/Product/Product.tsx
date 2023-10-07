@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
+import { cartItemsType } from "../../types/types";
 import Rating from "../Rating/Rating";
 import styles from "./Product.module.scss";
-import { Link } from "react-router-dom";
 
-const Product = ({ product }) => {
+const Product = ({ product }: { product: cartItemsType }) => {
   return (
     <Link to={`/products/product/${product._id}`}>
       <div className={styles.productCard}>

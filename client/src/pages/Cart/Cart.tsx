@@ -15,7 +15,6 @@ const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
-
   const qty = searchParams.get("qty");
   const navigate = useNavigate();
 
@@ -66,7 +65,7 @@ const Cart = () => {
           <h1>Panier</h1>
           {cartItems.length === 0 ? (
             <MessageBox>
-              Le panier est vide{" "}
+              Le panier est vide
               <Link to="/">
                 <span className={styles.continueShopping}>
                   Continuer vos achats

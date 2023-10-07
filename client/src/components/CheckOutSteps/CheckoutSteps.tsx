@@ -1,6 +1,7 @@
+import { CheckoutStepsProps } from "../../types/types";
 import styles from "./CheckOutSteps.module.scss";
 
-const CheckoutSteps = (props) => {
+const CheckoutSteps = (props: CheckoutStepsProps) => {
   return (
     <div className={styles.stepsContainer}>
       <div className={props.step1 ? styles.active : ""}>Panier</div>
