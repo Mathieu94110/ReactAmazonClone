@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../../components/CheckOutSteps/CheckoutSteps";
 import styles from "./PaymentMethod.module.scss";
-import { useNavigate } from "react-router-dom";
 
 const PaymentMethod = () => {
   const navigate = useNavigate();
-  const [method, setMethod] = useState("PayPal");
+  const [method, setMethod] = useState<string>("PayPal");
 
-  const submitMethod = (e) => {
+  const submitMethod = (e: SyntheticEvent) => {
     e.preventDefault();
 
     console.log("payment method");
@@ -32,7 +32,7 @@ const PaymentMethod = () => {
               required
               checked
               onChange={(e) => setMethod(e.target.value)}
-            ></input>
+            />
             <label htmlFor="paypal">PayPal</label>
           </div>
 
@@ -44,7 +44,7 @@ const PaymentMethod = () => {
               name="paymentMethod"
               required
               onChange={(e) => setMethod(e.target.value)}
-            ></input>
+            />
             <label htmlFor="stripe">Stripe</label>
           </div>
 

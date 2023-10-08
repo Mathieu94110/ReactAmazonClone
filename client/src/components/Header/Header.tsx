@@ -11,8 +11,7 @@ import {
   EarbudsBattery,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { AuthContext } from "../Context/AuthContext";
-import { CartContext } from "../Context/CartContext";
+import { AuthContext, CartContext } from "../Context";
 import styles from "./Header.module.scss";
 
 const Header = () => {

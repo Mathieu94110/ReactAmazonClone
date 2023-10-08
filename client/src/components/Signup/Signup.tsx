@@ -2,14 +2,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../../apis/users";
-
-interface UserInput {
-  name: string;
-  email: string;
-  password: string;
-  generic: { generic: { message: string } };
-}
+import { createUser } from "../../apis";
+import { UserSignupInput } from "@/types/types";
 
 function Signup() {
   const navigate = useNavigate();
@@ -26,7 +20,7 @@ function Signup() {
       .min(6, "Le mot de passe est trop court"),
   });
 
-  const defaultValues: UserInput = {
+  const defaultValues: UserSignupInput = {
     name: "",
     email: "",
     password: "",
@@ -39,7 +33,7 @@ function Signup() {
     formState: { errors, isSubmitting }, // get errors of the form
     setError,
     clearErrors,
-  } = useForm<UserInput>({
+  } = useForm<UserSignupInput>({
     defaultValues,
     resolver: yupResolver(validationSchema) as any,
   });
@@ -59,7 +53,7 @@ function Signup() {
       <form onSubmit={submit} className="d-flex flex-column card p-20">
         <h2 className="mb-10 text-white">Inscription</h2>
         <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="name" className="text-primary">
+          <label htmlFor="name" className="text-white">
             Nom
           </label>
           <input type="text" name="name" {...register("name")} />
@@ -68,7 +62,7 @@ function Signup() {
           </p>
         </div>
         <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="email" className="text-primary">
+          <label htmlFor="email" className="text-white">
             Email
           </label>
           <input type="text" name="email" {...register("email")} />
@@ -77,7 +71,7 @@ function Signup() {
           </p>
         </div>
         <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="password" className="text-primary">
+          <label htmlFor="password" className="text-white">
             Password
           </label>
           <input type="password" name="password" {...register("password")} />
@@ -93,7 +87,7 @@ function Signup() {
           </div>
         </div>
         <div className="mt-10">
-          <button disabled={isSubmitting} className="btn btn-secondary my-3">
+          <button disabled={isSubmitting} className="btn btn-secondary my-1">
             Inscription
           </button>
         </div>

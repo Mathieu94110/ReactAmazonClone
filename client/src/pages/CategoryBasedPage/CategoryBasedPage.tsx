@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Product from "../../components/Product/Product";
 import LoadingBox from "../../components/LoadingBox/LoadingBox";
-import { getProductsList } from "../../apis/product";
 import PriceCheckBox from "../../components/PriceCheckBox/PriceCheckBox";
+import { getProductsList } from "../../apis";
 import { prices } from "../../locales/priceRange";
-import { useParams } from "react-router-dom";
+import { CartItemsType } from "@/types/types";
 import styles from "./CategoryBasedPage.module.scss";
 
 const CategoryBasedPage = () => {
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState<CartItemsType[]>([]);
   const [range, setRange] = useState<[number, number]>([0, 50000]);
-  const [checked, setChecked] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [checkedId, setCheckedId] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    async function getProducts() {
+    async function getProducts(): Promise<void> {
       setLoading(true);
       const products = await getProductsList();
       setProductList(products);
@@ -25,25 +26,25 @@ const CategoryBasedPage = () => {
 
   const { cat } = useParams();
 
-  const handleFilters = (filters) => {
+  const handleFilters = (filter: number): void => {
     const data = prices;
-    let array = [] as any;
+    let array: [number, number] = [0, 50000];
 
     for (let key in data) {
-      if (data[key].id === parseInt(filters, 10)) {
+      if (data[key].id === filter) {
         array = data[key].array;
       }
     }
     setRange(array);
   };
 
-  function formatedCat(cat) {
+  function formatedCat(cat): string {
     return cat.replaceAll("-", " ").replaceAll("_", "'");
   }
 
-  function clearFilters() {
+  function clearFilters(): void {
     setRange([0, 50000]);
-    setChecked(0);
+    setCheckedId(0);
   }
 
   return (
@@ -58,10 +59,10 @@ const CategoryBasedPage = () => {
         <h3>Prix:</h3>
 
         <PriceCheckBox
-          checked={checked}
-          setChecked={(v) => setChecked(v)}
+          checkedId={checkedId}
+          setCheckedId={(v) => setCheckedId(v)}
           list={prices}
-          handleFilters={(filters) => handleFilters(filters)}
+          handleFilters={(filter) => handleFilters(filter)}
         />
       </div>
 

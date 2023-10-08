@@ -2,29 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import LoadingBox from "../../components/LoadingBox/LoadingBox";
-import { getProductDetails } from "../../apis/product";
+import { getProductDetails } from "../../apis";
 import { ArrowBack } from "@mui/icons-material";
+import { ProductType } from "@/types/types";
 import styles from "./ProductPage.module.scss";
 
-interface ProductInterface {
-  image: string;
-  name: string;
-  description: string;
-  category: string;
-  brand: string;
-  price: number;
-  rating: number;
-  numRev: number;
-  stock: number;
-}
-
 const ProductPage = () => {
-  const [product, setProduct] = useState<ProductInterface | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState<ProductType | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [qty, setQty] = useState<number>(1);
   const { id } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
-    async function getProductsDetails() {
+    async function getProductsDetails(): Promise<void> {
       setLoading(true);
       const productsDetails = await getProductDetails(id);
       setProduct(productsDetails);
@@ -33,9 +24,7 @@ const ProductPage = () => {
     getProductsDetails();
   }, [id]);
 
-  const [qty, setQty] = useState(1);
-
-  const addToCart = () => {
+  const addToCart = ():void => {
     navigate(`/cart/${id}?qty=${qty}`);
   };
 
@@ -74,11 +63,15 @@ const ProductPage = () => {
                   <li>
                     <p>Stock</p>
                     {product.stock >= 10 ? (
-                      <span className={styles.supplySuccess}>Beaucoup de stock</span>
+                      <span className={styles.supplySuccess}>
+                        Beaucoup de stock
+                      </span>
                     ) : product.stock < 10 && product.stock > 0 ? (
                       <span className={styles.supplySuccess}>En stock</span>
                     ) : (
-                      <span className={styles.supplyError}>En rupture de stock</span>
+                      <span className={styles.supplyError}>
+                        En rupture de stock
+                      </span>
                     )}
                   </li>
 
@@ -100,7 +93,10 @@ const ProductPage = () => {
                         </div>
                       </li>
                       <li>
-                        <button className={styles.addToCart} onClick={addToCart}>
+                        <button
+                          className={styles.addToCart}
+                          onClick={addToCart}
+                        >
                           Ajouter au panier
                         </button>
                       </li>

@@ -1,4 +1,4 @@
-import { CheckoutStepsProps } from "../../types/types";
+import { CheckoutStepsProps } from "@/types/types";
 import styles from "./CheckOutSteps.module.scss";
 
 const CheckoutSteps = (props: CheckoutStepsProps) => {

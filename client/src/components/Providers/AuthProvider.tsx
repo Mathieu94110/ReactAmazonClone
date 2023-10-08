@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { signin as login, signout as logout } from "../../apis/auth";
-import { AuthContext } from "../Context/AuthContext";
+import { signin as login, signout as logout } from "../../apis";
+import { AuthContext } from "../Context";
 
 function AuthProvider({ children }: { children: ReactNode }) {
   const initialUser = useLoaderData();

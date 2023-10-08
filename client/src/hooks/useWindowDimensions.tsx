@@ -1,11 +1,6 @@
 import { useState } from "react";
-
 import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
-
-interface WindowSize {
-  width: number;
-  height: number;
-}
+import { WindowSize } from "@/types/types";
 
 export function useWindowSize(): WindowSize {
   const [windowSize, setWindowSize] = useState<WindowSize>({

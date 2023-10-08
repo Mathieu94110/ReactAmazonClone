@@ -1,70 +1,24 @@
 import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
 import ProductList from "../../components/ProductList/ProductList";
 import Product from "../../components/Product/Product";
-import { getProductsList } from "../../apis/product";
+import { getProductsList } from "../../apis";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import { CartItemsType } from "@/types/types";
+import { settings, settings2 } from "../../locales/slidersConfig";
 import styles from "./HomePage.module.scss";
 
 const Home = () => {
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState<CartItemsType[]>([]);
 
   useEffect(() => {
-    async function getProducts() {
+    async function getProducts(): Promise<void> {
       const products = await getProductsList();
       setProductList(products);
     }
     getProducts();
   }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-
-  const settings2 = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 800,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          dots: true,
-          infinite: true,
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          dots: true,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 680,
-        settings: {
-          dots: true,
-          infinite: true,
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   return (
     <div className={styles.homePageContainer}>
@@ -95,11 +49,10 @@ const Home = () => {
 
       <div className={styles.homeProductSlider}>
         <h2 className={styles.secTitle}>Plus de produits</h2>
-
         <Slider {...settings2}>
           {productList.length > 0
             ? productList.map((product) => (
-                <Product key={product.name} product={product} />
+                <Product key={product._id} product={product} />
               ))
             : null}
         </Slider>

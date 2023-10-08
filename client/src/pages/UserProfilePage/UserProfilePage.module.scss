@@ -1,26 +1,24 @@
 @use "../../assets/styles/mixins" as mixins;
 
 .userProfileContainer {
-  max-width: 600px;
-  margin: auto;
-  height: calc(100vh - 160px);
+  width: 100%;
+  height: calc(100vh - 145px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
   @include mixins.xs {
     height: 100%;
   }
 }
-.userProfileFormContainer {
-  height: auto;
-  margin: auto;
-}
+
 .UserProfileMessage {
   height: 30px;
 }
-.userProfileform {
+
+.userProfileForm {
   min-width: 260px;
+  height: auto;
   margin: 10px;
   padding: 30px;
   border: solid 2px grey;

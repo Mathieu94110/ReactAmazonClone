@@ -1,15 +1,12 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Context";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { UserSigninInput } from "@/types/types";
 
-interface UserSigninInput {
-  email: string;
-  password: string;
-  generic: { generic: { message: string } };
-}
+
 
 function Signin() {
   const { signin, user } = useContext(AuthContext);
@@ -50,7 +47,6 @@ function Signin() {
       setError("generic", { type: "generic", message });
     }
   });
-  console.log(user);
   return (
     <>
       {user ? (
@@ -60,7 +56,7 @@ function Signin() {
           <form onSubmit={submit} className="d-flex flex-column card p-20">
             <h2 className="mb-10 text-white">Connexion</h2>
             <div className="mb-10 d-flex flex-column my-10">
-              <label htmlFor="email" className="text-primary">
+              <label htmlFor="email" className="text-white">
                 Email
               </label>
               <input type="text" name="email" {...register("email")} />
@@ -69,7 +65,7 @@ function Signin() {
               </p>
             </div>
             <div className="mb-10 d-flex flex-column my-10">
-              <label htmlFor="password" className="text-primary">
+              <label htmlFor="password" className="text-white">
                 Password
               </label>
               <input
@@ -89,7 +85,7 @@ function Signin() {
             <div className="mt-10">
               <button
                 disabled={isSubmitting}
-                className="btn btn-secondary my-3"
+                className="btn btn-secondary my-1"
               >
                 Connexion
               </button>

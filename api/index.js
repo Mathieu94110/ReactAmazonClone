@@ -5,7 +5,9 @@ const app = express();
 const routes = require("./routes");
 app.use(cookie());
 app.use(express.json());
-
+app.get("/bonjour", (req, res) => {
+  res.send("ok");
+});
 require("./database");
 app.use(routes);
 

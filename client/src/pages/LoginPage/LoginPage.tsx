@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import DynamicComponent from "../../utils/DynamicComponent";
 import styles from "./LoginPage.module.scss";
-const Login = () => {
-  const [component, setComponent] = useState("signin");
 
-  function changeComponent() {
-    const switchComponent = component === "signin" ? "signup" : "signin";
-    setComponent(switchComponent);
+const Login = () => {
+  const [component, setComponent] = useState<"signin" | "signup">("signin");
+
+  function switchComponent(): void {
+    const switchedComponent = component === "signin" ? "signup" : "signin";
+    setComponent(switchedComponent);
   }
   return (
     <div
-      className={`flex-fill d-flex flex-column align-items-center justify-content-center full-screen ${styles.loginBackground}`}
+      className="flex-fill d-flex flex-column align-items-center justify-content-center full-screen"
     >
-      <DynamicComponent component={component} />
+      <div>
+      <img src={require('../../assets/images/amazon-fr-logo.png')} alt="amazon.fr" />
+      </div>
+      <DynamicComponent name={component} />
       <button
-        onClick={() => changeComponent()}
-        className="btn btn-secondary my-3"
+        onClick={() => switchComponent()}
+        className="btn btn-secondary my-2"
       >
         {component === "signup"
           ? "Vous avez déja un compte"

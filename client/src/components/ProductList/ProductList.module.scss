@@ -36,6 +36,9 @@
   @include mixins.sm-lt {
     margin: 20px 0;
   }
+  @include mixins.xs {
+    text-align: center;
+  }
 }
 
 .secTitle span {

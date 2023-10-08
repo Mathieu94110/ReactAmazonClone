@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import SearchInput from "./Components/SearchInput";
 import { useDebounce } from "../../hooks/useDebounce";
 import { getProductsList } from "../../apis/product";
+import { CartItemsType } from "@/types/types";
 
 export const Search: React.FC = () => {
-  const [query, setQuery] = useState("");
-  const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState<string>("");
+  const [products, setProducts] = useState<CartItemsType[]>([]);
   // DebouncedOutput is initialized to null in order to prevent searchInputValue from parent to be empty after first loading
   const [debouncedOutput, setDebouncedOutput] = useState<string | null>(null);
 

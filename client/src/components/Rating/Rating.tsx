@@ -1,7 +1,8 @@
 import { Star, StarHalf, StarBorder } from "@mui/icons-material";
 import styles from "./Rating.module.scss";
+import { RatingProps } from "@/types/types";
 
-const Rating = (props) => {
+const Rating = (props: RatingProps) => {
   const { rating, numRev } = props;
 
   return (

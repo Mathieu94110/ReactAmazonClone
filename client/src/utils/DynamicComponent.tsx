@@ -7,8 +7,8 @@ const components = {
   signup: Signup,
 };
 
-function DynamicComponent({ component }) {
-  const SelectComponent = components[component];
+function DynamicComponent({ name }: { name: string }) {
+  const SelectComponent = components[name];
   return <SelectComponent />;
 }
 

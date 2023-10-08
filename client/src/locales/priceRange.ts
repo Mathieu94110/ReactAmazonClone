@@ -1,6 +1,6 @@
-import { pricesRange } from "../types/types";
+import { PricesRange } from "@/types/types";
 
-export const prices: pricesRange[] = [
+export const prices: PricesRange[] = [
   {
     id: 0,
     name: "Tout",

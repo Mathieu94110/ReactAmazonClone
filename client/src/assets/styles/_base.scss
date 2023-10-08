@@ -1,8 +1,9 @@
 @use "./mixins" as mixins;
-
+* {
+  font-family: var(--font-family);
+}
 body {
   margin: 0;
-  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
@@ -45,9 +46,7 @@ a {
 form {
   width: 350px;
   margin: 0;
-  flex: 1 1 auto;
-  background-color: #000;
-  opacity: 0.9;
+  background-color: var(--primary);
   @include mixins.md-lt {
     margin: 20px;
   }
@@ -68,6 +67,9 @@ form {
 .mb-20 {
   margin-bottom: 20px;
 }
-.my-3 {
+.my-1 {
   margin: 10px 0;
+}
+.my-2 {
+  margin: 20px 0;
 }

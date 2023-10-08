@@ -1,22 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import CheckoutSteps from "../../components/CheckOutSteps/CheckoutSteps";
-import { updateUserProfile } from "../../apis/users";
-import { AuthContext } from "../../components/Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import CheckoutSteps from "../../components/CheckOutSteps/CheckoutSteps";
+import { updateUserProfile } from "../../apis";
+import { AuthContext } from "../../components/Context";
+import { UserShippingAddressInput } from "@/types/types";
 import styles from "./ShippingAdress.module.scss";
-
-interface UserShippingAddressInput {
-  fullName: string;
-  address: string;
-  postalCode: number | null;
-  city: string;
-  country: string;
-  userId: string;
-  generic: { generic: { message: string } };
-}
 
 const ShippingAddress = () => {
   const [userShippingAddress, setUserShippingAddress] = useState<
@@ -77,13 +68,13 @@ const ShippingAddress = () => {
     }
   }, [user]);
 
-  function userHasShoppingAddress(object) {
+  function userHasShoppingAddress(object): boolean {
     return ["address", "city", "country", "fullName"].every((info) =>
       object.hasOwnProperty(info)
     );
   }
 
-  const submit = handleSubmit(async (infos) => {
+  const submit = handleSubmit(async (infos): Promise<void> => {
     try {
       clearErrors();
       await updateUserProfile(infos);
