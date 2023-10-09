@@ -18,6 +18,23 @@
   font-weight: 600;
 }
 
+.submit-btn {
+  width: 100%;
+  background-color: var(--secondary);
+  border-radius: 4px;
+  display: block;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 0;
+  @include mixins.xs {
+    padding: 5px;
+    font-size: 14px;
+  }
+}
+
 .card {
   border-radius: var(--border-radius);
 }
@@ -30,7 +47,6 @@
 label {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 3px;
   color: rgb(78, 78, 78);
 }
 input {

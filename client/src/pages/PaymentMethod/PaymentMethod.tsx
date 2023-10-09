@@ -10,7 +10,7 @@ const PaymentMethod = () => {
   const submitMethod = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    console.log("payment method");
+    console.log(method);
   };
 
   return (
@@ -50,7 +50,7 @@ const PaymentMethod = () => {
 
           <div>
             <label />
-            <button className={styles.submitBtn} type="submit">
+            <button className="submit-btn" type="submit">
               Continuer
             </button>
           </div>

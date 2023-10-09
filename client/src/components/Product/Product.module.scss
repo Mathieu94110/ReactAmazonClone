@@ -13,6 +13,9 @@
   @include mixins.md-lt {
     height: 280px;
   }
+  @include mixins.lg {
+    height: 330px;
+  }
 }
 
 .productImage {

@@ -51,7 +51,7 @@ function Signup() {
   return (
     <div>
       <form onSubmit={submit} className="d-flex flex-column card p-20">
-        <h2 className="mb-10 text-white">Inscription</h2>
+        <h2 className="mb-20 text-white">Inscription</h2>
         <div className="mb-10 d-flex flex-column my-10">
           <label htmlFor="name" className="text-white">
             Nom

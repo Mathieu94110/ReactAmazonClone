@@ -6,8 +6,6 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { UserSigninInput } from "@/types/types";
 
-
-
 function Signin() {
   const { signin, user } = useContext(AuthContext);
 
@@ -52,46 +50,37 @@ function Signin() {
       {user ? (
         <Navigate to="/" />
       ) : (
-        <div>
-          <form onSubmit={submit} className="d-flex flex-column card p-20">
-            <h2 className="mb-10 text-white">Connexion</h2>
-            <div className="mb-10 d-flex flex-column my-10">
-              <label htmlFor="email" className="text-white">
-                Email
-              </label>
-              <input type="text" name="email" {...register("email")} />
-              <p className="form-error">
-                {errors.email ? errors.email.message : null}
-              </p>
-            </div>
-            <div className="mb-10 d-flex flex-column my-10">
-              <label htmlFor="password" className="text-white">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                {...register("password")}
-              />
-              <p className="form-error">
-                {errors.password ? errors.password.message : null}
-              </p>
-            </div>
-            <div className="mb-10">
-              <p className="form-error">
-                {errors.generic ? errors.generic.message : null}
-              </p>
-            </div>
-            <div className="mt-10">
-              <button
-                disabled={isSubmitting}
-                className="btn btn-secondary my-1"
-              >
-                Connexion
-              </button>
-            </div>
-          </form>
-        </div>
+        <form onSubmit={submit} className="d-flex flex-column card p-20">
+          <h2 className="mb-20 text-white">Connexion</h2>
+          <div className="mb-10 d-flex flex-column my-10">
+            <label htmlFor="email" className="text-white">
+              Email
+            </label>
+            <input type="text" name="email" {...register("email")} />
+            <p className="form-error">
+              {errors.email ? errors.email.message : null}
+            </p>
+          </div>
+          <div className="mb-10 d-flex flex-column my-10">
+            <label htmlFor="password" className="text-white">
+              Password
+            </label>
+            <input type="password" name="password" {...register("password")} />
+            <p className="form-error">
+              {errors.password ? errors.password.message : null}
+            </p>
+          </div>
+          <div className="mb-10">
+            <p className="form-error">
+              {errors.generic ? errors.generic.message : null}
+            </p>
+          </div>
+          <div className="mt-10">
+            <button disabled={isSubmitting} className="btn btn-secondary my-1">
+              Connexion
+            </button>
+          </div>
+        </form>
       )}
     </>
   );

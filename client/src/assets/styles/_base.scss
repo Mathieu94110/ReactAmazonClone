@@ -1,6 +1,7 @@
 @use "./mixins" as mixins;
 * {
   font-family: var(--font-family);
+  box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -15,10 +16,6 @@ h2,
 h3,
 h4 {
   margin: 0;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 ul {
@@ -51,8 +48,7 @@ form {
     margin: 20px;
   }
   @include mixins.xs {
-    width: auto;
-    margin: 10px;
+    width: 100%;
   }
 }
 .slick-slider {

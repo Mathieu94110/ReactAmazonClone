@@ -11,7 +11,7 @@ const Login = () => {
   }
   return (
     <div
-      className="flex-fill d-flex flex-column align-items-center justify-content-center full-screen"
+      className="flex-fill d-flex flex-column align-items-center justify-content-center full-screen p-20"
     >
       <div>
       <img src={require('../../assets/images/amazon-fr-logo.png')} alt="amazon.fr" />

@@ -19,24 +19,24 @@ const ShippingAddress = () => {
   const validationSchema = yup.object({
     fullName: yup
       .string()
-      .required("Le nom complet est requis")
-      .min(4, "Le nom complet est trop court"),
+      .min(4, "Le nom complet est trop court")
+      .required("Le nom complet est requis"),
     address: yup
       .string()
-      .required("L'adresse est requise")
-      .min(10, "L'adresse est trop courte"),
+      .min(10, "L'adresse est trop courte")
+      .required("L'adresse est requise"),
     postalCode: yup
       .number()
-      .required("Le code postal est requis")
-      .min(5, "Le code postal est trop court"),
+      .min(5, "Le code postal est trop court")
+      .required("Le code postal est requis"),
     city: yup
       .string()
-      .required("Il faut indiquer une ville")
-      .min(3, "La ville est trop courte"),
+      .min(3, "La ville est trop courte")
+      .required("Il faut indiquer une ville"),
     country: yup
       .string()
-      .required("Il faut indiquer un pays")
-      .min(4, "La pays doit faire au moins 4 caractères"),
+      .min(4, "La pays doit faire au moins 4 caractères")
+      .required("Il faut indiquer un pays"),
   });
 
   const defaultValues: UserShippingAddressInput = {
@@ -138,6 +138,7 @@ const ShippingAddress = () => {
                   type="text"
                   placeholder="Indiquer un nom complet"
                   name="fullName"
+                  className={styles.shippingAddressInput}
                   {...register("fullName")}
                 />
                 <p className="form-error">
@@ -153,6 +154,7 @@ const ShippingAddress = () => {
                   type="text"
                   placeholder="Entrer une adresse"
                   name="address"
+                  className={styles.shippingAddressInput}
                   {...register("address")}
                 />
                 <p className="form-error">
@@ -168,6 +170,7 @@ const ShippingAddress = () => {
                   type="text"
                   placeholder="Entrer une ville"
                   name="city"
+                  className={styles.shippingAddressInput}
                   {...register("city")}
                 />
                 <p className="form-error">
@@ -186,6 +189,7 @@ const ShippingAddress = () => {
                   type="text"
                   placeholder="Entrer un code postal"
                   name="postalCode"
+                  className={styles.shippingAddressInput}
                   {...register("postalCode")}
                 />
                 <p className="form-error">
@@ -201,6 +205,7 @@ const ShippingAddress = () => {
                   type="text"
                   placeholder="Entrer un pays"
                   name="country"
+                  className={styles.shippingAddressInput}
                   {...register("country")}
                 />
                 <p className="form-error">

@@ -65,7 +65,6 @@ const UserProfilePage = () => {
           email: userInfo.email,
           password: userInfo.password,
         });
-        console.log("Here =", response);
         if (response.ok) {
           setSuccessUpdate(true);
           reset();
@@ -89,7 +88,7 @@ const UserProfilePage = () => {
             </MessageBox>
           )}
         </div>
-        <div className={styles.formIpSec}>
+        <div className={styles.profileFormIpSec}>
           <label htmlFor="name">Nom</label>
           <input
             type="name"
@@ -103,7 +102,7 @@ const UserProfilePage = () => {
           </p>
         </div>
 
-        <div className={styles.formIpSec}>
+        <div className={styles.profileFormIpSec}>
           <label htmlFor="email">E-mail</label>
           <input
             type="email"
@@ -117,7 +116,7 @@ const UserProfilePage = () => {
           </p>
         </div>
 
-        <div className={styles.formIpSec}>
+        <div className={styles.profileFormIpSec}>
           <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
@@ -131,7 +130,7 @@ const UserProfilePage = () => {
           </p>
         </div>
 
-        <div className={styles.formIpSec}>
+        <div className={styles.profileFormIpSec}>
           <label htmlFor="confirmpassword">Confirmer le mot de passe</label>
           <input
             type="password"

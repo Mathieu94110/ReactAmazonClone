@@ -50,10 +50,7 @@ const CategoryBasedPage = () => {
   return (
     <div className={styles.searchPageContainer}>
       <div className={styles.filterOptionsContainer}>
-        <button
-          className={styles.clearFilterBtn}
-          onClick={() => clearFilters()}
-        >
+        <button className="submit-btn" onClick={() => clearFilters()}>
           Effacer les filtres
         </button>
         <h3>Prix:</h3>

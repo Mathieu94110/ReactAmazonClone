@@ -24,7 +24,7 @@ const ProductPage = () => {
     getProductsDetails();
   }, [id]);
 
-  const addToCart = ():void => {
+  const addToCart = (): void => {
     navigate(`/cart/${id}?qty=${qty}`);
   };
 
@@ -93,10 +93,7 @@ const ProductPage = () => {
                         </div>
                       </li>
                       <li>
-                        <button
-                          className={styles.addToCart}
-                          onClick={addToCart}
-                        >
+                        <button className="submit-btn" onClick={addToCart}>
                           Ajouter au panier
                         </button>
                       </li>

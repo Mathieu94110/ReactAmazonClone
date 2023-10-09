@@ -58,23 +58,6 @@
   }
 }
 
-.clearFilterBtn {
-  background-color: var(--secondary);
-  border-radius: var(--border-radius);
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 600;
-  outline: 0;
-  margin-bottom: 40px;
-  @include mixins.xs {
-    font-size: 14px;
-  }
-}
-
 .searchPageContainer .secTitle {
   @include mixins.xs {
     font-size: 18px;
