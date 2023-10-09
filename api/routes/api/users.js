@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
     const user = await newUser.save();
     res.json(user);
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       res.status(400).json("Email déjà utilisé");
     } else {
@@ -31,11 +30,11 @@ router.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.fullName = req.body.fullName || "";
-      user.address = req.body.address || "";
-      user.city = req.body.city || "";
-      user.postalCode = req.body.postalCode || null;
-      user.country = req.body.country || "";
+      user.fullName = req.body.fullName || user.fullName;
+      user.address = req.body.address || user.address;
+      user.city = req.body.city || user.city;
+      user.postalCode = req.body.postalCode || user.postalCode;
+      user.country = req.body.country || user.country;
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
