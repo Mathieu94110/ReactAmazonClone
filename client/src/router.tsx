@@ -18,6 +18,7 @@ const ShippingAddress = lazy(
   () => import("./pages/ShippingAdress/ShippingAdress")
 );
 const PaymentMethod = lazy(() => import("./pages/PaymentMethod/PaymentMethod"));
+const PlaceHolder = lazy(() => import("./pages/PlaceHolder/PlaceHolder"));
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PaymentMethod />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "placeholder",
+        element: (
+          <ProtectedRoute>
+            <PlaceHolder />
           </ProtectedRoute>
         ),
       },

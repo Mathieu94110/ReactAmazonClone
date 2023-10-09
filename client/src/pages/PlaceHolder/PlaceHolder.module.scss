@@ -1,0 +1,56 @@
+@use "../../assets/styles/mixins" as mixins;
+.rowContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 60px;
+  margin: 20px;
+
+  @include mixins.md-lt {
+    .rowContainer {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.col6 ul {
+  list-style-type: none;
+}
+.col6 ul li {
+  margin-bottom: 20px;
+}
+
+.col6 .cardBody h2 {
+  margin-bottom: 22px;
+}
+
+.col6 .cardBody p {
+  margin-top: 10px;
+}
+
+.orderRow1 {
+  width: 100%;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: white;
+}
+
+.orderRow1 p {
+  font-weight: 600;
+  text-align: center;
+  background-color: rgb(238, 238, 238);
+  padding: 16px 6px;
+  border: 1px solid gray;
+}
+
+.placeorderBtn {
+  background-color: #f0c040;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+  font-size: 18px;
+  outline: 0;
+}

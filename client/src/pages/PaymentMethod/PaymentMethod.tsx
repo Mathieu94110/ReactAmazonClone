@@ -9,8 +9,8 @@ const PaymentMethod = () => {
 
   const submitMethod = (e: SyntheticEvent) => {
     e.preventDefault();
-
-    console.log(method);
+localStorage.setItem('payment-method',method);
+navigate("/placeholder")
   };
 
   return (
