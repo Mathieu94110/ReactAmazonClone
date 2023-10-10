@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Product from "../../components/Product/Product";
-import LoadingBox from "../../components/LoadingBox/LoadingBox";
-import PriceCheckBox from "../../components/PriceCheckBox/PriceCheckBox";
-import { getProductsList } from "../../apis";
-import { prices } from "../../locales/priceRange";
+import Product from "@/components/Product/Product";
+import LoadingBox from "@/components/LoadingBox/LoadingBox";
+import PriceCheckBox from "@/components/PriceCheckBox/PriceCheckBox";
+import { getProductsList } from "@/apis/product";
+import { prices } from "@/locales/priceRange";
 import { CartItemsType } from "@/types/types";
 import styles from "./CategoryBasedPage.module.scss";
 

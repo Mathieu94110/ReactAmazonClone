@@ -5,10 +5,10 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import MessageBox from "../../components/MessageBox/MessageBox";
-import { CartContext } from "../../components/Context";
+import MessageBox from "@/components/MessageBox/MessageBox";
+import { CartContext } from "@/components/Context";
 import { ArrowBack, Cancel } from "@mui/icons-material";
-import { getProductDetails } from "../../apis";
+import { getProductDetails } from "@/apis/product";
 import { CartItemsType } from "@/types/types";
 import styles from "./Cart.module.scss";
 const Cart = () => {

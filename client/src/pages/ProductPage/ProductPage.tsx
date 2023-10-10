@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Rating from "../../components/Rating/Rating";
-import LoadingBox from "../../components/LoadingBox/LoadingBox";
-import { getProductDetails } from "../../apis";
+import Rating from "@/components/Rating/Rating";
+import LoadingBox from "@/components/LoadingBox/LoadingBox";
+import { getProductDetails } from "@/apis/product";
 import { ArrowBack } from "@mui/icons-material";
 import { ProductType } from "@/types/types";
 import styles from "./ProductPage.module.scss";

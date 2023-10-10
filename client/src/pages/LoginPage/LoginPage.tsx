@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import DynamicComponent from "../../utils/DynamicComponent";
-import styles from "./LoginPage.module.scss";
+import DynamicComponent from "@/utils/DynamicComponent";
 
 const Login = () => {
   const [component, setComponent] = useState<"signin" | "signup">("signin");
@@ -10,11 +9,12 @@ const Login = () => {
     setComponent(switchedComponent);
   }
   return (
-    <div
-      className="flex-fill d-flex flex-column align-items-center justify-content-center full-screen p-20"
-    >
+    <div className="flex-fill d-flex flex-column align-items-center justify-content-center full-screen p-20">
       <div>
-      <img src={require('../../assets/images/amazon-fr-logo.png')} alt="amazon.fr" />
+        <img
+          src={require("@/assets/images/amazon-fr-logo.png")}
+          alt="amazon.fr"
+        />
       </div>
       <DynamicComponent name={component} />
       <button

@@ -16,8 +16,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/apis/*": ["./src/apis/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/loaders/*": ["./src/loaders/*"],
+      "@/locales/*": ["./src/locales/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils/*": ["./src/utils/*"]
+    }
   },
-  "include": ["src"],
-  "extends": "./tsconfig.paths.json"
+  "include": ["src"]
 }

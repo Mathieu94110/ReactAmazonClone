@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import MessageBox from "../../components/MessageBox/MessageBox";
-import { AuthContext } from "../../components/Context";
-import { updateUserProfile } from "../../apis";
+import MessageBox from "@/components/MessageBox/MessageBox";
+import { AuthContext } from "@/components/Context";
+import { updateUserProfile } from "@/apis/users";
 import styles from "./UserProfilePage.module.scss";
 import { UserProfileType } from "@/types/types";
 

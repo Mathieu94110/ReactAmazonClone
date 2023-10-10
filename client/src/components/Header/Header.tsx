@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { useWindowSize } from "../../hooks/useWindowDimensions";
+import { useWindowSize } from "@/hooks/useWindowDimensions";
 import {
   ArrowDropDown,
   Headphones,

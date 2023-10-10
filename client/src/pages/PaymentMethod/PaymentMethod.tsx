@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CheckoutSteps from "../../components/CheckOutSteps/CheckoutSteps";
+import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
 import styles from "./PaymentMethod.module.scss";
 
 const PaymentMethod = () => {
