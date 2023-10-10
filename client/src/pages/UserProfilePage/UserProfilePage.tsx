@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import MessageBox from "@/components/MessageBox/MessageBox";
-import { AuthContext } from "@/components/Context/AuthContext";
+import { AuthContext } from "@/components/Providers/AuthProvider";
 import { updateUserProfile } from "@/apis/users";
 import styles from "./UserProfilePage.module.scss";
 import { UserProfileType } from "@/types/types";

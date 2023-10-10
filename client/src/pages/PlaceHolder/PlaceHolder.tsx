@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
 import { Link } from "react-router-dom";
 import styles from "./PlaceHolder.module.scss";
-import { AuthContext } from "@/components/Context/AuthContext";
-import { CartContext } from "@/components/Context/CartContext";
+import { AuthContext } from "@/components/Providers/AuthProvider";
+import { CartContext } from "@/components/Providers/CartProvider";
 
 const PlaceOrder = () => {
   const { user } = useContext(AuthContext);

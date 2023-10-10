@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../Providers/AuthProvider";
 import { Navigate } from "react-router-dom";
 import { UserSigninInput } from "@/types/types";
 

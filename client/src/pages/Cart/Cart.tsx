@@ -6,7 +6,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import MessageBox from "@/components/MessageBox/MessageBox";
-import { CartContext } from "@/components/Context/CartContext";
+import { CartContext } from "@/components/Providers/CartProvider";
 import { ArrowBack, Cancel } from "@mui/icons-material";
 import { getProductDetails } from "@/apis/product";
 import { CartItemsType } from "@/types/types";
