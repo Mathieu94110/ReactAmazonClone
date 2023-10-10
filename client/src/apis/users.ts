@@ -1,4 +1,4 @@
-const API_USERS = "/api/users";
+const API_USERS = "http://162.19.76.243/api/users";
 
 export async function createUser(newUser) {
   const response = await fetch(API_USERS, {

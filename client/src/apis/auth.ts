@@ -1,4 +1,4 @@
-const API_AUTH = "/api/auth";
+const API_AUTH = "http://162.19.76.243/api/auth";
 
 export async function signin(credentials) {
   const response = await fetch(API_AUTH, {

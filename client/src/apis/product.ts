@@ -1,4 +1,4 @@
-const API_PRODUCTS = "/api/products";
+const API_PRODUCTS = "http://162.19.76.243/api/products";
 
 export async function getProductsList() {
   try {
