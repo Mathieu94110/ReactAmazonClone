@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { CartContext } from "../Context";
+import { CartContext } from "../Context/CartContext";
 import { CartItemsType } from "@/types/types";
 
 function CartProvider({ children }: { children: ReactNode }) {
