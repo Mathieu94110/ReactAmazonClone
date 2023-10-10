@@ -1,7 +1,14 @@
 const express = require("express");
 const cookie = require("cookie-parser");
-
+const cors = require("cors");
 const app = express();
+app.use(
+  cors({
+    origin: ["https://react-amazon-clone-xi.vercel.app"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 const routes = require("./routes");
 app.use(cookie());
 app.use(express.json());
