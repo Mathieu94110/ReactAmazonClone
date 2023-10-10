@@ -1,4 +1,4 @@
-const API_AUTH = "https://162.19.76.243/api/auth";
+const API_AUTH = "https://react-amazon-clone-4g1h.vercel.app/api/auth";
 
 export async function signin(credentials) {
   const response = await fetch(API_AUTH, {

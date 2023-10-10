@@ -1,4 +1,4 @@
-const API_PRODUCTS = "https://162.19.76.243/api/products";
+const API_PRODUCTS = "https://react-amazon-clone-4g1h.vercel.app/api/products";
 
 export async function getProductsList() {
   try {
