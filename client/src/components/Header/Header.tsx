@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "../Search/Search";
 import { useWindowSize } from "@/hooks/useWindowDimensions";
@@ -21,24 +21,6 @@ const Header = () => {
   const { cartItems } = useContext(CartContext);
   const { width } = useWindowSize();
 
-  // creating ref and useEffect below in order to close dropdown on click outside
-  const headerDropdownRef = useRef(null);
-
-  useEffect(() => {
-    let handler = (e) => {
-      if (headerDropdownRef.current.contains(e.target)) {
-        setOpen(true);
-      } else {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
-
   return (
     <header>
       <div className={styles.container}>
@@ -57,27 +39,39 @@ const Header = () => {
               </div>
             </Link>
           </div>
-          <div className={styles.headerDropdown} ref={headerDropdownRef}>
-            <p onClick={() => setOpen(!open)}>
-              {user.name}
-              <ArrowDropDown />
-            </p>
+          <>
+            {/* Here we display element below only if open is set to because of screen background of calc/} */}
             {open ? (
-              <ul className={`${styles.dropdownContent} ${styles.show}`}>
-                <li onClick={() => setOpen(!open)}>
-                  <Link to="/profile">Compte</Link>
-                </li>
-                <li onClick={() => setOpen(!open)}>
-                  <Link to="/orderhistory">Historique des commandes</Link>
-                </li>
-                <li onClick={() => setOpen(!open)}>
-                  <Link to="/" onClick={() => signout()}>
-                    Se déconnecter
-                  </Link>
-                </li>
-              </ul>
+              <div onClick={() => setOpen(false)} className="calc"></div>
             ) : null}
-          </div>
+
+            <div className={styles.headerDropdown}>
+              <p
+                onClick={() => {
+                  setOpen(!open);
+                }}
+              >
+                {user.name}
+                <ArrowDropDown />
+              </p>
+              {open ? (
+                <ul className={`${styles.dropdownContent} ${styles.show}`}>
+                  <li onClick={() => setOpen(!open)}>
+                    <Link to="/profile">Compte</Link>
+                  </li>
+                  <li onClick={() => setOpen(!open)}>
+                    <Link to="/orderhistory">Historique des commandes</Link>
+                  </li>
+                  <li onClick={() => setOpen(!open)}>
+                    <Link to="/" onClick={() => signout()}>
+                      Se déconnecter
+                    </Link>
+                  </li>
+                </ul>
+              ) : null}
+            </div>
+          </>
+          {/* </ClickOutside> */}
         </div>
 
         <div className={styles.categoryContainer}>

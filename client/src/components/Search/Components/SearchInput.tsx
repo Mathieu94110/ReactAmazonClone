@@ -17,28 +17,27 @@ const SearchInput = ({ query, setQuery, handleSearch, products }) => {
   };
 
   return (
-    <form className={styles.searchInputForm}>
-      <div style={{ display: "flex" }}>
-        <input
-          className={styles.searchInput}
-          onChange={handleChange}
-          placeholder="Chercher des produits"
-          value={query}
-        />
+    <div className={styles.searchInputFormContainer}>
+      <form className={styles.searchInputForm}>
+        <div style={{ display: "flex" }}>
+          <input
+            className={styles.searchInput}
+            onChange={handleChange}
+            placeholder="Chercher des produits"
+            value={query}
+          />
 
-        <div className={styles.searchBtn}>
-          <Link to={`/`}>
-            <Search />
-          </Link>
+          <div className={styles.searchBtn}>
+            <Link to={`/`}>
+              <Search />
+            </Link>
+          </div>
         </div>
-      </div>
+      </form>
       {products.length > 0 && query && dropdDownOpen ? (
         <>
           {/* Other way to detect click outside*/}
-          <div
-            onClick={() => setDropDownOpen(false)}
-            className={styles.calc}
-          ></div>
+          <div onClick={() => setDropDownOpen(false)} className="calc"></div>
           {/* */}
           <ul className={styles.searchInputResults}>
             {products.map((p, index) => (
@@ -58,7 +57,7 @@ const SearchInput = ({ query, setQuery, handleSearch, products }) => {
           </ul>
         </>
       ) : null}
-    </form>
+    </div>
   );
 };
 

@@ -131,7 +131,6 @@ header .navLinks {
   display: flex;
   align-items: center;
   border-radius: 6px;
-  overflow: hidden;
   width: 90%;
   @include mixins.xs {
     width: auto;
