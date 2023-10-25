@@ -1,4 +1,4 @@
-const API_PRODUCTS = "https://react-amazon-clone-4g1h.vercel.app/api/products";
+const API_PRODUCTS = `${process.env.REACT_APP_API_PRODUCTS}`;
 
 export async function getProductsList() {
   try {
@@ -11,6 +11,7 @@ export async function getProductsList() {
 
 export const getProductDetails = async (productID) => {
   try {
+    console.log(`${API_PRODUCTS}/${productID}`);
     const response = await fetch(`${API_PRODUCTS}/${productID}`);
     return response.json();
   } catch (error) {

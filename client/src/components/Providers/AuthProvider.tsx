@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { signin as login, signout as logout } from "@/apis/auth";
+import { signin as login, signout as logout } from "../../apis/auth";
 import { createContext } from "react";
 import { UserContextType } from "@/types/types";
 

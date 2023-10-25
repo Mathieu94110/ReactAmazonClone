@@ -1,4 +1,4 @@
-const API_USERS = "https://react-amazon-clone-4g1h.vercel.app/api/users";
+const API_USERS = `${process.env.REACT_APP_API_USERS}`;
 
 export async function createUser(newUser) {
   const response = await fetch(API_USERS, {

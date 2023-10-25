@@ -51,12 +51,18 @@ function Signin() {
         <Navigate to="/" />
       ) : (
         <form onSubmit={submit} className="d-flex flex-column card p-20">
-          <h2 className="mb-20 text-white">Connexion</h2>
+          <h2 className="mb-20 text-white">Connection</h2>
           <div className="mb-10 d-flex flex-column my-10">
             <label htmlFor="email" className="text-white">
               Email
             </label>
-            <input type="text" name="email" {...register("email")} />
+            <input
+              type="text"
+              name="email"
+              data-testid="email-input"
+              {...register("email")}
+              placeholder="Indiquez votre email"
+            />
             <p className="form-error">
               {errors.email ? errors.email.message : null}
             </p>
@@ -65,7 +71,13 @@ function Signin() {
             <label htmlFor="password" className="text-white">
               Password
             </label>
-            <input type="password" name="password" {...register("password")} />
+            <input
+              type="password"
+              name="password"
+              data-testid="password-input"
+              {...register("password")}
+              placeholder="Indiquez votre mot de passe"
+            />
             <p className="form-error">
               {errors.password ? errors.password.message : null}
             </p>
@@ -75,11 +87,13 @@ function Signin() {
               {errors.generic ? errors.generic.message : null}
             </p>
           </div>
-          <div className="mt-10">
-            <button disabled={isSubmitting} className="btn btn-secondary my-1">
-              Connexion
-            </button>
-          </div>
+          <button
+            disabled={isSubmitting}
+            className="btn btn-secondary my-2"
+            type="submit"
+          >
+            Se connecter
+          </button>
         </form>
       )}
     </>
