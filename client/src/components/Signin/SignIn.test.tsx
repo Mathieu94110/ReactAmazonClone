@@ -1,47 +1,10 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Signin from "./Signin";
 import { AuthContext } from "../Providers/AuthProvider";
 
 describe("SignIn", () => {
-  let mockedUser = null;
-  let mockedSignin = jest.fn();
-  let mockedSignout = jest.fn();
-  render(
-    <AuthContext.Provider
-      value={{
-        user: mockedUser,
-        signin: mockedSignin,
-        signout: mockedSignout,
-      }}
-    >
-      <Signin />
-    </AuthContext.Provider>
-  );
-
-  it("should correctly render initials signIn fields", () => {
-    // form title
-    const formTitle = screen.getByRole("heading", { level: 2 });
-    expect(formTitle).toBeInTheDocument();
-    expect(formTitle.innerHTML).toMatch(/connection/i);
-    // form labels
-    expect(screen.getByText("Email")).toBeVisible();
-    expect(screen.getByText("Password")).toBeVisible();
-    //form inputs should be empty
-    const emailInput = screen.getByTestId("email-input") as HTMLInputElement;
-    const passwordInput = screen.getByTestId(
-      "password-input"
-    ) as HTMLInputElement;
-    expect(emailInput.value).toBe("");
-    expect(passwordInput.value).toBe("");
-    // login button
-    expect(
-      screen.getByRole("button", { name: /Se connecter/i })
-    ).toBeInTheDocument();
-  });
-  test("should sign in form display errors when no value are provided to form inputs", async () => {
-    const user = userEvent.setup();
+  const setup = () => {
     let mockedUser = null;
     let mockedSignin = jest.fn();
     let mockedSignout = jest.fn();
@@ -56,10 +19,38 @@ describe("SignIn", () => {
         <Signin />
       </AuthContext.Provider>
     );
-    //variables
-    const emailInput = screen.getByTestId("email-input") as HTMLInputElement;
+  };
+  it("should correctly render initials signIn fields", () => {
+    setup();
+    // form title
+    const formTitle = screen.getByRole("heading", { level: 2 });
+    expect(formTitle).toBeInTheDocument();
+    expect(formTitle.innerHTML).toMatch(/connection/i);
+    // form labels
+    expect(screen.getByText("Email")).toBeVisible();
+    expect(screen.getByText("Password")).toBeVisible();
+    //form inputs should be empty
+    const emailInput = screen.getByTestId(
+      "signin-email-input"
+    ) as HTMLInputElement;
     const passwordInput = screen.getByTestId(
-      "password-input"
+      "signin-password-input"
+    ) as HTMLInputElement;
+    expect(emailInput.value).toBe("");
+    expect(passwordInput.value).toBe("");
+    // login button
+    expect(
+      screen.getByRole("button", { name: /Se connecter/i })
+    ).toBeInTheDocument();
+  });
+  it("should sign in form display errors when no value are provided to form inputs", async () => {
+    setup();
+    const user = userEvent.setup();
+    const emailInput = screen.getByTestId(
+      "signin-email-input"
+    ) as HTMLInputElement;
+    const passwordInput = screen.getByTestId(
+      "signin-password-input"
     ) as HTMLInputElement;
     const loginBtn = screen.getByRole("button", { name: /Se connecter/i });
     //

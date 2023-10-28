@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchInput from "./Components/SearchInput";
 import { useDebounce } from "@/hooks/useDebounce";
-import { getProductsList } from "@/apis/product";
+import { getProductsList } from "../../apis/product";
 import { CartItemsType } from "@/types/types";
 
 export const Search: React.FC = () => {

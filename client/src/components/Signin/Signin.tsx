@@ -59,7 +59,7 @@ function Signin() {
             <input
               type="text"
               name="email"
-              data-testid="email-input"
+              data-testid="signin-email-input"
               {...register("email")}
               placeholder="Indiquez votre email"
             />
@@ -74,7 +74,7 @@ function Signin() {
             <input
               type="password"
               name="password"
-              data-testid="password-input"
+              data-testid="signin-password-input"
               {...register("password")}
               placeholder="Indiquez votre mot de passe"
             />

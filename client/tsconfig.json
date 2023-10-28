@@ -18,7 +18,6 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@/apis/*": ["./src/apis/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/components/*": ["./src/components/*"],
       "@/hooks/*": ["./src/hooks/*"],

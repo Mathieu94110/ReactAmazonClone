@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "@/apis/users";
+import { createUser } from "../../apis/users";
 import { UserSignupInput } from "@/types/types";
 
 function Signup() {
@@ -12,8 +12,11 @@ function Signup() {
     name: yup
       .string()
       .required("Le nom est requis")
-      .max(10, "Le nom est trop long"),
-    email: yup.string().required("L'email est requis"),
+      .max(20, "Le nom est trop long"),
+    email: yup
+      .string()
+      .email("L'émail est invalide")
+      .required("L'email est requis"),
     password: yup
       .string()
       .required("Il faut indiquer un mot de passe")
@@ -56,7 +59,12 @@ function Signup() {
           <label htmlFor="name" className="text-white">
             Nom
           </label>
-          <input type="text" name="name" {...register("name")} />
+          <input
+            type="text"
+            name="name"
+            data-testid="signup-name-input"
+            {...register("name")}
+          />
           <p className="form-error">
             {errors.name ? errors.name.message : null}
           </p>
@@ -65,16 +73,26 @@ function Signup() {
           <label htmlFor="email" className="text-white">
             Email
           </label>
-          <input type="text" name="email" {...register("email")} />
+          <input
+            type="text"
+            name="email"
+            data-testid="signup-email-input"
+            {...register("email")}
+          />
           <p className="form-error">
             {errors.email ? errors.email.message : null}
           </p>
         </div>
         <div className="mb-10 d-flex flex-column my-10">
           <label htmlFor="password" className="text-white">
-            Password
+            Mot de passe
           </label>
-          <input type="password" name="password" {...register("password")} />
+          <input
+            type="password"
+            name="password"
+            data-testid="signup-password-input"
+            {...register("password")}
+          />
           <p className="form-error">
             {errors.password ? errors.password.message : null}
           </p>

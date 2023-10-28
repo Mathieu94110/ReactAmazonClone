@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import ProductList from "@/components/ProductList/ProductList";
 import Product from "@/components/Product/Product";
-import { getProductsList } from "@/apis/product";
+import { getProductsList } from "../../apis/product";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CartItemsType } from "@/types/types";
