@@ -12,8 +12,9 @@ function Signin() {
   const validationSchema = yup.object({
     email: yup
       .string()
-      .required("Il faut préciser votre email")
-      .email("L'email n'est pas valide"),
+      .email("L'email n'est pas valide")
+      .required("Il faut préciser votre email"),
+
     password: yup
       .string()
       .required("Il faut préciser votre mot de passe")

@@ -64,6 +64,8 @@ export type ProductType = {
   rating: number;
   numRev: number;
   stock: number;
+  qty: number;
+  _id: string;
 };
 
 export type CartItemsType = {

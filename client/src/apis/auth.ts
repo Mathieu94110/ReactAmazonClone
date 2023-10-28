@@ -25,7 +25,7 @@ export async function getCurrentUser() {
   return response.json();
 }
 
-export async function signout() {
+export async function signout(): Promise<void> {
   await fetch(API_AUTH, {
     method: "DELETE",
   });
