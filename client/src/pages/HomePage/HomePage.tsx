@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Slider from "react-slick";
 import ProductList from "@/components/ProductList/ProductList";
 import Product from "@/components/Product/Product";
 import { getProductsList } from "../../apis/product";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CartItemsType } from "@/types/types";
 import { settings, settings2 } from "@/locales/slidersConfig";
 import styles from "./HomePage.module.scss";
+import { CartContext } from "@/components/Providers/CartProvider";
 
 const Home = () => {
-  const [productList, setProductList] = useState<CartItemsType[]>([]);
-
+  const { allCartItems, setAllCartItems } = useContext(CartContext);
   useEffect(() => {
     async function getProducts(): Promise<void> {
-      const products = await getProductsList();
-      setProductList(products);
+      try {
+        const products = await getProductsList();
+        setAllCartItems(products);
+      } catch (error) {
+        console.log("Error fetching products list:", error);
+      }
     }
     getProducts();
   }, []);
@@ -45,13 +48,13 @@ const Home = () => {
         </Slider>
       </div>
 
-      <ProductList products={productList} />
+      <ProductList products={allCartItems} />
 
       <div className={styles.homeProductSlider}>
         <h2 className={styles.secTitle}>Plus de produits</h2>
         <Slider {...settings2}>
-          {productList.length > 0
-            ? productList.map((product) => (
+          {allCartItems.length > 0
+            ? allCartItems.map((product) => (
                 <Product key={product._id} product={product} />
               ))
             : null}

@@ -7,11 +7,11 @@ import { CartContext } from "@/components/Providers/CartProvider";
 
 const PlaceOrder = () => {
   const { user } = useContext(AuthContext);
-  const { cartItems } = useContext(CartContext);
+  const { selectedCardItems } = useContext(CartContext);
 
   let cart = {} as any;
   Object.assign(cart, {
-    cartItems: [...cartItems],
+    selectedCardItems: [...selectedCardItems],
     itemsPrice: null,
     shippingPrice: null,
     taxPrice: null,
@@ -20,7 +20,7 @@ const PlaceOrder = () => {
   const toPrice = (num) => Number(num.toFixed(2));
 
   cart.itemsPrice = toPrice(
-    cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
+    cart.selectedCardItems.reduce((a, c) => a + c.qty * c.price, 0)
   );
 
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
@@ -65,7 +65,7 @@ const PlaceOrder = () => {
               <div className={styles.cardBody}>
                 <h2>Articles</h2>
                 <ul>
-                  {cart.cartItems.map((item) => (
+                  {cart.selectedCardItems.map((item) => (
                     <li key={item.product}>
                       <div className={`${styles.row1} ${styles.orderRow1}`}>
                         <div className={styles.small}>
@@ -121,7 +121,7 @@ const PlaceOrder = () => {
                 <button
                   type="button"
                   onClick={placeOrder}
-                  disabled={cart.cartItems.length === 0}
+                  disabled={cart.selectedCardItems.length === 0}
                   className={styles.placeorderBtn}
                 >
                   Passer commande

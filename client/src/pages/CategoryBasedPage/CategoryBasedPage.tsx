@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "@/components/Product/Product";
-import LoadingBox from "@/components/LoadingBox/LoadingBox";
 import PriceCheckBox from "@/components/PriceCheckBox/PriceCheckBox";
-import { getProductsList } from "../../apis/product";
 import { prices } from "@/locales/priceRange";
-import { CartItemsType } from "@/types/types";
 import styles from "./CategoryBasedPage.module.scss";
+import { CartContext } from "@/components/Providers/CartProvider";
 
 const CategoryBasedPage = () => {
-  const [productList, setProductList] = useState<CartItemsType[]>([]);
   const [range, setRange] = useState<[number, number]>([0, 50000]);
   const [checkedId, setCheckedId] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    async function getProducts(): Promise<void> {
-      setLoading(true);
-      const products = await getProductsList();
-      setProductList(products);
-      setLoading(false);
-    }
-    getProducts();
-  }, []);
+  const { allCartItems } = useContext(CartContext);
 
   const { cat } = useParams();
 
@@ -64,35 +51,29 @@ const CategoryBasedPage = () => {
       </div>
 
       <div className={styles.searchPageProductContainer}>
-        {loading && <LoadingBox />}
-
-        {!loading ? (
-          productList.length > 0 ? (
-            <>
-              <h2 className={styles.secTitle}>
-                Produits dans la catégorie <span>{formatedCat(cat)}</span>
-              </h2>
-              <div className={styles.searchProductContainer}>
-                {productList
-                  .filter(
-                    (product) =>
-                      product.category
-                        .toLowerCase()
-                        .includes(formatedCat(cat)) &&
-                      product.price <= range[1] &&
-                      product.price >= range[0]
-                  )
-                  .map((filteredProduct, index) => (
-                    <Product key={index} product={filteredProduct} />
-                  ))}
-              </div>
-            </>
-          ) : (
-            <h3 className={styles.secTitle}>
-              Aucun produit dans {formatedCat(cat)}
-            </h3>
-          )
-        ) : null}
+        {allCartItems?.length > 0 ? (
+          <>
+            <h2 className={styles.secTitle}>
+              Produits dans la catégorie <span>{formatedCat(cat)}</span>
+            </h2>
+            <div className={styles.searchProductContainer}>
+              {allCartItems
+                .filter(
+                  (product) =>
+                    product.category.toLowerCase().includes(formatedCat(cat)) &&
+                    product.price <= range[1] &&
+                    product.price >= range[0]
+                )
+                .map((filteredProduct, index) => (
+                  <Product key={index} product={filteredProduct} />
+                ))}
+            </div>
+          </>
+        ) : (
+          <h3 className={styles.secTitle}>
+            Aucun produit dans {formatedCat(cat)}
+          </h3>
+        )}
       </div>
     </div>
   );

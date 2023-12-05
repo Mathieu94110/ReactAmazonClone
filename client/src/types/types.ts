@@ -83,8 +83,10 @@ export type CartItemsType = {
 };
 
 export type CartContextType = {
-  cartItems: CartItemsType[];
-  setCartItems: Dispatch<SetStateAction<CartItemsType[]>>;
+  selectedCardItems: CartItemsType[];
+  setSelectedCardItems: Dispatch<SetStateAction<CartItemsType[]>>;
+  allCartItems: CartItemsType[];
+  setAllCartItems: Dispatch<SetStateAction<CartItemsType[]>>;
 };
 
 export type PriceCheckBoxProps = {

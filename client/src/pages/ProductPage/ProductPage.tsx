@@ -1,31 +1,44 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Rating from "@/components/Rating/Rating";
 import LoadingBox from "@/components/LoadingBox/LoadingBox";
-import { getProductDetails } from "../../apis/product";
 import { ArrowBack } from "@mui/icons-material";
 import { ProductType } from "@/types/types";
 import styles from "./ProductPage.module.scss";
+import { CartContext } from "@/components/Providers/CartProvider";
 
 const ProductPage = () => {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [qty, setQty] = useState<number>(1);
   const { id } = useParams();
+  const { allCartItems, selectedCardItems, setSelectedCardItems } =
+    useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getProductsDetails(): Promise<void> {
+    function getProductDetails(): void {
       setLoading(true);
-      const productsDetails = await getProductDetails(id);
+      const productsDetails = allCartItems.find((card) => card._id === id);
       setProduct(productsDetails);
       setLoading(false);
     }
-    getProductsDetails();
+    getProductDetails();
   }, [id]);
 
   const addToCart = (): void => {
-    navigate(`/cart/${id}?qty=${qty}`);
+    const existitem = selectedCardItems.find((c) => c._id === id);
+    if (existitem) {
+      //we modify item quantity
+      setSelectedCardItems(
+        selectedCardItems.map((c) =>
+          c === existitem ? { ...c, qty: c.qty + qty } : c
+        )
+      ); // we add item on cartItems list
+    } else {
+      setSelectedCardItems([...selectedCardItems, { ...product, qty: qty }]);
+    }
+    navigate(`/card/${id}`);
   };
 
   return (

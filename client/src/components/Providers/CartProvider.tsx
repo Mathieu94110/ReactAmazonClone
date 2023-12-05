@@ -6,13 +6,18 @@ import { CartContextType } from "@/types/types";
 export const CartContext = createContext<CartContextType | null>(null);
 
 function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItemsType[]>([]);
+  const [allCartItems, setAllCartItems] = useState<CartItemsType[]>([]);
+  const [selectedCardItems, setSelectedCardItems] = useState<CartItemsType[]>(
+    []
+  );
 
   return (
     <CartContext.Provider
       value={{
-        cartItems,
-        setCartItems,
+        selectedCardItems,
+        setSelectedCardItems,
+        allCartItems,
+        setAllCartItems,
       }}
     >
       {children}

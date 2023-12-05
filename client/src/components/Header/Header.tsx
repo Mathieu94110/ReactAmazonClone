@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "../Search/Search";
 import { useWindowSize } from "@/hooks/useWindowDimensions";
@@ -18,7 +18,7 @@ import styles from "./Header.module.scss";
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { user, signout } = useContext(AuthContext);
-  const { cartItems } = useContext(CartContext);
+  const { selectedCardItems } = useContext(CartContext);
   const { width } = useWindowSize();
 
   return (
@@ -34,7 +34,9 @@ const Header = () => {
             </div>
             <Link to="/cart">
               <div className={styles.shoppingCartIcon}>
-                {cartItems.length ? <span>{cartItems.length}</span> : null}
+                {selectedCardItems.length ? (
+                  <span>{selectedCardItems.length}</span>
+                ) : null}
                 <ShoppingCartOutlined sx={{ color: "white", fontSize: 25 }} />
               </div>
             </Link>
@@ -58,9 +60,6 @@ const Header = () => {
                 <ul className={`${styles.dropdownContent} ${styles.show}`}>
                   <li onClick={() => setOpen(!open)}>
                     <Link to="/profile">Compte</Link>
-                  </li>
-                  <li onClick={() => setOpen(!open)}>
-                    <Link to="/orderhistory">Historique des commandes</Link>
                   </li>
                   <li onClick={() => setOpen(!open)}>
                     <Link to="/" onClick={() => signout()}>

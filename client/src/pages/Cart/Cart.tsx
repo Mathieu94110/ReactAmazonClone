@@ -1,53 +1,32 @@
-import React, { useContext, useEffect } from "react";
-import {
-  Link,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import MessageBox from "@/components/MessageBox/MessageBox";
 import { CartContext } from "@/components/Providers/CartProvider";
 import { ArrowBack, Cancel } from "@mui/icons-material";
-import { getProductDetails } from "../../apis/product";
-import { CartItemsType } from "@/types/types";
 import styles from "./Cart.module.scss";
+
 const Cart = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
-  const [searchParams] = useSearchParams();
-  const { id } = useParams();
-  const qty = searchParams.get("qty");
+  const { selectedCardItems, setSelectedCardItems } = useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getCartItems(id): Promise<void> {
-      const productsDetails = await getProductDetails(id);
-      addToCart(productsDetails);
+    if (selectedCardItems.length > 0) {
+      console.log(selectedCardItems);
     }
-    getCartItems(id);
-  }, [id]);
-
-  function addToCart(product: CartItemsType): void {
-    const existitem = cartItems.find((c) => c._id === product._id);
-    if (existitem) {
-      //we modify item quantity
-      setCartItems(
-        cartItems.map((c) =>
-          c === existitem ? { ...c, qty: c.qty + parseInt(qty) } : c
-        )
-      ); // we add item on cartItems list
-    } else {
-      setCartItems([...cartItems, { ...product, qty: parseInt(qty) }]);
-    }
-  }
+  }, [selectedCardItems]);
 
   function removeItemFromCart(product): void {
-    setCartItems(cartItems.filter((c) => c._id !== product._id));
+    setSelectedCardItems(
+      selectedCardItems.filter((c) => c._id !== product._id)
+    );
   }
 
   function updateCartItemQty(item, qty): void {
-    const selecteditem = cartItems.find((c) => c._id === item._id);
-    setCartItems(
-      cartItems.map((c) => (c === selecteditem ? { ...c, qty: qty } : c))
+    const selecteditem = selectedCardItems.find((c) => c._id === item._id);
+    setSelectedCardItems(
+      selectedCardItems.map((c) =>
+        c === selecteditem ? { ...c, qty: qty } : c
+      )
     );
   }
 
@@ -63,7 +42,7 @@ const Cart = () => {
       <div className={styles.rowContainer}>
         <div className={styles.col4}>
           <h1>Panier</h1>
-          {cartItems.length === 0 ? (
+          {selectedCardItems.length === 0 ? (
             <MessageBox>
               Le panier est vide
               <Link to="/">
@@ -74,7 +53,7 @@ const Cart = () => {
             </MessageBox>
           ) : (
             <ul>
-              {cartItems.map((item) => (
+              {selectedCardItems.map((item) => (
                 <li key={item._id}>
                   <div className={styles.row1}>
                     <div className={styles.small}>
@@ -122,13 +101,13 @@ const Cart = () => {
               <li>
                 <p>
                   Prix total (
-                  {cartItems.reduce((a, c) => {
+                  {selectedCardItems.reduce((a, c) => {
                     return a + c.qty;
                   }, 0)}{" "}
                   produit(s)) :
                 </p>
                 <p className={styles.price}>
-                  {cartItems
+                  {selectedCardItems
                     .reduce((a, c) => a + c.price * c.qty, 0)
                     .toFixed(2)}
                   €
@@ -139,7 +118,7 @@ const Cart = () => {
                   type="button"
                   onClick={checkOut}
                   className={styles.checkoutBtn}
-                  disabled={cartItems.length === 0}
+                  disabled={selectedCardItems.length === 0}
                 >
                   Procéder au paiement
                 </button>

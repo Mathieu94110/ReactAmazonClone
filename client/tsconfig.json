@@ -16,15 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/assets/*": ["./src/assets/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/loaders/*": ["./src/loaders/*"],
-      "@/locales/*": ["./src/locales/*"],
-      "@/types/*": ["./src/types/*"],
-      "@/utils/*": ["./src/utils/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["src"]
