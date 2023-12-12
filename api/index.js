@@ -5,6 +5,7 @@ const app = express();
 const routes = require("./routes");
 app.use(cookie());
 app.use(express.json());
+app.use(cors());
 require("./database");
 app.use(routes);
 
