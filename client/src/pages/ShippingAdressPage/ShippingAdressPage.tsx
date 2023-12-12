@@ -7,7 +7,7 @@ import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
 import { AuthContext } from "@/components/Providers/AuthProvider";
 import { updateUserProfile } from "../../apis/users";
 import { UserShippingAddressInput } from "@/types/types";
-import styles from "./ShippingAdress.module.scss";
+import styles from "./ShippingAdressPage.module.scss";
 
 const ShippingAddress = () => {
   const [userShippingAddress, setUserShippingAddress] = useState<

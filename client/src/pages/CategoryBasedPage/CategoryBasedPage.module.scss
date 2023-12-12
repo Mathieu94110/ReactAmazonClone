@@ -46,7 +46,7 @@
   grid-gap: 20px;
   grid-template-columns: repeat(1, 1fr);
   @include mixins.sm-lt {
-    margin: 20px;
+    margin: 0px;
     grid-template-columns: repeat(2, 1fr);
   }
   @include mixins.lg {

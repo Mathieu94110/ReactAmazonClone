@@ -52,65 +52,61 @@ function Signup() {
   });
 
   return (
-    <div>
-      <form onSubmit={submit} className="d-flex flex-column card p-20">
-        <h2 className="mb-20 text-white">Inscription</h2>
-        <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="name" className="text-white">
-            Nom
-          </label>
-          <input
-            type="text"
-            name="name"
-            data-testid="signup-name-input"
-            {...register("name")}
-          />
+    <form onSubmit={submit} className="d-flex flex-column card p-20">
+      <h2 className="mb-20 text-white">Inscription</h2>
+      <div className="mb-10 d-flex flex-column my-10">
+        <label htmlFor="name" className="text-white">
+          Nom
+        </label>
+        <input
+          type="text"
+          name="name"
+          data-testid="signup-name-input"
+          {...register("name")}
+        />
+        <p className="form-error">{errors.name ? errors.name.message : null}</p>
+      </div>
+      <div className="mb-10 d-flex flex-column my-10">
+        <label htmlFor="email" className="text-white">
+          Email
+        </label>
+        <input
+          type="text"
+          name="email"
+          data-testid="signup-email-input"
+          {...register("email")}
+        />
+        <p className="form-error">
+          {errors.email ? errors.email.message : null}
+        </p>
+      </div>
+      <div className="mb-10 d-flex flex-column my-10">
+        <label htmlFor="password" className="text-white">
+          Mot de passe
+        </label>
+        <input
+          type="password"
+          name="password"
+          data-testid="signup-password-input"
+          {...register("password")}
+        />
+        <p className="form-error">
+          {errors.password ? errors.password.message : null}
+        </p>
+      </div>
+      <div>
+        <div className="mb-10">
           <p className="form-error">
-            {errors.name ? errors.name.message : null}
+            {errors.generic ? errors.generic.message : null}
           </p>
         </div>
-        <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="email" className="text-white">
-            Email
-          </label>
-          <input
-            type="text"
-            name="email"
-            data-testid="signup-email-input"
-            {...register("email")}
-          />
-          <p className="form-error">
-            {errors.email ? errors.email.message : null}
-          </p>
-        </div>
-        <div className="mb-10 d-flex flex-column my-10">
-          <label htmlFor="password" className="text-white">
-            Mot de passe
-          </label>
-          <input
-            type="password"
-            name="password"
-            data-testid="signup-password-input"
-            {...register("password")}
-          />
-          <p className="form-error">
-            {errors.password ? errors.password.message : null}
-          </p>
-        </div>
-        <div>
-          <div className="mb-10">
-            <p className="form-error">
-              {errors.generic ? errors.generic.message : null}
-            </p>
-          </div>
-        </div>
-        <div className="mt-10">
-          <button disabled={isSubmitting} className="btn btn-secondary my-1">
-            Inscription
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div className="mt-10">
+        <button disabled={isSubmitting} className="btn btn-secondary my-1">
+          Inscription
+        </button>
+      </div>
+    </form>
   );
 }
 

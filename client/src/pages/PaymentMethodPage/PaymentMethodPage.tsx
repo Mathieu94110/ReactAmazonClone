@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
-import styles from "./PaymentMethod.module.scss";
+import styles from "./PaymentMethodPage.module.scss";
 
 const PaymentMethod = () => {
   const navigate = useNavigate();
@@ -9,12 +9,12 @@ const PaymentMethod = () => {
 
   const submitMethod = (e: SyntheticEvent) => {
     e.preventDefault();
-localStorage.setItem('payment-method',method);
-navigate("/placeholder")
+    localStorage.setItem("payment-method", method);
+    navigate("/placeholder");
   };
 
   return (
-    <div>
+    <>
       <CheckoutSteps step1 step2 step3 />
 
       <div className={styles.payMethodContainer}>
@@ -56,7 +56,7 @@ navigate("/placeholder")
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

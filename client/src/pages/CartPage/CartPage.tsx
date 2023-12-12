@@ -1,19 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MessageBox from "@/components/MessageBox/MessageBox";
 import { CartContext } from "@/components/Providers/CartProvider";
 import { ArrowBack, Cancel } from "@mui/icons-material";
-import styles from "./Cart.module.scss";
+import styles from "./CartPage.module.scss";
 
 const Cart = () => {
   const { selectedCardItems, setSelectedCardItems } = useContext(CartContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (selectedCardItems.length > 0) {
-      console.log(selectedCardItems);
-    }
-  }, [selectedCardItems]);
 
   function removeItemFromCart(product): void {
     setSelectedCardItems(

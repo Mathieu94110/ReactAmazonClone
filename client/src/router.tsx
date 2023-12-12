@@ -13,12 +13,12 @@ const CategoryBased = lazy(
 const Product = lazy(() => import("./pages/ProductPage/ProductPage"));
 const Login = lazy(() => import("./pages/LoginPage/LoginPage"));
 const Home = lazy(() => import("./pages/HomePage/HomePage"));
-const Cart = lazy(() => import("./pages/Cart/Cart"));
+const Cart = lazy(() => import("./pages/CartPage/CartPage"));
 const ShippingAddress = lazy(
-  () => import("./pages/ShippingAdress/ShippingAdress")
+  () => import("./pages/ShippingAdressPage/ShippingAdressPage")
 );
-const PaymentMethod = lazy(() => import("./pages/PaymentMethod/PaymentMethod"));
-const PlaceHolder = lazy(() => import("./pages/PlaceHolder/PlaceHolder"));
+const PaymentMethod = lazy(() => import("./pages/PaymentMethodPage/PaymentMethodPage"));
+const PlaceHolder = lazy(() => import("./pages/PlaceHolderPage/PlaceHolderPage"));
 
 export const router = createBrowserRouter([
   {
