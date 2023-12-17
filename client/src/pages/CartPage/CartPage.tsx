@@ -28,6 +28,10 @@ const Cart = () => {
     navigate("/shipping");
   }
 
+  const numberOfProducts = selectedCardItems.reduce((a, c) => {
+    return a + c.qty;
+  }, 0);
+
   return (
     <div>
       <Link to="/" className={styles.backRes}>
@@ -94,11 +98,8 @@ const Cart = () => {
             <ul>
               <li>
                 <p>
-                  Prix total (
-                  {selectedCardItems.reduce((a, c) => {
-                    return a + c.qty;
-                  }, 0)}{" "}
-                  produit(s)) :
+                  Prix total ( {numberOfProducts}{" "}
+                  {numberOfProducts > 1 ? "produits" : "produit"} )
                 </p>
                 <p className={styles.price}>
                   {selectedCardItems

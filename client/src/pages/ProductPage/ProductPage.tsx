@@ -38,7 +38,7 @@ const ProductPage = () => {
     } else {
       setSelectedCardItems([...selectedCardItems, { ...product, qty: qty }]);
     }
-    navigate(`/card/${id}`);
+    navigate(`/card`);
   };
 
   return (
@@ -47,9 +47,9 @@ const ProductPage = () => {
         <LoadingBox />
       ) : (
         <div>
-          <Link to="/" className={styles.backRes}>
+          <div onClick={() => navigate(-1)} className={styles.backRes}>
             <ArrowBack /> <span>Revenir aux résultats</span>
-          </Link>
+          </div>
           <div className={styles.row}>
             <div className={styles.col1}>
               <img className={styles.large} src={product.image} alt="" />

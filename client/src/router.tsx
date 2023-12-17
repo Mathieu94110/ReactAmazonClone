@@ -17,8 +17,12 @@ const Cart = lazy(() => import("./pages/CartPage/CartPage"));
 const ShippingAddress = lazy(
   () => import("./pages/ShippingAdressPage/ShippingAdressPage")
 );
-const PaymentMethod = lazy(() => import("./pages/PaymentMethodPage/PaymentMethodPage"));
-const PlaceHolder = lazy(() => import("./pages/PlaceHolderPage/PlaceHolderPage"));
+const PaymentMethod = lazy(
+  () => import("./pages/PaymentMethodPage/PaymentMethodPage")
+);
+const PlaceHolder = lazy(
+  () => import("./pages/PlaceHolderPage/PlaceHolderPage")
+);
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +67,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/card/:id",
+        path: "/card",
         element: (
           <ProtectedRoute>
             <Cart />
