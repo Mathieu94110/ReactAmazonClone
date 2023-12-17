@@ -1,0 +1,25 @@
+@use "@/assets/styles/mixins" as mixins;
+
+.loginPage {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+
+  & > img {
+    width: 200px;
+    @include mixins.xl {
+      width: 300px;
+    }
+  }
+}
+.loginPage > button {
+    margin-top: 10px;
+  @include mixins.xl {
+    margin: 20px 0;
+  }
+}

@@ -20,6 +20,9 @@
   align-items: center;
   background-color: var(--secondary);
   border: 1px solid;
+  &:hover {
+    cursor: pointer;
+  }
   & > span {
     margin-left: 10px;
   }

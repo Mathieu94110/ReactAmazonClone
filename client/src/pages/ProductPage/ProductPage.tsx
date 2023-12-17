@@ -38,7 +38,7 @@ const ProductPage = () => {
     } else {
       setSelectedCardItems([...selectedCardItems, { ...product, qty: qty }]);
     }
-    navigate(`/card`);
+    navigate(`/cart`);
   };
 
   return (

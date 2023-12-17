@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
 import styles from "./PaymentMethodPage.module.scss";

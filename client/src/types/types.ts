@@ -124,3 +124,9 @@ export type WindowSize = {
   width: number;
   height: number;
 };
+export type placeHolderCart = {
+  selectedCardItems: CartItemsType[];
+  itemsPrice: null | number;
+  shippingPrice: null | number;
+  taxPrice: null | number;
+};

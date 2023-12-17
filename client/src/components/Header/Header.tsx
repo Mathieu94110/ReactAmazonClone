@@ -32,7 +32,7 @@ const Header = () => {
             <div className={styles.searchBar}>
               <Search />
             </div>
-            <Link to="/card">
+            <Link to="/cart">
               <div className={styles.shoppingCartIcon}>
                 {selectedCardItems.length ? (
                   <span>{selectedCardItems.length}</span>

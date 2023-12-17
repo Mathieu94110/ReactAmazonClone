@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/card",
+        path: "/cart,
         element: (
           <ProtectedRoute>
             <Cart />

@@ -16,8 +16,8 @@ const Home = () => {
       try {
         const products = await getProductsList();
         setAllCartItems(products);
-      } catch (error) {
-        console.log("Error fetching products list:", error);
+      } catch  {
+        console.error("Error fetching products list:");
       }
     }
     getProducts();
