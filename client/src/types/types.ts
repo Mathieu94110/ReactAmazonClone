@@ -36,13 +36,19 @@ type SignInCredentials = {
 export type UserSigninInput = {
   email: string;
   password: string;
-  generic: { generic: { message: string } };
+  generic: null | { generic: { message: string } };
 };
 export type UserSignupInput = {
   name: string;
   email: string;
   password: string;
   generic: { generic: { message: string } };
+};
+export type UserUpdate = {
+  name: string;
+  email: string;
+  password: string;
+  userId: string
 };
 
 export type UserProfileType = {

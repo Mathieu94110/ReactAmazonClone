@@ -1,6 +1,10 @@
+import { UserSigninInput, UserType } from "@/types/types";
+
 const API_AUTH = `${process.env.REACT_APP_API_AUTH}`;
 
-export async function signin(credentials) {
+export async function signin(
+  credentials: UserSigninInput
+): Promise<UserType | void> {
   const response = await fetch(API_AUTH, {
     method: "POST",
     headers: {
@@ -20,7 +24,7 @@ export async function signin(credentials) {
   }
 }
 
-export async function getCurrentUser() {
+export async function getCurrentUser():Promise<UserType> {
   const response = await fetch(`${API_AUTH}/current`);
   return response.json();
 }

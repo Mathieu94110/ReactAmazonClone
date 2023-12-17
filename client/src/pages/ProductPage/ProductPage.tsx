@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rating from "@/components/Rating/Rating";
 import LoadingBox from "@/components/LoadingBox/LoadingBox";
 import { ArrowBack } from "@mui/icons-material";
@@ -44,7 +44,9 @@ const ProductPage = () => {
   return (
     <div>
       {loading || !product ? (
-        <LoadingBox />
+        <div className={styles.spinnerContainer}>
+          <LoadingBox />
+        </div>
       ) : (
         <div>
           <div onClick={() => navigate(-1)} className={styles.backRes}>

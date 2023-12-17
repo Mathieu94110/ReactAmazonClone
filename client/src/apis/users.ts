@@ -1,6 +1,10 @@
+import { UserSignupInput, UserUpdate } from "@/types/types";
+
 const API_USERS = `${process.env.REACT_APP_API_USERS}`;
 
-export async function createUser(newUser) {
+export async function createUser(
+  newUser: UserSignupInput
+): Promise<Exclude<UserSignupInput, "generic"> | void> {
   const response = await fetch(API_USERS, {
     method: "POST",
     headers: {
@@ -20,7 +24,7 @@ export async function createUser(newUser) {
   }
 }
 
-export async function updateUserProfile(user) {
+export async function updateUserProfile(user: UserUpdate): Promise<Response> {
   const response = await fetch(`${API_USERS}/profile`, {
     method: "PUT",
     headers: {

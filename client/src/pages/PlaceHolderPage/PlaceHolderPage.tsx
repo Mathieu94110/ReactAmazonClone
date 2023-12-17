@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { CartContext } from "@/components/Providers/CartProvider";
 import styles from "./PlaceHolderPage.module.scss";
 import { getCurrentUser } from "@/apis/auth";
-import { UserShippingAddressInput, placeHolderCart } from "@/types/types";
-import { TailSpin } from "react-loader-spinner";
+import { UserType, placeHolderCart } from "@/types/types";
+import LoadingBox from "@/components/LoadingBox/LoadingBox";
 
 const PlaceOrder = () => {
-  const [user, setUser] = useState<null | UserShippingAddressInput>(null);
+  const [user, setUser] = useState<null | UserType>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { selectedCardItems } = useContext(CartContext);
   let cart = {} as placeHolderCart;
@@ -47,7 +47,7 @@ const PlaceOrder = () => {
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       {loading ? (
         <div className={styles.spinnerContainer}>
-          <TailSpin color="red" radius={"8px"} />
+          <LoadingBox />
         </div>
       ) : (
         <div className={styles.rowContainer}>

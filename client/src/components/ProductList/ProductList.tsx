@@ -7,7 +7,9 @@ const ProductList = ({ products }: { products: CartItemsType[] }) => {
   return (
     <div className={styles.homeProductContainer}>
       {!products ? (
+        <div className={styles.spinnerContainer}>
         <LoadingBox />
+      </div>
       ) : (
         <>
           <h2 className={styles.secTitle}>Produits</h2>
