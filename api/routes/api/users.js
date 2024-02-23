@@ -1,14 +1,13 @@
 const router = require("express").Router();
-const UserModel = require("../../database/models/user.model");
-const bcrypt = require("bcrypt");
+const User = require("../../database/models/user.model");
 const expressAsyncHandler = require("express-async-handler");
 
 router.post("/", async (req, res) => {
   const { name, email, password } = req.body;
-  const newUser = new UserModel({
+  const newUser = new User({
     name,
     email,
-    password: await bcrypt.hash(password, 8),
+    password: await User.hashPassword(password),
   });
 
   try {
@@ -26,7 +25,7 @@ router.post("/", async (req, res) => {
 router.put(
   "/profile",
   expressAsyncHandler(async (req, res) => {
-    const user = await UserModel.findById(req.body.userId);
+    const user = await User.findById(req.body.userId);
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
@@ -36,7 +35,7 @@ router.put(
       user.postalCode = req.body.postalCode || user.postalCode;
       user.country = req.body.country || user.country;
       if (req.body.password) {
-        user.password = bcrypt.hashSync(req.body.password, 8);
+        user.password = User.hashSyncPassword(req.body.password);
       }
       const updatedUser = await user.save();
       res.send({
