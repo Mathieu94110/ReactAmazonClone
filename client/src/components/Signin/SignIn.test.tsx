@@ -2,12 +2,15 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Signin from "./Signin";
 import { AuthContext } from "../Providers/AuthProvider";
+import { createPortal } from "react-dom";
+import { Modal } from "../Modal/Modal";
 
 afterEach(() => {
   cleanup();
 });
 describe("SignIn", () => {
   const setup = () => {
+    let isModalOpen = false;
     let mockedUser = null;
     let mockedSignin = jest.fn();
     let mockedSignout = jest.fn();
@@ -20,6 +23,15 @@ describe("SignIn", () => {
         }}
       >
         <Signin />
+        {isModalOpen &&
+          createPortal(
+            <Modal
+              closeModal={() => null}
+              onSubmit={() => null}
+              onCancel={() => null}
+            />,
+            document.body
+          )}
       </AuthContext.Provider>
     );
   };
