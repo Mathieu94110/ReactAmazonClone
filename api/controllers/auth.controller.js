@@ -1,10 +1,10 @@
-const UserModel = require("../../database/models/user.model");
+const { signup } = require("../services/auth.service");
+const UserModel = require("../database/models/User.model");
 const bcrypt = require("bcrypt");
-const router = require("express").Router();
 const jsonwebtoken = require("jsonwebtoken");
-const { key, keyPub } = require("../../keys");
+const { key, keyPub } = require("../keys");
 
-router.post("/", async (req, res) => {
+const signInController = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserModel.findOne({ email }).exec();
@@ -27,9 +27,9 @@ router.post("/", async (req, res) => {
     console.log(e);
     res.status(400).json("Mauvais email/password");
   }
-});
+};
 
-router.get("/current", async (req, res) => {
+const currentController = async (req, res) => {
   const { token } = req.cookies;
   if (token) {
     try {
@@ -49,11 +49,16 @@ router.get("/current", async (req, res) => {
   } else {
     return res.json(null);
   }
-});
+};
 
-router.delete("/", (_, res) => {
-  res.clearCookie("token");
-  res.end();
-});
+const signUpController = async (req, res, next) => {
+  console.log("signUpController called !");
+  const signupService = await signup(req.body);
+  return res.json(signupService);
+};
 
-module.exports = router;
+module.exports = {
+  signInController,
+  currentController,
+  signUpController,
+};

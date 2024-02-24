@@ -1,4 +1,4 @@
-const ProductsModel = require("../../database/models/products.model");
+const ProductsModel = require("../database/models/Products.model");
 const router = require("express").Router();
 const expressAsyncHandler = require("express-async-handler");
 
