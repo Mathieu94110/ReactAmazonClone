@@ -7,6 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../Providers/AuthProvider";
 import { Modal } from "../Modal/Modal";
 import { UserSigninInput } from "@/types/types";
+import { forgotPassword } from "../../apis/users";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signin() {
   const { signin, user } = useContext(AuthContext);
@@ -56,10 +59,28 @@ function Signin() {
     }
   });
 
-  const handleButtonClick = (content: null | string) => {
+  const handleButtonClick = async (content: null | string) => {
     setIsModalOpen(false);
     if (content) {
-      console.log(content);
+      try {
+        const response = await forgotPassword(content);
+        if (!response.ok) {
+          toast.error(
+            "Problème rencontré lors de la demande de réinitialisation!",
+            {
+              position: "top-right",
+              autoClose: 200000,
+            }
+          );
+        } else {
+          toast.success(`Lien envoyé à l'adresse ${content}!`, {
+            position: "top-right",
+            autoClose: 2000,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -105,13 +126,13 @@ function Signin() {
                   : null}
               </p>
             </div>
-            <button
+            <input
+              type="button"
               disabled={isModalOpen}
               onClick={() => setIsModalOpen(true)}
               className="btn btn-secondary mt-2"
-            >
-              Mot de passe oublié ?
-            </button>
+              value={"Mot de passe oublié ?"}
+            />
             <button
               disabled={isSubmitting}
               className="btn btn-secondary my-2"
@@ -131,6 +152,7 @@ function Signin() {
                 document.body
               )}
           </>
+          <ToastContainer />
         </>
       )}
     </>

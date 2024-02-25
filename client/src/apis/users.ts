@@ -34,3 +34,25 @@ export async function updateUserProfile(user: UserUpdate): Promise<Response> {
   });
   return response;
 }
+
+export async function forgotPassword(email: string): Promise<Response> {
+  const response = await fetch(`${API_USERS}/forgot-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({ email }),
+  });
+  const body = await response.json();
+  if (response.ok) {
+    return response;
+  } else {
+    if (body) {
+      throw body;
+    } else {
+      throw new Error("Error api createUser");
+    }
+  }
+}

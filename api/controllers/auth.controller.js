@@ -52,7 +52,6 @@ const currentController = async (req, res) => {
 };
 
 const signUpController = async (req, res, next) => {
-  console.log("signUpController called !");
   const signupService = await signup(req.body);
   return res.json(signupService);
 };

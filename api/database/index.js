@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-
+const MONGO_URI = process.env.MONGO_URI;
 mongoose
   .connect(
-    "mongodb+srv://mathieu:Allezlesbleus@cluster0.kljrxuf.mongodb.net/r18jwt?retryWrites=true&w=majority"
+    MONGO_URI
   )
   .then(() => {
     console.log("Connexion db ok");
