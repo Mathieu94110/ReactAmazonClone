@@ -7,6 +7,8 @@ const routes = require("./routes");
 app.use(cookie());
 app.use(express.json());
 app.use(cors());
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 require("./database");
 app.use(routes);
 

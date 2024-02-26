@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="reset-form">
+      <div class="reset-form-img">
+        <img
+          src="https://www.commeuncamion.com/content/uploads/2010/03/logo-amazon-fr.jpg"
+          alt="amazon.fr"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+      <h1><%= email%></h1>
+      <form action="" method="post">
+        <div class="password-input">
+          <label htmlFor="password"> Choisissez un nouveau mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Nouveau mot de passe"
+            minlength="6"
+          />
+        </div>
+        <input type="submit" value="Valider" class="btn btn-primary" />
+      </form>
+    </div>
+    <script>
+      let status = `<%- JSON.stringify(status) %>`;
+      let host = `<%- JSON.stringify(host) %>`;
+      let parsedHost = JSON.parse(host);
+      if (JSON.parse(status) === "verified") {
+        let host = `<%- JSON.stringify(host) %>`;
+        if (window.confirm("Souhaitez vous vous connecter ?")) {
+          window.location.href = parsedHost;
+        }
+      }
+    </script>
+  </body>
+</html>
+<style>
+  label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  input {
+    padding: 10px 15px;
+    margin: 20px 0;
+  }
+  img {
+    width: 150px;
+    height: auto;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  .reset-form {
+    width: 600px;
+    margin: auto;
+  }
+  .reset-form-img {
+    display: flex;
+    justify-content: center;
+  }
+  .password-input {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+  input[type="submit"] {
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s opacity;
+    background-color: #f0c040;
+    color: var(--primary);
+    border: 2px solid #f0c040;
+    opacity: 1;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.8;
+      transform: translateY(2px);
+    }
+  }
+  @media (min-width: 600px) {
+    h1 {
+      font-size: 32px;
+    }
+  }
+</style>
