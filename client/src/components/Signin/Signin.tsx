@@ -95,7 +95,7 @@ function Signin() {
                 name="password"
                 data-testid="signin-password-input"
                 {...register("password")}
-                placeholder="Indiquez votre mot de passe"
+                placeholder="Renseignez votre mot de passe"
               />
               <p className="form-mixed-error">
                 {errors.password
@@ -105,13 +105,13 @@ function Signin() {
                   : null}
               </p>
             </div>
-            <button
+            <input
+              type="button"
               disabled={isModalOpen}
               onClick={() => setIsModalOpen(true)}
               className="btn btn-secondary mt-2"
-            >
-              Mot de passe oublié ?
-            </button>
+              value={"Mot de passe oublié ?"}
+            />
             <button
               disabled={isSubmitting}
               className="btn btn-secondary my-2"

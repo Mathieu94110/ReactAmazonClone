@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../../database/models/user.model");
+const User = require("../database/models/user.model");
 const expressAsyncHandler = require("express-async-handler");
 
 router.post("/", async (req, res) => {
@@ -9,7 +9,6 @@ router.post("/", async (req, res) => {
     email,
     password: await User.hashPassword(password),
   });
-
   try {
     const user = await newUser.save();
     res.json(user);
@@ -21,7 +20,6 @@ router.post("/", async (req, res) => {
     }
   }
 });
-
 router.put(
   "/profile",
   expressAsyncHandler(async (req, res) => {
@@ -51,5 +49,4 @@ router.put(
     }
   })
 );
-
 module.exports = router;
