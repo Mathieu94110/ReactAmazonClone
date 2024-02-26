@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const cookie = require("cookie-parser");
 const cors = require("cors");
 const app = express();
@@ -12,4 +13,4 @@ app.use(routes);
 app.use("*", (req, res) => {
   res.status(404).json("mauvaise routes");
 });
-app.listen(3001);
+app.listen(process.env.PORT);
