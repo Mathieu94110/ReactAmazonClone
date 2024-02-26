@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookie());
 require("./database");
 app.use(routes);
-
 app.use("*", (req, res) => {
   res.status(404).json("mauvaise routes");
 });
