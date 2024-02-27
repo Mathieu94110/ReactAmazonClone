@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, SetStateAction } from "react";
 import SearchInput from "./Components/SearchInput";
 import { useDebounce } from "@/hooks/useDebounce";
 import { CartItemsType } from "@/types/types";
@@ -17,7 +17,7 @@ export const Search: React.FC = () => {
   // Here onChangeDebounced is used to authorize api call after 800ms delay between each new entries
   const onChangeDebounced = useDebounce(onChangeDebouncedEvent);
 
-  async function searchQueries(query: string): Promise<void> {
+  function searchQueries(query: string): void {
     setProducts(
       allCartItems.filter((p) => p.name.toLowerCase().includes(query))
     );

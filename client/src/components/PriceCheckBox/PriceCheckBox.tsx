@@ -2,7 +2,7 @@ import { PriceCheckBoxProps } from "@/types/types";
 import styles from "./PriceCheckBox.module.scss";
 
 const PriceCheckBox = (props: PriceCheckBoxProps) => {
-  const handleToggle = (value: number) => {
+  const handleToggle = (value: number): void => {
     props.setCheckedId(value);
     props.handleFilters(value);
   };

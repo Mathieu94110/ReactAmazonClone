@@ -1,7 +1,5 @@
-import { ReactNode, useState } from "react";
-import { CartItemsType } from "@/types/types";
-import { createContext } from "react";
-import { CartContextType } from "@/types/types";
+import { createContext, ReactNode, useState } from "react";
+import { CartItemsType, CartContextType } from "@/types/types";
 
 export const CartContext = createContext<CartContextType | null>(null);
 

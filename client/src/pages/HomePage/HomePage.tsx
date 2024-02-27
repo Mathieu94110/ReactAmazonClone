@@ -6,8 +6,8 @@ import { getProductsList } from "../../apis/product";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { settings, settings2 } from "@/locales/slidersConfig";
-import styles from "./HomePage.module.scss";
 import { CartContext } from "@/components/Providers/CartProvider";
+import styles from "./HomePage.module.scss";
 
 const Home = () => {
   const { allCartItems, setAllCartItems } = useContext(CartContext);
@@ -16,7 +16,7 @@ const Home = () => {
       try {
         const products = await getProductsList();
         setAllCartItems(products);
-      } catch  {
+      } catch {
         console.error("Error fetching products list:");
       }
     }

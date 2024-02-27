@@ -4,21 +4,24 @@ import MessageBox from "@/components/MessageBox/MessageBox";
 import { CartContext } from "@/components/Providers/CartProvider";
 import { ArrowBack, Cancel } from "@mui/icons-material";
 import styles from "./CartPage.module.scss";
+import { CartItemsType } from "@/types/types";
 
 const Cart = () => {
   const { selectedCardItems, setSelectedCardItems } = useContext(CartContext);
   const navigate = useNavigate();
 
-  function removeItemFromCart(product): void {
+  function removeItemFromCart(product: CartItemsType): void {
     setSelectedCardItems(
-      selectedCardItems.filter((c) => c._id !== product._id)
+      selectedCardItems.filter((c: CartItemsType) => c._id !== product._id)
     );
   }
 
-  function updateCartItemQty(item, qty): void {
-    const selecteditem = selectedCardItems.find((c) => c._id === item._id);
+  function updateCartItemQty(item: CartItemsType, qty: number): void {
+    const selecteditem = selectedCardItems.find(
+      (c: CartItemsType) => c._id === item._id
+    );
     setSelectedCardItems(
-      selectedCardItems.map((c) =>
+      selectedCardItems.map((c: CartItemsType) =>
         c === selecteditem ? { ...c, qty: qty } : c
       )
     );
@@ -28,9 +31,12 @@ const Cart = () => {
     navigate("/shipping");
   }
 
-  const numberOfProducts = selectedCardItems.reduce((a, c) => {
-    return a + c.qty;
-  }, 0);
+  const numberOfProducts = selectedCardItems.reduce(
+    (a: number, c: CartItemsType): number => {
+      return a + c.qty;
+    },
+    0
+  );
 
   return (
     <div>

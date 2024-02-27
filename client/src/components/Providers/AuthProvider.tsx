@@ -10,7 +10,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
   const initialUser = useLoaderData();
   const [user, setUser] = useState(initialUser);
 
-  async function signin(credentials:UserSigninInput) {
+  async function signin(credentials: UserSigninInput) {
     const newUser = await login(credentials);
     setUser(newUser);
   }

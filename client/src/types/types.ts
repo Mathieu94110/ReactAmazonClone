@@ -28,7 +28,7 @@ export type UserShippingAddressInput = {
   generic: { generic: { message: string } };
 };
 
-type SignInCredentials = {
+export type SignInCredentials = {
   email: string;
   password: string;
 };
@@ -48,7 +48,7 @@ export type UserUpdate = {
   name: string;
   email: string;
   password: string;
-  userId: string
+  userId: string;
 };
 
 export type UserProfileType = {
@@ -56,10 +56,10 @@ export type UserProfileType = {
   email: string;
   password: string;
   confirmPassword: string;
+  generic?: null;
 };
 
 //Products
-
 export type ProductType = {
   image: string;
   name: string;
@@ -99,7 +99,7 @@ export type PriceCheckBoxProps = {
   checkedId: number;
   setCheckedId: Dispatch<SetStateAction<number>>;
   list: PricesRange[];
-  handleFilters: (number) => void;
+  handleFilters: (x: number) => void;
 };
 
 export type PricesRange = {
@@ -126,13 +126,38 @@ export type MessageBoxProps = {
   variant?: "success" | "danger";
 };
 
-export type WindowSize = {
-  width: number;
-  height: number;
+export type WindowSize<T extends number | undefined = number | undefined> = {
+  width: T;
+  height: T;
 };
+
 export type placeHolderCart = {
   selectedCardItems: CartItemsType[];
   itemsPrice: null | number;
   shippingPrice: null | number;
   taxPrice: null | number;
+};
+
+export type settingsBasic = {
+  dots: boolean;
+  infinite: boolean;
+  speed: number;
+  slidesToShow: number;
+  slidesToScroll: number;
+  autoplay: boolean;
+};
+
+export interface settingsAdvanced extends settingsBasic {
+  autoplaySpeed: number;
+  responsive: responsiveSettings[];
+}
+
+type responsiveSettings = {
+  breakpoint: number;
+  settings: {
+    dots: boolean;
+    infinite: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
+  };
 };

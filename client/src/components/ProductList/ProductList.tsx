@@ -8,8 +8,8 @@ const ProductList = ({ products }: { products: CartItemsType[] }) => {
     <div className={styles.homeProductContainer}>
       {!products ? (
         <div className={styles.spinnerContainer}>
-        <LoadingBox />
-      </div>
+          <LoadingBox />
+        </div>
       ) : (
         <>
           <h2 className={styles.secTitle}>Produits</h2>

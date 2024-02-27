@@ -91,7 +91,6 @@ const ShippingAddress = () => {
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
-
       <div className={styles.shippingFormContainer}>
         <h2 className="mb-20 text-primary">Adresse de livraison</h2>
         {userShippingAddress === "current" ? (

@@ -6,14 +6,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../Providers/AuthProvider";
 import { Modal } from "../Modal/Modal";
-import { UserSigninInput } from "@/types/types";
+import { SignInCredentials, UserSigninInput } from "@/types/types";
 import { forgotPassword } from "../../apis/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Signin() {
   const { signin, user } = useContext(AuthContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const defaultValues: UserSigninInput = {
     email: "",
@@ -42,7 +42,7 @@ function Signin() {
     resolver: yupResolver(validationSchema) as any,
   });
 
-  // useEffect on below clear form errors after 1.5s delay
+  // useEffect on below clear form errors after delay
   useEffect(() => {
     if (errors)
       setTimeout(() => {
@@ -50,16 +50,18 @@ function Signin() {
       }, 3000);
   }, [errors, clearErrors]);
 
-  const submit = handleSubmit(async (credentials) => {
-    try {
-      clearErrors();
-      await signin(credentials);
-    } catch (message) {
-      setError("generic", { type: "generic", message });
+  const submit = handleSubmit(
+    async (credentials: SignInCredentials): Promise<void> => {
+      try {
+        clearErrors();
+        await signin(credentials);
+      } catch (message) {
+        setError("generic", { type: "generic", message });
+      }
     }
-  });
+  );
 
-  const handleButtonClick = async (content: null | string) => {
+  const handleButtonClick = async (content: null | string): Promise<void> => {
     setIsModalOpen(false);
     if (content) {
       try {

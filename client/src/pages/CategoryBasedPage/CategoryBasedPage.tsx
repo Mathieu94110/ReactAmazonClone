@@ -11,7 +11,7 @@ const CategoryBasedPage = () => {
   const [checkedId, setCheckedId] = useState<number>(0);
   const { allCartItems } = useContext(CartContext);
 
-  const { cat } = useParams();
+  const { cat } = useParams<string>();
 
   const handleFilters = (filter: number): void => {
     const data = prices;

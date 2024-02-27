@@ -1,4 +1,6 @@
-export const settings = {
+import { settingsBasic, settingsAdvanced } from "@/types/types";
+
+export const settings: settingsBasic = {
   dots: true,
   infinite: true,
   speed: 500,
@@ -7,7 +9,7 @@ export const settings = {
   autoplay: true,
 };
 
-export const settings2 = {
+export const settings2: settingsAdvanced = {
   dots: true,
   infinite: true,
   speed: 500,

@@ -14,7 +14,7 @@ const PlaceOrder = () => {
   let cart = {} as placeHolderCart;
 
   useEffect(() => {
-    async function getUserInfo() {
+    async function getUserInfo(): Promise<void> {
       setLoading(true);
       const userInfo = await getCurrentUser();
       setUser(userInfo);
@@ -30,7 +30,7 @@ const PlaceOrder = () => {
     taxPrice: null,
   });
 
-  const toPrice = (num) => Number(num.toFixed(2));
+  const toPrice = (num: number) => Number(num.toFixed(2));
 
   cart.itemsPrice = toPrice(
     cart.selectedCardItems.reduce((a, c) => a + c.qty * c.price, 0)
@@ -39,7 +39,7 @@ const PlaceOrder = () => {
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
 
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  const placeOrder = () => {
+  const placeOrder = (): void => {
     alert("Achat effectué !");
   };
   return (

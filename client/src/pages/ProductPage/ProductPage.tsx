@@ -11,7 +11,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [qty, setQty] = useState<number>(1);
-  const { id } = useParams();
+  const { id } = useParams<string>();
   const { allCartItems, selectedCardItems, setSelectedCardItems } =
     useContext(CartContext);
   const navigate = useNavigate();

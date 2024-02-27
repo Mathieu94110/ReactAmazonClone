@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LockResetOutlined } from "@mui/icons-material";
 import "./Modal.scss";
 
 export const Modal = ({ onSubmit, onCancel, closeModal }) => {
-  const [email, setEmail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const timeOutId = () =>
     setTimeout(() => {

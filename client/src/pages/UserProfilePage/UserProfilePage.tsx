@@ -9,8 +9,8 @@ import styles from "./UserProfilePage.module.scss";
 import { UserProfileType } from "@/types/types";
 
 const UserProfilePage = () => {
-  const [successUpdate, setSuccessUpdate] = useState(false);
-  const [errorUpdate, SetErrorUpdate] = useState(null);
+  const [successUpdate, setSuccessUpdate] = useState<boolean>(false);
+  const [errorUpdate, SetErrorUpdate] = useState<null | string>(null);
   const { user } = useContext(AuthContext);
 
   const validationSchema = yup.object({
@@ -32,7 +32,7 @@ const UserProfilePage = () => {
       .min(6, "Mot de passe trop court"),
   });
 
-  const defaultValues = {
+  const defaultValues: UserProfileType = {
     name: "",
     email: "",
     password: "",
@@ -145,7 +145,9 @@ const UserProfilePage = () => {
         </div>
 
         <div>
-          <button className={styles.updateBtn}>Mettre à jour</button>
+          <button className={styles.updateBtn} disabled={isSubmitting}>
+            Mettre à jour
+          </button>
         </div>
       </form>
     </div>

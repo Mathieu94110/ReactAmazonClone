@@ -1,13 +1,13 @@
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "@/components/CheckOutSteps/CheckoutSteps";
 import styles from "./PaymentMethodPage.module.scss";
 
-const PaymentMethod = () => {
+const PaymentMethod: React.FC = () => {
   const navigate = useNavigate();
   const [method, setMethod] = useState<string>("PayPal");
 
-  const submitMethod = (e: SyntheticEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     localStorage.setItem("payment-method", method);
     navigate("/placeholder");
@@ -18,7 +18,7 @@ const PaymentMethod = () => {
       <CheckoutSteps step1 step2 step3 />
 
       <div className={styles.payMethodContainer}>
-        <form className={styles.paymentForm} onSubmit={submitMethod}>
+        <form className={styles.paymentForm} onSubmit={handleSubmit}>
           <div>
             <h1>Méthode de paiement</h1>
           </div>
