@@ -5,6 +5,7 @@ import PriceCheckBox from "@/components/PriceCheckBox/PriceCheckBox";
 import { prices } from "@/locales/priceRange";
 import styles from "./CategoryBasedPage.module.scss";
 import { CartContext } from "@/components/Providers/CartProvider";
+import { CartItemsType } from "@/types/types";
 
 const CategoryBasedPage = () => {
   const [range, setRange] = useState<[number, number]>([0, 50000]);
@@ -33,7 +34,17 @@ const CategoryBasedPage = () => {
     setRange([0, 50000]);
     setCheckedId(0);
   }
+  function filteredProducts(): CartItemsType[] {
+    return allCartItems.filter(
+      (product) =>
+        product.category.toLowerCase().includes(formatedCat(cat)) &&
+        product.price <= range[1] &&
+        product.price >= range[0]
+    );
+  }
 
+  console.log(range);
+  console.log("filtered =", filteredProducts());
   return (
     <div className={styles.searchPageContainer}>
       <div className={styles.filterOptionsContainer}>
@@ -51,27 +62,24 @@ const CategoryBasedPage = () => {
       </div>
 
       <div className={styles.searchPageProductContainer}>
-        {allCartItems?.length > 0 ? (
+        {filteredProducts().length ? (
           <>
             <h2 className={styles.secTitle}>
               Produits dans la catégorie <span>{formatedCat(cat)}</span>
             </h2>
             <div className={styles.searchProductContainer}>
-              {allCartItems
-                .filter(
-                  (product) =>
-                    product.category.toLowerCase().includes(formatedCat(cat)) &&
-                    product.price <= range[1] &&
-                    product.price >= range[0]
-                )
-                .map((filteredProduct, index) => (
-                  <Product key={index} product={filteredProduct} />
-                ))}
+              {filteredProducts().map((filteredProduct, index) => (
+                <Product key={index} product={filteredProduct} />
+              ))}
             </div>
           </>
         ) : (
           <h3 className={styles.secTitle}>
-            Aucun produit dans {formatedCat(cat)}
+            Aucun <span className="secondary"> {formatedCat(cat)}</span> à{" "}
+            {range[0] !== 851
+              ? String(range[0]) + "-" + String(range[1])
+              : "plus de 851"}
+            euros
           </h3>
         )}
       </div>

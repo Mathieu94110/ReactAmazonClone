@@ -212,3 +212,7 @@ header .nav-Links li {
   border-radius: 50%;
   margin-left: 6px;
 }
+.linkActive {
+  pointer-events: none;
+  color: var(--secondary);
+}

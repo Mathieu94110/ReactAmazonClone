@@ -1,4 +1,11 @@
 @use "./mixins";
+
+.primary {
+  color: var(--primary);
+}
+.secondary {
+  color: var(--secondary);
+}
 .btn {
   padding: 5px 15px;
   border-radius: var(--border-radius);

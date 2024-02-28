@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Search } from "../Search/Search";
 import { useWindowSize } from "@/hooks/useWindowDimensions";
 import {
@@ -26,20 +26,20 @@ const Header = () => {
       <div className={styles.container}>
         <div className={styles.innerContent}>
           <div className={styles.headerBrand}>
-            <Link to="/">Amazon Clone</Link>
+            <NavLink to="/">Amazon Clone</NavLink>
           </div>
           <div className={styles.headerMain}>
             <div className={styles.searchBar}>
               <Search />
             </div>
-            <Link to="/cart">
+            <NavLink to="/cart">
               <div className={styles.shoppingCartIcon}>
                 {selectedCardItems.length ? (
                   <span>{selectedCardItems.length}</span>
                 ) : null}
                 <ShoppingCartOutlined sx={{ color: "white", fontSize: 25 }} />
               </div>
-            </Link>
+            </NavLink>
           </div>
           <>
             {/* Here we display element below only if open is set to because of screen background of calc/} */}
@@ -59,12 +59,12 @@ const Header = () => {
               {open ? (
                 <ul className={`${styles.dropdownContent} ${styles.show}`}>
                   <li onClick={() => setOpen(!open)}>
-                    <Link to="/profile">Compte</Link>
+                    <NavLink to="/profile">Compte</NavLink>
                   </li>
                   <li onClick={() => setOpen(!open)}>
-                    <Link to="/" onClick={() => signout()}>
+                    <NavLink to="/" onClick={() => signout()}>
                       Se déconnecter
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               ) : null}
@@ -76,29 +76,55 @@ const Header = () => {
         <div className={styles.categoryContainer}>
           <ul>
             <li>
-              <Link to="/category/téléphones-mobiles">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : ""
+                }
+                to="/category/téléphones-mobiles"
+              >
                 {width < 600 ? <PhoneIphone /> : "Téléphones mobiles"}
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/category/ordinateurs-portables">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : ""
+                }
+                to="/category/ordinateurs-portables"
+              >
                 {width < 600 ? <LaptopMac /> : "Ordinateurs portables"}
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/category/télévisions">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : ""
+                }
+                to="/category/télévisions"
+                replace={true}
+              >
                 {width < 600 ? <PersonalVideo /> : "Télévisions"}
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/category/accessoires-d_ordinateurs">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : ""
+                }
+                to="/category/accessoires-d_ordinateurs"
+              >
                 {width < 600 ? <EarbudsBattery /> : "Accessoires d'ordinateurs"}
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/category/écouteurs">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : ""
+                }
+                to="/category/écouteurs"
+              >
                 {width < 600 ? <Headphones /> : "Écouteurs"}
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
