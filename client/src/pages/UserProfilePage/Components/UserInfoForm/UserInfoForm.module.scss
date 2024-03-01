@@ -1,0 +1,62 @@
+@use "@/assets/styles/mixins" as mixins;
+.UserProfileMessage {
+  height: 30px;
+}
+
+.userProfileForm {
+  min-width: 260px;
+  height: auto;
+  margin: 10px;
+  padding: 16px;
+  border: solid 2px grey;
+  border-radius: var(--border-radius);
+  background-color: rgb(238, 238, 238);
+  > h1 {
+    text-align: center;
+  }
+  @include mixins.xs {
+    padding: 10px;
+    > h1 {
+      font-size: 16px;
+    }
+  }
+}
+//
+
+.profileFormIpSec {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.profileFormIpSec input {
+  padding: 8px;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: var(--border-radius);
+  @include mixins.xs {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+.updateBtn {
+  background-color: var(--secondary);
+  border-radius: var(--border-radius);
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 18px;
+  outline: 0;
+  font-weight: 600;
+  @include mixins.xs {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
