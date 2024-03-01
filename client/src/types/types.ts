@@ -44,6 +44,12 @@ export type UserSignupInput = {
   password: string;
   generic: { generic: { message: string } };
 };
+export type UserAdInput = {
+  title: string;
+  description: string;
+  image: string;
+  generic: { generic: { message: string } };
+};
 export type UserUpdate = {
   name: string;
   email: string;

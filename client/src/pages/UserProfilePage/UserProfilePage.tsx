@@ -2,11 +2,12 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import AccountModal from "./Components/AccountModal/AccountModal";
 import UserInfoForm from "./Components/UserInfoForm/UserInfoForm";
+import CreateAdForm from "./Components/CreateAdForm/CreateAdForm";
 import styles from "./UserProfilePage.module.scss";
 
 const UserProfilePage = () => {
   const [showUserInfoForm, setShowUserInfoForm] = useState(false);
-
+  const [showUserCreateAdForm, setShowUserCreateAdForm] = useState(false);
   return (
     <div className={styles.userProfileContainer}>
       <div className={styles.userAccountCategories}>
@@ -29,7 +30,10 @@ const UserProfilePage = () => {
             </div>
           </div>
         </div>
-        <div className={styles.userAccountCategory}>
+        <div
+          className={styles.userAccountCategory}
+          onClick={() => setShowUserCreateAdForm(true)}
+        >
           <div className={styles.userAccountCategoryInner}>
             <img
               src="https://m.media-amazon.com/images/G/08/x-locale/cs/ya/images/amazon_app._CB643878990_.png"
@@ -86,6 +90,13 @@ const UserProfilePage = () => {
         createPortal(
           <AccountModal onClose={() => setShowUserInfoForm(false)}>
             <UserInfoForm />
+          </AccountModal>,
+          document.body
+        )}
+      {showUserCreateAdForm &&
+        createPortal(
+          <AccountModal onClose={() => setShowUserCreateAdForm(false)}>
+            <CreateAdForm />
           </AccountModal>,
           document.body
         )}
