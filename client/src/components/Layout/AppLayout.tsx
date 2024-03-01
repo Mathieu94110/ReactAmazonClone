@@ -6,7 +6,7 @@ const AppLayout = ({ children }: { children: JSX.Element }) => {
       <div>
         <Header />
       </div>
-      <main>{children}</main>
+      <main className="flex-column h-100">{children}</main>
     </>
   );
 };

@@ -8,7 +8,7 @@ function App() {
     <div className="d-flex flex-column full-screen">
       <AuthProvider>
         <CartProvider>
-          <div className="flex-fill">
+          <div className="flex-fill flex-column">
             <Suspense>
               <Outlet />
             </Suspense>

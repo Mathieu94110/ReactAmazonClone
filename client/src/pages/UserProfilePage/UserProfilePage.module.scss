@@ -1,6 +1,7 @@
 @use "@/assets/styles/mixins" as mixins;
 
 .userProfileContainer {
+  flex: 1 1 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,38 @@
   }
 }
 
+.userAccountCategories {
+  flex-flow: row wrap;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  display: grid;
+}
+
+.userAccountCategory {
+  display: flex;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px #d5d9d9 solid;
+  width: 350px;
+  & img {
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    background-color: #d5d9d9;
+    cursor: pointer;
+  }
+}
+.userAccountCategoryInner {
+  border-radius: 8px;
+  display: flex;
+  position: relative;
+  padding: 14px 18px;
+}
+.userAccountCategoryTtitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 .UserProfileMessage {
   height: 30px;
 }
@@ -71,5 +104,11 @@
   @include mixins.xs {
     padding: 6px;
     font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .userAccountCategories {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

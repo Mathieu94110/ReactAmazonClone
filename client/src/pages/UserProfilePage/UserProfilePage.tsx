@@ -76,8 +76,81 @@ const UserProfilePage = () => {
   );
   return (
     <div className={styles.userProfileContainer}>
-      <form className={styles.userProfileForm} onSubmit={submit}>
-        <h1>Profil Utilisateur</h1>
+      <div className={styles.userAccountCategories}>
+        <div className={styles.userAccountCategory}>
+          <div className={styles.userAccountCategoryInner}>
+            <img
+              src="https://m.media-amazon.com/images/G/08/x-locale/cs/help/images/gateway/self-service/YA_icon_address_01._CB657833298_.png"
+              alt="notebook"
+            />
+            <div className="ml-10">
+              <h2 className={styles.userAccountCategoryTtitle}>
+                Informations utilisateur
+              </h2>
+              <div>
+                <span>
+                  Modifier les adresses et les préférences de livraison des
+                  commandes et des cadeaux
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.userAccountCategory}>
+          <div className={styles.userAccountCategoryInner}>
+            <img
+              src="https://m.media-amazon.com/images/G/08/x-locale/cs/ya/images/amazon_app._CB643878990_.png"
+              alt="create ad"
+            />
+            <div className="ml-10">
+              <h2 className={styles.userAccountCategoryTtitle}>
+                Créer une annonce
+              </h2>
+              <div>
+                <span>
+                  Saisissez les informations demandées et mettez une annonce en
+                  ligne,{" "}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.userAccountCategory}>
+          <div className={styles.userAccountCategoryInner}>
+            <img
+              src="https://m.media-amazon.com/images/G/08/x-locale/cs/help/images/gateway/self-service/order._CB659956101_.png"
+              alt="ads"
+            />
+            <div className="ml-10">
+              <h2 className={styles.userAccountCategoryTtitle}>Mes annonces</h2>
+              <div>
+                <span>Consulter ou modifier vos annonces en ligne</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.userAccountCategory}>
+          <div className={styles.userAccountCategoryInner}>
+            <img
+              src="https://m.media-amazon.com/images/G/08/x-locale/cs/help/images/gateway/self-service/contact_us._CB659956101_.png"
+              alt="contact"
+            />
+            <div className="ml-10">
+              <h2 className={styles.userAccountCategoryTtitle}>
+                Nous contacter
+              </h2>
+              <div>
+                <span>
+                  Contacter notre Service Client par téléphone, chat ou e-mail
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <form className={styles.userProfileForm} onSubmit={submit}>
+        <h1>Votre compte</h1>
         <div className={styles.UserProfileMessage}>
           {errorUpdate && (
             <MessageBox variant="danger">{errorUpdate}</MessageBox>
@@ -149,7 +222,7 @@ const UserProfilePage = () => {
             Mettre à jour
           </button>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 };

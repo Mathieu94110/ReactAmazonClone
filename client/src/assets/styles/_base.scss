@@ -66,6 +66,9 @@ form {
 .mb-10 {
   margin-bottom: 10px;
 }
+.ml-10 {
+  margin-left: 10px;
+}
 .mb-20 {
   margin-bottom: 20px;
 }
@@ -75,6 +78,14 @@ form {
 .my-2 {
   margin: 20px 0;
 }
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.h-100 {
+  flex: 1 1 auto;
+}
+
 .center-content {
   display: flex;
   flex-direction: column;
