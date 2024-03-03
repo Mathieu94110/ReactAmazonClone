@@ -1,0 +1,146 @@
+:root {
+  --color-bg-light: #aaa;
+  --color-bg-dark: #1f1f1f;
+  --color-text: #f4f4f4;
+  --color-secondary: #03fc8c;
+  --duration: 2000ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #555;
+  color: #f5f5f5;
+}
+
+.container {
+  padding: 2rem;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  text-align: center;
+}
+
+.btn {
+  font-size: 1.1rem;
+  background: var(--color-bg-dark);
+  width: fit-content;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 80%;
+  }
+}
+
+.rtg-transition {
+  padding: 2rem;
+}
+
+.card {
+  --border: 3px solid #f4f4f4;
+  width: 100%;
+  height: fit-content;
+  border: 3px solid #f4f4f4;
+
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .card__img {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+
+    background: url("https://source.unsplash.com/random") center/cover no-repeat;
+    // margin: 0 auto;
+    width: 100%;
+    border-right: var(--border);
+  }
+  .card__title {
+    font-size: 2rem;
+
+    grid-row: 1 / 2;
+    grid-column: span 2;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: var(--border);
+  }
+  .card__summary {
+    font-size: 1.5rem;
+    padding: 1rem;
+    grid-row: 2 / 3;
+    grid-column: span 1;
+    border-right: var(--border);
+  }
+
+  .card__number {
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+  }
+}
+
+.css-transition-enter {
+  opacity: 0;
+}
+.css-transition-enter-active {
+  opacity: 1;
+  transition: opacity var(--duration) ease-in-out;
+}
+.css-transition-enter-done {
+  opacity: 1;
+}
+.css-transition-exit {
+  opacity: 1;
+}
+.css-transition-exit-active {
+  opacity: 0;
+  transition: opacity var(--duration) ease-in-out;
+}
+.css-transition-exit-done {
+  opacity: 0;
+}
+
+.icon-container {
+  font-size: 5em;
+}
+
+.switch-transition-enter {
+  transform: scale(0);
+  opacity: 0;
+}
+.switch-transition-enter-active {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 500ms ease-in;
+}
+.switch-transition-exit {
+  transform: scale(1);
+  opacity: 1;
+}
+.switch-transition-exit-active {
+  transform: scale(0);
+  opacity: 0;
+  transition: all 500ms ease-in;
+}
+
+.icon-container {
+  cursor: pointer;
+  width: fit-content;
+  margin: 1rem auto;
+}
+.transition-container {
+  // height: 100%;
+  // z-index: 3;
+  // width: 100%;
+}

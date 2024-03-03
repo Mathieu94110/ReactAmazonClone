@@ -43,8 +43,6 @@ const CategoryBasedPage = () => {
     );
   }
 
-  console.log(range);
-  console.log("filtered =", filteredProducts());
   return (
     <div className={styles.searchPageContainer}>
       <div className={styles.filterOptionsContainer}>

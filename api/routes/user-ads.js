@@ -8,7 +8,7 @@ const {
 
 router.post("/", postUserAdController);
 router.get("/ads/:id", getUserAdsController);
-router.put("/:id", updateUserAdController);
-router.delete("/:id", deleteUserAdController);
+router.post('/update/:adId', updateUserAdController);
+router.delete("/:adId", deleteUserAdController);
 
 module.exports = router;

@@ -1,19 +1,28 @@
 import { useState } from "react";
-import { createPortal } from "react-dom";
-import AccountModal from "./Components/AccountModal/AccountModal";
-import UserInfoForm from "./Components/UserInfoForm/UserInfoForm";
-import CreateAdForm from "./Components/CreateAdForm/CreateAdForm";
 import styles from "./UserProfilePage.module.scss";
+import EaseInOutAnimation from "@/components/Layout/EaseInOutAnimation/EaseInOutAnimation";
+import DynamicComponent from "@/utils/DynamicComponent";
 
 const UserProfilePage = () => {
-  const [showUserInfoForm, setShowUserInfoForm] = useState(false);
-  const [showUserCreateAdForm, setShowUserCreateAdForm] = useState(false);
+  const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
+  const [component, setComponent] = useState<"createAdForm" | "userAccount">(
+    "createAdForm"
+  );
+
+  const switchComponent = (value): void => {
+    setShowCategoryForm(true);
+    setComponent(value);
+  };
+
+  const closeCalc = (): void => {
+    setShowCategoryForm(false);
+  };
   return (
     <div className={styles.userProfileContainer}>
       <div className={styles.userAccountCategories}>
         <div
           className={styles.userAccountCategory}
-          onClick={() => setShowUserInfoForm(true)}
+          onClick={() => switchComponent("userAccount")}
         >
           <div className={styles.userAccountCategoryInner}>
             <img
@@ -32,7 +41,7 @@ const UserProfilePage = () => {
         </div>
         <div
           className={styles.userAccountCategory}
-          onClick={() => setShowUserCreateAdForm(true)}
+          onClick={() => switchComponent("createAdForm")}
         >
           <div className={styles.userAccountCategoryInner}>
             <img
@@ -86,20 +95,13 @@ const UserProfilePage = () => {
           </div>
         </div>
       </div>
-      {showUserInfoForm &&
-        createPortal(
-          <AccountModal onClose={() => setShowUserInfoForm(false)}>
-            <UserInfoForm />
-          </AccountModal>,
-          document.body
-        )}
-      {showUserCreateAdForm &&
-        createPortal(
-          <AccountModal onClose={() => setShowUserCreateAdForm(false)}>
-            <CreateAdForm />
-          </AccountModal>,
-          document.body
-        )}
+      {showCategoryForm ? (
+        <div onClick={() => closeCalc()} className={styles.accountCalc}></div>
+      ) : null}
+
+      <EaseInOutAnimation menuOpen={showCategoryForm}>
+        <DynamicComponent name={component} />
+      </EaseInOutAnimation>
     </div>
   );
 };

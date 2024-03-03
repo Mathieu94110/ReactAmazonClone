@@ -1,5 +1,5 @@
 import MessageBox from "@/components/MessageBox/MessageBox";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -52,22 +52,36 @@ function UserInfoForm() {
     resolver: yupResolver(validationSchema) as any,
   });
 
+  // useEffect on below clear form errors after delay
+  useEffect(() => {
+    if (errors)
+      setTimeout(() => {
+        clearErrors();
+      }, 3000);
+    if (errorUpdate) {
+      setTimeout(() => {
+        SetErrorUpdate(null);
+      }, 3000);
+    }
+  }, [errors, errorUpdate, clearErrors]);
+
   const submit = handleSubmit(
     async (userInfo: UserProfileType): Promise<void> => {
       try {
         clearErrors();
         if (userInfo.password !== userInfo.confirmPassword) {
           SetErrorUpdate("Le mot de passe ne correspond pas!");
-        }
-        const response = await updateUserProfile({
-          userId: user._id,
-          name: userInfo.name,
-          email: userInfo.email,
-          password: userInfo.password,
-        });
-        if (response.ok) {
-          setSuccessUpdate(true);
-          reset();
+        } else {
+          const response = await updateUserProfile({
+            userId: user._id,
+            name: userInfo.name,
+            email: userInfo.email,
+            password: userInfo.password,
+          });
+          if (response.ok) {
+            setSuccessUpdate(true);
+            reset();
+          }
         }
       } catch (message) {
         setError("generic", { type: "generic", message });
@@ -78,7 +92,7 @@ function UserInfoForm() {
   return (
     <div>
       <form className={styles.userProfileForm} onSubmit={submit}>
-        <h1>Votre compte</h1>
+        <h1>Vos informations</h1>
         <div className={styles.UserProfileMessage}>
           {errorUpdate && (
             <MessageBox variant="danger">{errorUpdate}</MessageBox>
@@ -90,7 +104,9 @@ function UserInfoForm() {
           )}
         </div>
         <div className={styles.profileFormIpSec}>
-          <label htmlFor="name">Nom</label>
+          <label className="mb-10 secondary" htmlFor="name">
+            Nom
+          </label>
           <input
             type="name"
             id="name"
@@ -104,7 +120,9 @@ function UserInfoForm() {
         </div>
 
         <div className={styles.profileFormIpSec}>
-          <label htmlFor="email">E-mail</label>
+          <label className="mb-10 secondary" htmlFor="email">
+            E-mail
+          </label>
           <input
             type="email"
             id="email"
@@ -118,7 +136,9 @@ function UserInfoForm() {
         </div>
 
         <div className={styles.profileFormIpSec}>
-          <label htmlFor="password">Mot de passe</label>
+          <label className="mb-10 secondary" htmlFor="password">
+            Mot de passe
+          </label>
           <input
             type="password"
             id="password"
@@ -132,12 +152,14 @@ function UserInfoForm() {
         </div>
 
         <div className={styles.profileFormIpSec}>
-          <label htmlFor="confirmpassword">Confirmer le mot de passe</label>
+          <label className="mb-10 secondary" htmlFor="confirmpassword">
+            Confirmer le mot de passe
+          </label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            placeholder="Changer le mot de passe"
+            placeholder="Confirmer le mot de passe"
             {...register("confirmPassword")}
           />
           <p className="form-error">
@@ -145,11 +167,9 @@ function UserInfoForm() {
           </p>
         </div>
 
-        <div>
-          <button className={styles.updateBtn} disabled={isSubmitting}>
-            Mettre à jour
-          </button>
-        </div>
+        <button className={styles.updateBtn} disabled={isSubmitting}>
+          Mettre à jour
+        </button>
       </form>
     </div>
   );

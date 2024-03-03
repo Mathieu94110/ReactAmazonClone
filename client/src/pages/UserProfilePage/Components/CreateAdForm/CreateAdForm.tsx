@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import MessageBox from "@/components/MessageBox/MessageBox";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createAd } from "@/apis/user-ads";
@@ -8,9 +9,11 @@ import styles from "./CreateAdForm.module.scss";
 import { UserAdInput } from "@/types/types";
 
 function CreateAdForm() {
+  const [successCreate, setSuccessCreate] = useState<boolean>(false);
   const { user } = useContext(AuthContext);
   const defaultValues = {
     title: "",
+    category: "",
     description: "",
     image: "",
     generic: null,
@@ -19,12 +22,13 @@ function CreateAdForm() {
   const newAdSchema = yup.object({
     title: yup
       .string()
-      .required("Le titre de l'annonce doit être renseigné")
+      .required("Le titre doit être renseigné")
       .min(10, "Le titre doit être explicite")
       .max(30, "Le titre doit être succinct"),
+    category: yup.string().required("Il faut renseigner la catégorie"),
     description: yup
       .string()
-      .required("La description de l'annonce doit être renseigné")
+      .required("La description doit être renseigné")
       .min(10, "Le titre doit être explicite")
       .max(30, "Le titre doit être succinct"),
     image: yup
@@ -37,21 +41,30 @@ function CreateAdForm() {
     formState: { errors, isSubmitting },
     register,
     handleSubmit,
-    reset,
     setError,
     clearErrors,
   } = useForm<UserAdInput>({
     defaultValues,
     resolver: yupResolver(newAdSchema) as any,
   });
+  // useEffect on below clear form errors after delay
+  useEffect(() => {
+    if (errors)
+      setTimeout(() => {
+        clearErrors();
+      }, 3000);
+  }, [errors, clearErrors]);
 
-  async function submit(values) {
+  async function submit(values: typeof defaultValues) {
     try {
       clearErrors();
-      await createAd({
+      const response = await createAd({
         ...values,
         userId: user._id,
       });
+      if (response.ok) {
+        setSuccessCreate(true);
+      }
     } catch (e) {
       setError("generic", { type: "generic", message: "Il y a eu une erreur" });
     }
@@ -60,37 +73,51 @@ function CreateAdForm() {
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      className={`flex-column card p-20 ${styles.recipeForm}`}
+      className={`flex-column  p-20 ${styles.recipeForm}`}
     >
-      <img
-        src="https://www.commeuncamion.com/content/uploads/2010/03/logo-amazon-fr.jpg"
-        alt="amazon.fr"
-        referrerPolicy="no-referrer"
-        className="mb-10"
-      />
+      <h1>Créer une annonce</h1>
+      <div className={styles.createAdMessage}>
+        {successCreate && (
+          <MessageBox variant="success">Votre annonce a été postée</MessageBox>
+        )}
+      </div>
       <div className="flex-column mb-20">
         <label className="secondary mb-10">Titre de l'annonce</label>
         <input {...register("title")} type="text" />
         {errors.title && <p className="form-error">{errors.title.message}</p>}
       </div>
       <div className="flex-column mb-20">
+        <label className="secondary mb-10">Catégorie</label>
+        <select {...register("category")}>
+          <option value="mobile phones">Téléphones mobiles</option>
+          <option value="laptop">Ordinateurs portables</option>
+          <option value="televisions">Télévisions</option>
+          <option value="computer accessories">
+            Accessoires d'ordinateurs
+          </option>
+          <option value="headphones">Écouteurs</option>
+          <option value="others">Autres</option>
+        </select>
+        {errors.category && (
+          <p className="form-error">{errors.category.message}</p>
+        )}
+      </div>
+      <div className="flex-column mb-20">
         <label className="secondary mb-10">Description de l'annonce</label>
-        <textarea {...register("description")} />
+        <textarea {...register("description")} className="h-16" />
         {errors.description && (
           <p className="form-error">{errors.description.message}</p>
         )}
       </div>
       <div className="flex-column mb-20">
-        <label className="secondary mb-10">Image </label>
+        <label className="secondary mb-10">Url de l'image </label>
         <input {...register("image")} type="text" />
         {errors.image && <p className="form-error">{errors.image.message}</p>}
       </div>
       {errors.generic && <p className="form-error">{errors.generic.message}</p>}
-      <div>
-        <button disabled={isSubmitting} className="btn btn-primary">
-          <span className="secondary">Sauvegarder</span>
-        </button>
-      </div>
+      <button className={styles.createAdFormButton} disabled={isSubmitting}>
+        Créer l'annonce
+      </button>
     </form>
   );
 }

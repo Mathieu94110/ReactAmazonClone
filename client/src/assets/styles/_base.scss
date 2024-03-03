@@ -78,10 +78,15 @@ form {
 .my-2 {
   margin: 20px 0;
 }
+.h-16 {
+  height: 64px;
+}
 .h-100 {
   flex: 1 1 auto;
 }
-
+.full-width {
+  width: 100%;
+}
 .center-content {
   display: flex;
   flex-direction: column;

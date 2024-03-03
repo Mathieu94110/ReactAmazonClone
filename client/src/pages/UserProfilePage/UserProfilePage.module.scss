@@ -41,10 +41,18 @@
   display: flex;
   position: relative;
   padding: 14px 18px;
+  color: var(--primary);
 }
 .userAccountCategoryTtitle {
   font-size: 20px;
   margin-bottom: 10px;
+}
+.accountCalc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 
 @media screen and (min-width: 700px) {
