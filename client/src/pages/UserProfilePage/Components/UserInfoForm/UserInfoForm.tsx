@@ -63,7 +63,12 @@ function UserInfoForm() {
         SetErrorUpdate(null);
       }, 3000);
     }
-  }, [errors, errorUpdate, clearErrors]);
+    if (successUpdate) {
+      setTimeout(() => {
+        setSuccessUpdate(null);
+      }, 3000);
+    }
+  }, [errors, errorUpdate, successUpdate, clearErrors]);
 
   const submit = handleSubmit(
     async (userInfo: UserProfileType): Promise<void> => {
@@ -90,88 +95,86 @@ function UserInfoForm() {
   );
 
   return (
-    <div>
-      <form className={styles.userProfileForm} onSubmit={submit}>
-        <h1>Vos informations</h1>
-        <div className={styles.UserProfileMessage}>
-          {errorUpdate && (
-            <MessageBox variant="danger">{errorUpdate}</MessageBox>
-          )}
-          {successUpdate && (
-            <MessageBox variant="success">
-              Le profil a bien été mis à jour
-            </MessageBox>
-          )}
-        </div>
-        <div className={styles.profileFormIpSec}>
-          <label className="mb-10 secondary" htmlFor="name">
-            Nom
-          </label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            placeholder="Changer le nom"
-            {...register("name")}
-          />
-          <p className="form-error">
-            {errors.name ? errors.name.message : null}
-          </p>
-        </div>
+    <form className={styles.userProfileForm} onSubmit={submit}>
+      <h1>Vos informations</h1>
+      <div className={styles.UserProfileMessage}>
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
+        {successUpdate && (
+          <MessageBox variant="success">
+            Le profil a bien été mis à jour
+          </MessageBox>
+        )}
+      </div>
+      <div className={styles.profileFormIpSec}>
+        <label className="mb-5 secondary" htmlFor="name">
+          Nom
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Changer le nom"
+          {...register("name")}
+          className={styles.userInfoFormInput}
+        />
+        <p className="form-error">{errors.name ? errors.name.message : null}</p>
+      </div>
 
-        <div className={styles.profileFormIpSec}>
-          <label className="mb-10 secondary" htmlFor="email">
-            E-mail
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Changer le mail"
-            {...register("email")}
-          />
-          <p className="form-error">
-            {errors.email ? errors.email.message : null}
-          </p>
-        </div>
+      <div className={styles.profileFormIpSec}>
+        <label className="mb-5 secondary" htmlFor="email">
+          E-mail
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Changer le mail"
+          {...register("email")}
+          className={styles.userInfoFormInput}
+        />
+        <p className="form-error">
+          {errors.email ? errors.email.message : null}
+        </p>
+      </div>
 
-        <div className={styles.profileFormIpSec}>
-          <label className="mb-10 secondary" htmlFor="password">
-            Mot de passe
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Changer le mot de passe"
-            {...register("password")}
-          />
-          <p className="form-error">
-            {errors.password ? errors.password.message : null}
-          </p>
-        </div>
+      <div className={styles.profileFormIpSec}>
+        <label className="mb-5 secondary" htmlFor="password">
+          Mot de passe
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Changer le mot de passe"
+          {...register("password")}
+          className={styles.userInfoFormInput}
+        />
+        <p className="form-error">
+          {errors.password ? errors.password.message : null}
+        </p>
+      </div>
 
-        <div className={styles.profileFormIpSec}>
-          <label className="mb-10 secondary" htmlFor="confirmpassword">
-            Confirmer le mot de passe
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirmer le mot de passe"
-            {...register("confirmPassword")}
-          />
-          <p className="form-error">
-            {errors.confirmPassword ? errors.confirmPassword.message : null}
-          </p>
-        </div>
+      <div className={styles.profileFormIpSec}>
+        <label className="mb-5 secondary" htmlFor="confirmpassword">
+          Confirmer le mot de passe
+        </label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirmer le mot de passe"
+          {...register("confirmPassword")}
+          className={styles.userInfoFormInput}
+        />
+        <p className="form-error">
+          {errors.confirmPassword ? errors.confirmPassword.message : null}
+        </p>
+      </div>
 
-        <button className={styles.updateBtn} disabled={isSubmitting}>
-          Mettre à jour
-        </button>
-      </form>
-    </div>
+      <button className="btn btn-secondary h-6" disabled={isSubmitting}>
+        Mettre à jour
+      </button>
+    </form>
   );
 }
 

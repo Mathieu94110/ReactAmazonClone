@@ -23,8 +23,6 @@ const EaseInOutAnimation = ({
     exited: { transform: "translateX(-300%)" },
   };
 
-  console.log(transitionStyles["entering"]);
-
   return (
     <div className="transition-container">
       <Transition in={menuOpen} timeout={duration}>

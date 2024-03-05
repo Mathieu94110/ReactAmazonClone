@@ -55,12 +55,12 @@ function CreateAdForm() {
       }, 3000);
   }, [errors, clearErrors]);
 
-  async function submit(values: typeof defaultValues) {
+  async function submit(values: typeof defaultValues): Promise<void> {
     try {
       clearErrors();
       const response = await createAd({
         ...values,
-        userId: user._id,
+        author: user._id,
       });
       if (response.ok) {
         setSuccessCreate(true);
@@ -83,7 +83,11 @@ function CreateAdForm() {
       </div>
       <div className="flex-column mb-20">
         <label className="secondary mb-10">Titre de l'annonce</label>
-        <input {...register("title")} type="text" />
+        <input
+          {...register("title")}
+          type="text"
+          className="createAdFormInput"
+        />
         {errors.title && <p className="form-error">{errors.title.message}</p>}
       </div>
       <div className="flex-column mb-20">
@@ -104,7 +108,7 @@ function CreateAdForm() {
       </div>
       <div className="flex-column mb-20">
         <label className="secondary mb-10">Description de l'annonce</label>
-        <textarea {...register("description")} className="h-16" />
+        <textarea {...register("description")} className="h-10" />
         {errors.description && (
           <p className="form-error">{errors.description.message}</p>
         )}
@@ -115,7 +119,7 @@ function CreateAdForm() {
         {errors.image && <p className="form-error">{errors.image.message}</p>}
       </div>
       {errors.generic && <p className="form-error">{errors.generic.message}</p>}
-      <button className={styles.createAdFormButton} disabled={isSubmitting}>
+      <button className="btn btn-secondary h-6" disabled={isSubmitting}>
         Créer l'annonce
       </button>
     </form>

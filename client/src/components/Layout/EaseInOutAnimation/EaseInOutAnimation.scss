@@ -25,22 +25,8 @@ body {
   text-align: center;
 }
 
-.btn {
-  font-size: 1.1rem;
-  background: var(--color-bg-dark);
-  width: fit-content;
-  padding: 1rem;
-  margin: 1rem auto;
-  border-radius: 10px;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 80%;
-  }
-}
-
 .rtg-transition {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .card {
@@ -56,9 +42,7 @@ body {
   .card__img {
     grid-column: 1 / 2;
     grid-row: 1 / 3;
-
     background: url("https://source.unsplash.com/random") center/cover no-repeat;
-    // margin: 0 auto;
     width: 100%;
     border-right: var(--border);
   }
@@ -140,7 +124,8 @@ body {
   margin: 1rem auto;
 }
 .transition-container {
-  // height: 100%;
-  // z-index: 3;
-  // width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

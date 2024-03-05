@@ -47,13 +47,14 @@ export async function updateAd(updatedAd) {
 }
 
 export async function createAd(data) {
-  const { userId, ...rest } = data;
-  const response = await fetch(API_USER_ADS, {
+  // const { generic, ...rest } = data;
+  // console.log("userId =", userId, "rest =", rest);
+  const response = await fetch(`${API_USER_ADS}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ ...rest, userId: userId }),
+    body: JSON.stringify({ data }),
   });
   if (response.ok) {
     return response.json();
