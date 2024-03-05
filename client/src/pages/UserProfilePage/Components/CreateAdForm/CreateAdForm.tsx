@@ -62,6 +62,7 @@ function CreateAdForm() {
         ...values,
         author: user._id,
       });
+      console.log(response);
       if (response.ok) {
         setSuccessCreate(true);
       }

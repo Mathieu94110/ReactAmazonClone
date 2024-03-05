@@ -1,7 +1,7 @@
 const API_USER_ADS = `${process.env.REACT_APP_API_USER_ADS}`;
 
 export async function getUserAds(userId) {
-  const response = await fetch(`${API_USER_ADS}/ads/${userId}`);
+  const response = await fetch(`${API_USER_ADS}/ads?userId=${userId}`);
   if (response.ok) {
     const body = await response.json();
     return Array.isArray(body) ? body : [body];
@@ -40,15 +40,13 @@ export async function updateAd(updatedAd) {
     body: JSON.stringify(restAd),
   });
   if (response.ok) {
-    return response.json();
+    return response;
   } else {
     throw new Error("Error update user ad");
   }
 }
 
 export async function createAd(data) {
-  // const { generic, ...rest } = data;
-  // console.log("userId =", userId, "rest =", rest);
   const response = await fetch(`${API_USER_ADS}/`, {
     method: "POST",
     headers: {
@@ -57,7 +55,7 @@ export async function createAd(data) {
     body: JSON.stringify({ data }),
   });
   if (response.ok) {
-    return response.json();
+    return response;
   } else {
     throw new Error("Error create user ad");
   }

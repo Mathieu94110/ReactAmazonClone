@@ -5,9 +5,9 @@ import DynamicComponent from "@/utils/DynamicComponent";
 
 const UserProfilePage = () => {
   const [showCategoryForm, setShowCategoryForm] = useState<boolean>(false);
-  const [component, setComponent] = useState<"createAdForm" | "userAccount">(
-    "createAdForm"
-  );
+  const [component, setComponent] = useState<
+    "createAdForm" | "userAccount" | "userAds"
+  >("createAdForm");
 
   const switchComponent = (value): void => {
     setShowCategoryForm(true);
@@ -68,7 +68,7 @@ const UserProfilePage = () => {
               src="https://m.media-amazon.com/images/G/08/x-locale/cs/help/images/gateway/self-service/order._CB659956101_.png"
               alt="ads"
             />
-            <div className="ml-10">
+            <div className="ml-10" onClick={() => switchComponent("userAds")}>
               <h2 className={styles.userAccountCategoryTtitle}>Mes annonces</h2>
               <div>
                 <span>Consulter ou modifier vos annonces en ligne</span>

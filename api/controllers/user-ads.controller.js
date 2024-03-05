@@ -1,4 +1,4 @@
-const { createAd } = require("../queries/ads.queries");
+const { createAd, getCurrentUserAds } = require("../queries/ads.queries");
 const postUserAdController = async (req, res, next) => {
   try {
     const data = req.body.data;
@@ -13,7 +13,16 @@ const postUserAdController = async (req, res, next) => {
     res.json({ message });
   }
 };
-const getUserAdsController = async (userId) => {};
+
+getUserAdsController = async (req, res, next) => {
+  try {
+    const userId = req.query.userId;
+    const ads = await getCurrentUserAds(userId);
+    res.send(ads);
+  } catch (e) {
+    next(e);
+  }
+};
 const updateUserAdController = async (userId, id) => {};
 const deleteUserAdController = async (userId, id) => {};
 
