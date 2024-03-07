@@ -5,8 +5,6 @@ exports.createAd = (ad) => {
   return newAd.save();
 };
 
-exports.getCurrentUserAds = (user) => {
-  return Ads.find({ author: { $in: [user._id] } })
-    .populate("author")
-    .exec();
+exports.getCurrentUserAds = (userId) => {
+  return Ads.find({ author: userId }).populate("author").exec();
 };

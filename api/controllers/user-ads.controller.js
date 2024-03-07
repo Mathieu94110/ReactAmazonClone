@@ -16,7 +16,7 @@ const postUserAdController = async (req, res, next) => {
 
 getUserAdsController = async (req, res, next) => {
   try {
-    const userId = req.query.userId;
+    const userId = req.params.userId;
     const ads = await getCurrentUserAds(userId);
     res.send(ads);
   } catch (e) {

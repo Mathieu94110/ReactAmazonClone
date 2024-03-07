@@ -1,7 +1,7 @@
 const API_USER_ADS = `${process.env.REACT_APP_API_USER_ADS}`;
 
 export async function getUserAds(userId) {
-  const response = await fetch(`${API_USER_ADS}/ads?userId=${userId}`);
+  const response = await fetch(`${API_USER_ADS}/${userId}`);
   if (response.ok) {
     const body = await response.json();
     return Array.isArray(body) ? body : [body];
