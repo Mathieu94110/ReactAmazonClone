@@ -1,17 +1,15 @@
 import MessageBox from "@/components/MessageBox/MessageBox";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AuthContext } from "@/components/Providers/AuthProvider";
 import { updateUserProfile } from "../../../../apis/users";
 import styles from "./UserInfoForm.module.scss";
 import { UserProfileType } from "@/types/types";
 
-function UserInfoForm() {
+function UserInfoForm({ user }) {
   const [successUpdate, setSuccessUpdate] = useState<boolean>(false);
   const [errorUpdate, SetErrorUpdate] = useState<null | string>(null);
-  const { user } = useContext(AuthContext);
 
   const validationSchema = yup.object({
     name: yup
@@ -96,7 +94,7 @@ function UserInfoForm() {
 
   return (
     <form className={styles.userProfileForm} onSubmit={submit}>
-      <h1>Vos informations</h1>
+      <h1>Modifier vos informations</h1>
       <div className={styles.UserProfileMessage}>
         {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {successUpdate && (

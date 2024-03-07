@@ -86,7 +86,6 @@ describe("SignUp", () => {
     fireEvent.change(emailInput, { target: { value: "johnDoe@gmail.com" } });
     fireEvent.change(passwordInput, { target: { value: "short" } });
     await user.click(signUpBtn);
-    console.log(screen.debug);
     const nameError = await screen.findByText("Le nom est trop long");
     const passwordError = await screen.findByText(
       "Le mot de passe est trop court"

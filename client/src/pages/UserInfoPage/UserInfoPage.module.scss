@@ -1,0 +1,48 @@
+.userInfoPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+.currentInfoContainer {
+  padding: 30px;
+  text-align: center;
+  background-color: var(--primary);
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+  width: 260px;
+  & h2 {
+    margin-bottom: 20px;
+  }
+}
+
+li {
+  font-weight: 600;
+  text-align: left;
+  color: #fff;
+  & span:first-child {
+    color: var(--secondary);
+  }
+}
+
+@media screen and (max-width: 699px) and (min-width: 500px) {
+  .currentInfoContainer {
+    width: 460px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .userInfoPage {
+    flex-direction: row;
+  }
+  .currentInfoContainer {
+    width: auto;
+  }
+  .currentInfoDetails {
+    border: 2px solid #000;
+    display: inline-block;
+    padding: 20px;
+  }
+}

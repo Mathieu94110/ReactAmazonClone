@@ -23,6 +23,10 @@ const PaymentMethod = lazy(
 const PlaceHolder = lazy(
   () => import("./pages/PlaceHolderPage/PlaceHolderPage")
 );
+const CreateAd = lazy(() => import("./pages/CreateAdPage/CreateAdPage"));
+const UserAds = lazy(() => import("./pages/UserAdsPage/UserAdsPage"));
+const UserInfo = lazy(() => import("./pages/UserInfoPage/UserInfoPage"));
+const Contact = lazy(() => import("./pages/Contact/Contact"));
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +51,38 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <UserProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/create-ad",
+        element: (
+          <ProtectedRoute>
+            <CreateAd />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/user-info",
+        element: (
+          <ProtectedRoute>
+            <UserInfo />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/user-ads",
+        element: (
+          <ProtectedRoute>
+            <UserAds />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <ProtectedRoute>
+            <Contact />
           </ProtectedRoute>
         ),
       },

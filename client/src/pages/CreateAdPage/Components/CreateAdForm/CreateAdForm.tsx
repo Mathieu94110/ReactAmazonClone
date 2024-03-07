@@ -29,8 +29,8 @@ function CreateAdForm() {
     description: yup
       .string()
       .required("La description doit être renseigné")
-      .min(10, "Le titre doit être explicite")
-      .max(30, "Le titre doit être succinct"),
+      .min(10, "La descrition doit être explicite")
+      .max(30, "La descrition doit être succincte"),
     image: yup
       .string()
       .required("Il faut renseigner une image")
@@ -53,7 +53,10 @@ function CreateAdForm() {
       setTimeout(() => {
         clearErrors();
       }, 3000);
-  }, [errors, clearErrors]);
+    if (successCreate) {
+      setSuccessCreate(false);
+    }
+  }, [errors, clearErrors, successCreate]);
 
   async function submit(values: typeof defaultValues): Promise<void> {
     try {
@@ -62,7 +65,6 @@ function CreateAdForm() {
         ...values,
         author: user._id,
       });
-      console.log(response);
       if (response.ok) {
         setSuccessCreate(true);
       }
