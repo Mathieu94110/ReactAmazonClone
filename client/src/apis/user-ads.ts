@@ -20,12 +20,12 @@ export async function getAd(_id) {
 }
 
 export async function deleteAd(_id) {
-  const response = await fetch(`${API_USER_ADS}/${_id}`, {
-    method: "DELETE",
-  });
-  if (response.ok) {
-    return _id;
-  } else {
+  try {
+    const response = await fetch(`${API_USER_ADS}/${_id}`, {
+      method: "DELETE",
+    });
+    return response;
+  } catch {
     throw new Error("Error delete user ad");
   }
 }

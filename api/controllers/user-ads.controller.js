@@ -1,4 +1,8 @@
-const { createAd, getCurrentUserAds } = require("../queries/ads.queries");
+const {
+  createAd,
+  getCurrentUserAds,
+  deleteAd,
+} = require("../queries/ads.queries");
 const postUserAdController = async (req, res, next) => {
   try {
     const data = req.body.data;
@@ -23,8 +27,22 @@ getUserAdsController = async (req, res, next) => {
     next(e);
   }
 };
-const updateUserAdController = async (userId, id) => {};
-const deleteUserAdController = async (userId, id) => {};
+const updateUserAdController = async (req, res, next) => {};
+
+deleteUserAdController = async (req, res) => {
+  try {
+    const adId = req.params.adId;
+    await deleteAd(adId);
+    res.sendStatus(200);
+  } catch (e) {
+    const message = e.errors
+      ? e.errors[0]
+      : e.message
+      ? e.message
+      : "Problème serveur";
+    res.json({ message });
+  }
+};
 
 module.exports = {
   postUserAdController,

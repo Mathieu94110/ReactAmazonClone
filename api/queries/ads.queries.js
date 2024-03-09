@@ -8,3 +8,7 @@ exports.createAd = (ad) => {
 exports.getCurrentUserAds = (userId) => {
   return Ads.find({ author: userId }).populate("author").exec();
 };
+
+exports.deleteAd = (adId) => {
+  return Ads.findByIdAndDelete(adId).exec();
+};

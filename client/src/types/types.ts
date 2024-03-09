@@ -66,6 +66,22 @@ export type UserProfileType = {
   generic?: null;
 };
 
+//Ads
+export type UserAdType = {
+  image: string;
+  title: string;
+  category: string;
+  description: string;
+  _id?: string;
+};
+
+export type UserAdCategoryType =
+  | "televisions"
+  | "headphones"
+  | "computer accessories"
+  | "laptop"
+  | "others";
+
 //Products
 export type ProductType = {
   image: string;

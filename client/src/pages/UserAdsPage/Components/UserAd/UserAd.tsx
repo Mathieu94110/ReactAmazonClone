@@ -1,13 +1,23 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  Typography,
+  CardMedia,
+  CardContent,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { UserAdType } from "@/types/types";
 
-export default function UserAd({ ad }) {
+export default function UserAd({
+  ad,
+  deleteAd,
+}: {
+  ad: UserAdType;
+  deleteAd: (v: string) => void;
+}) {
   return (
     <Card
       sx={{
@@ -56,7 +66,7 @@ export default function UserAd({ ad }) {
           <EditIcon
             sx={{
               color: "#f0c040",
-              "&:hover": { transform: "translateY(-4px);" },
+              "&:hover": { transform: "translateY(-4px)" },
             }}
           />
         </Button>
@@ -64,8 +74,9 @@ export default function UserAd({ ad }) {
           <DeleteIcon
             sx={{
               color: "#e74c3c",
-              "&:hover": { transform: "translateY(-4px);" },
+              "&:hover": { transform: "translateY(-4px)" },
             }}
+            onClick={() => deleteAd(ad._id)}
           />
         </Button>
       </CardActions>
