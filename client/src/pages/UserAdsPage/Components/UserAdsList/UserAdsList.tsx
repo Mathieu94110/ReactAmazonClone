@@ -5,9 +5,11 @@ import { UserAdCategoryType, UserAdType } from "@/types/types";
 const UserAdsList = ({
   ads,
   deleteAd,
+  seeAdDetails,
 }: {
   ads: UserAdType[];
   deleteAd: (v: string) => void;
+  seeAdDetails: (v: string) => void;
 }) => {
   const adsCategories = [];
   const adDictionnary = {
@@ -35,7 +37,12 @@ const UserAdsList = ({
               {ads.map((ad: UserAdType, index: number) => {
                 return (
                   ad.category === cat && (
-                    <UserAd ad={ad} deleteAd={deleteAd} key={index} />
+                    <UserAd
+                      ad={ad}
+                      deleteAd={deleteAd}
+                      seeAdDetails={seeAdDetails}
+                      key={index}
+                    />
                   )
                 );
               })}

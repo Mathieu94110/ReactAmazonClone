@@ -147,12 +147,10 @@ input {
   }
   .goBackButtonContainer {
     padding: 0;
-    position: relative;
+    position: absolute;
+    left: 20px;
+    top: 20px;
     height: 60px;
     width: auto;
-  }
-  .goBackButton {
-    position: absolute;
-    left: 0;
   }
 }

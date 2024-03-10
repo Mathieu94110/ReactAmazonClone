@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LockResetOutlined } from "@mui/icons-material";
-import "./Modal.scss";
+import "./ForgotPasswordModal.scss";
 
 export const Modal = ({ onSubmit, onCancel, closeModal }) => {
   const [email, setEmail] = useState<string>("");

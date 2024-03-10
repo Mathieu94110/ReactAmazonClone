@@ -7,17 +7,20 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserAdType } from "@/types/types";
 
 export default function UserAd({
   ad,
   deleteAd,
+  seeAdDetails,
 }: {
   ad: UserAdType;
   deleteAd: (v: string) => void;
+  seeAdDetails: (v: string) => void;
 }) {
+  console.log(ad);
   return (
     <Card
       sx={{
@@ -63,7 +66,8 @@ export default function UserAd({
       </CardActionArea>
       <CardActions>
         <Button>
-          <EditIcon
+          <ZoomInIcon
+            onClick={() => seeAdDetails(ad._id)}
             sx={{
               color: "#f0c040",
               "&:hover": { transform: "translateY(-4px)" },

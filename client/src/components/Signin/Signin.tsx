@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../Providers/AuthProvider";
-import { Modal } from "../Modal/Modal";
+import { Modal } from "../ForgotPasswordModal/ForgotPasswordModal";
 import { SignInCredentials, UserSigninInput } from "@/types/types";
 import { forgotPassword } from "../../apis/users";
 import { ToastContainer, toast } from "react-toastify";

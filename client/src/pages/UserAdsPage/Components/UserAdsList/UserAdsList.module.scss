@@ -31,6 +31,9 @@
     color: var(--secondary);
     background-color: var(--primary);
   }
+  &:first-child {
+    margin-top: 40px;
+  }
 }
 .userAdContainer {
   justify-content: center;

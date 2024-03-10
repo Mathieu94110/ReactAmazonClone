@@ -16,6 +16,7 @@ function CreateAdForm() {
     category: "",
     description: "",
     image: "",
+    price: null,
     generic: null,
   };
 
@@ -26,11 +27,12 @@ function CreateAdForm() {
       .min(10, "Le titre doit être explicite")
       .max(30, "Le titre doit être succinct"),
     category: yup.string().required("Il faut renseigner la catégorie"),
+    price: yup.number().required("Il faut renseigner le prix").min(1),
     description: yup
       .string()
       .required("La description doit être renseigné")
       .min(10, "La descrition doit être explicite")
-      .max(30, "La descrition doit être succincte"),
+      .max(80, "La descrition doit être succincte"),
     image: yup
       .string()
       .required("Il faut renseigner une image")
@@ -108,6 +110,15 @@ function CreateAdForm() {
         {errors.category && (
           <p className="form-error">{errors.category.message}</p>
         )}
+      </div>
+      <div className="flex-column mb-20">
+        <label className="secondary mb-10">Prix</label>
+        <input
+          type="number"
+          {...register("price")}
+          className="createAdFormInput"
+        />
+        {errors.price && <p className="form-error">{errors.price.message}</p>}
       </div>
       <div className="flex-column mb-20">
         <label className="secondary mb-10">Description de l'annonce</label>

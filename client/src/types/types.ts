@@ -47,6 +47,7 @@ export type UserSignupInput = {
 export type UserAdInput = {
   title: string;
   category: string;
+  price: number;
   description: string;
   image: string;
   generic: { generic: { message: string } };

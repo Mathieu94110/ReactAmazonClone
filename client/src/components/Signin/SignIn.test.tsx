@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import Signin from "./Signin";
 import { AuthContext } from "../Providers/AuthProvider";
 import { createPortal } from "react-dom";
-import { Modal } from "../Modal/Modal";
+import { Modal } from "../ForgotPasswordModal/ForgotPasswordModal";
 
 afterEach(() => {
   cleanup();
