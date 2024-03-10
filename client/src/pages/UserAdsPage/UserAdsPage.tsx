@@ -69,6 +69,7 @@ const UserAdsPage = () => {
       {isModalOpen &&
         createPortal(
           <UserAdModal
+            isOpen={isModalOpen}
             handleOpen={handleOpen}
             handleClose={handleClose}
             ad={selectedAd}

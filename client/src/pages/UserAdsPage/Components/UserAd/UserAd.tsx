@@ -20,7 +20,6 @@ export default function UserAd({
   deleteAd: (v: string) => void;
   seeAdDetails: (v: string) => void;
 }) {
-  console.log(ad);
   return (
     <Card
       sx={{

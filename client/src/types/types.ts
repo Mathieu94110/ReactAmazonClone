@@ -72,6 +72,7 @@ export type UserAdType = {
   image: string;
   title: string;
   category: string;
+  price: number;
   description: string;
   _id?: string;
 };

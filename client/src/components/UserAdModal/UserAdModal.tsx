@@ -1,10 +1,8 @@
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import EditIcon from "@mui/icons-material/Edit";
-import CloseIcon from "@mui/icons-material/Close";
-import Divider from "@mui/material/Divider";
+import { useState } from "react";
 import {
+  Modal,
+  Button,
+  Divider,
   Card,
   CardActionArea,
   CardActions,
@@ -13,6 +11,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
+import { UserAdType } from "@/types/types";
+import UserAdNestedModal from "./Components/UserAdNestedModal";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,12 +27,29 @@ const style = {
   boxShadow: 24,
 };
 
-const userAdModal = ({ ad, handleOpen, handleClose }) => {
+const UserAdModal = ({
+  ad,
+  isOpen,
+  handleOpen,
+  handleClose,
+}: {
+  ad: UserAdType;
+  isOpen: boolean;
+  handleOpen: () => void;
+  handleClose: () => void;
+}) => {
+  const [openNestedModal, setOpenNestedModal] = useState(false);
+  const handleOpenNestedModal = (): void => {
+    setOpenNestedModal(true);
+  };
+  const handleCloseNestedModal = (): void => {
+    setOpenNestedModal(false);
+  };
+
   return (
     <div className="modal">
-      <Button onClick={handleOpen}>Open Child Modal</Button>
       <Modal
-        open={handleOpen}
+        open={isOpen}
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
@@ -74,7 +93,11 @@ const userAdModal = ({ ad, handleOpen, handleClose }) => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button variant="contained" size="medium">
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={handleOpenNestedModal}
+            >
               <EditIcon />
             </Button>
             <Button
@@ -88,8 +111,14 @@ const userAdModal = ({ ad, handleOpen, handleClose }) => {
           </CardActions>
         </Card>
       </Modal>
+
+      <UserAdNestedModal
+        ad={ad}
+        openNestedModal={openNestedModal}
+        handleCloseNestedModal={handleCloseNestedModal}
+      />
     </div>
   );
 };
 
-export default userAdModal;
+export default UserAdModal;
