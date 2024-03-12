@@ -12,3 +12,7 @@ exports.getCurrentUserAds = (userId) => {
 exports.deleteAd = (adId) => {
   return Ads.findByIdAndDelete(adId).exec();
 };
+
+exports.updateAd = (adId, ad) => {
+  return Ads.findByIdAndUpdate(adId, { $set: ad }, { runValidators: true });
+};

@@ -1,48 +1,54 @@
-import { useState, ChangeEvent, useContext, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useContext, useEffect } from "react";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Card,
   CardActions,
   TextField,
-  SelectChangeEvent,
   Select,
   MenuItem,
   Box,
-  Typography,
   InputAdornment,
-  FormControl,
   FormLabel,
+  Grid,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { updateAd } from "@/apis/user-ads";
-import { UserAdInput, UserAdType } from "@/types/types";
+import { UserAdType } from "@/types/types";
 import { AuthContext } from "@/components/Providers/AuthProvider";
+import { useFormik } from "formik";
+
+// styles
 const CssTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     fontFamily: "Arial",
     fontWeight: "bold",
+    "& .MuiOutlinedInput-input": {
+      color: "white",
+    },
     "&.Mui-focused": {
       "& .MuiOutlinedInput-notchedOutline": {
-        border: "2px solid #131a22",
+        border: "2px solid #f0c040",
       },
     },
     "& .MuiInputLabel-outlined-notchedOutline ": {
-      color: "#131a22",
+      color: "#f0c040",
     },
   },
   "& .MuiInputLabel-outlined ": {
-    color: "#131a22",
+    color: "#2196f3",
     fontWeight: "bold",
     "&.Mui-focused": {
-      color: "#131a22",
+      color: "#f0c040",
       fontWeight: "bold",
     },
+  },
+
+  "& fieldset": {
+    borderColor: "#2196f3",
   },
 });
 
@@ -51,48 +57,39 @@ const containerStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "#fff",
-  color: "#131a22",
-  border: "1px solid #f0c040",
+  bgcolor: "#131a22",
+  color: "#fff",
   boxShadow: 24,
 };
+
+const textFieldStyle = {
+  display: "flex",
+  fontSize: "14px",
+};
+const caterogryMenuItemStyle = {
+  fontWeight: "bold",
+  color: "#131a22",
+  fontSize: "14px",
+};
+//
 
 const UserAdNestedModal = ({
   ad,
   openNestedModal,
   handleCloseNestedModal,
+  adUpdated,
 }: {
   ad: UserAdType;
   openNestedModal: boolean;
   handleCloseNestedModal: () => void;
+  adUpdated: () => void;
 }) => {
   const { user } = useContext(AuthContext);
   const [successUpdate, setSuccessUpdate] = useState<boolean>(false);
+  const [isSubmiting, setIsSubmiting] = useState<boolean>(false);
+  const [errors, setError] = useState<boolean>(false);
 
-  const initialAdvalues: UserAdInput = {
-    image: ad.image,
-    title: ad.title,
-    category: ad.category,
-    price: ad.price,
-    description: ad.description,
-    generic: null,
-  };
-  const [adData, setAdData] = useState<UserAdInput>(initialAdvalues);
-  const handleChange = (
-    e: SelectChangeEvent | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setAdData({ ...adData, [e.target.name]: e.target.value });
-  };
-
-  const defaultValues = {
-    title: "",
-    category: "",
-    description: "",
-    image: "",
-    price: null,
-    generic: null,
-  };
-
+  //inputs controllers
   const newAdSchema = yup.object({
     title: yup
       .string()
@@ -111,42 +108,44 @@ const UserAdNestedModal = ({
       .required("Il faut renseigner une image")
       .url("L'image doit être un lien valide"),
   });
+  //
+  // form
+  const formik = useFormik({
+    initialValues: {
+      image: ad.image,
+      title: ad.title,
+      category: ad.category,
+      price: ad.price,
+      description: ad.description,
+      generic: null,
+      adId: ad._id,
+    },
+    validationSchema: newAdSchema,
 
-  const {
-    formState: { errors, isSubmitting },
-    handleSubmit,
-    setError,
-    clearErrors,
-  } = useForm<UserAdInput>({
-    defaultValues,
-    resolver: yupResolver(newAdSchema) as any,
+    onSubmit: async (values) => {
+      setIsSubmiting(true);
+      try {
+        const response = await updateAd({
+          ...values,
+          author: user._id,
+        });
+        if (response.ok) {
+          setSuccessUpdate(true);
+          adUpdated();
+        }
+      } catch (e) {
+        setError(true);
+      } finally {
+        setIsSubmiting(false);
+      }
+    },
   });
-
+  //
   useEffect(() => {
-    if (errors)
-      setTimeout(() => {
-        clearErrors();
-      }, 3000);
     if (successUpdate) {
       setSuccessUpdate(false);
     }
-  }, [errors, clearErrors, successUpdate]);
-
-  async function submit(): Promise<void> {
-    try {
-      console.log(adData);
-      //   clearErrors();
-      //   const response = await updateAd({
-      //     ...adData,
-      //     author: user._id,
-      //   });
-      //   if (response.ok) {
-      //     setSuccessUpdate(true);
-      //   }
-    } catch (e) {
-      setError("generic", { type: "generic", message: "Il y a eu une erreur" });
-    }
-  }
+  }, [errors, successUpdate]);
 
   return (
     <Modal
@@ -155,89 +154,84 @@ const UserAdNestedModal = ({
       aria-labelledby="child-modal-title"
       aria-describedby="child-modal-description"
     >
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={formik.handleSubmit}>
         <Card
           sx={{
             ...containerStyle,
             width: { xs: 260, sm: 460 },
           }}
         >
-          <Box>
-            <Box
-              component="section"
+          <Box
+            component="section"
+            sx={{
+              marginBottom: "20px",
+              borderBottom: "1px solid #f0c040",
+            }}
+          >
+            <FormLabel
+              className="center-content primary"
               sx={{
-                backgroundColor: "#131a22",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                marginBottom: "20px",
-                borderBottom: "1px solid #f0c040",
+                color: "#f0c040",
+                height: "100%",
+                marginY: "20px",
               }}
             >
-              <FormLabel
-                className="center-content primary"
-                sx={{
-                  color: "#f0c040",
-                  margin: "0",
-                  height: "100%",
-                  marginY: "20px",
-                }}
-              >
-                Modifier l'annonce
-              </FormLabel>
-            </Box>
-            <Box
-              component="section"
+              Modifier l'annonce
+            </FormLabel>
+          </Box>
+          <Box
+            component="section"
+            sx={{
+              padding: "0 10px",
+              flexGrow: 1,
+            }}
+          >
+            <Grid
+              container
               sx={{
-                padding: "0 10px",
+                gap: "20px 0",
+                placeContent: "center space-between",
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
+              <Grid xs={12} md={5} lg={5} xl={5}>
                 <CssTextField
                   id="outlined-basic"
                   label="Titre"
                   variant="outlined"
-                  value={adData.title}
+                  value={formik.values.title}
                   name="title"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   sx={{
-                    width: "45%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "15px",
-                    fontSize: "14px",
+                    ...textFieldStyle,
                   }}
+                  error={formik.touched.title && Boolean(formik.errors.title)}
+                  helperText={formik.touched.title && formik.errors.title}
                 />
-                {errors.title && (
-                  <p className="form-error">{errors.title.message}</p>
-                )}
+              </Grid>
+              <Grid xs={12} md={5} lg={5} xl={5}>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={adData.category}
+                  value={formik.values.category}
                   name="category"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   sx={{
-                    width: "45%",
                     display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "15px",
+                    border: "1px solid #2196f3",
+                    color: "#fff",
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#131a22",
+                      border: "1px solid #f0c040",
                     },
                   }}
+                  error={
+                    formik.touched.category && Boolean(formik.errors.category)
+                  }
                 >
+                  {" "}
                   <MenuItem
                     value={"mobile phones"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Téléphones mobiles
@@ -245,9 +239,7 @@ const UserAdNestedModal = ({
                   <MenuItem
                     value={"laptop"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Ordinateurs portables
@@ -255,9 +247,7 @@ const UserAdNestedModal = ({
                   <MenuItem
                     value={"televisions"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Télévisions
@@ -265,9 +255,7 @@ const UserAdNestedModal = ({
                   <MenuItem
                     value={"computer accessories"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Accessoires d'ordinateurs
@@ -275,9 +263,7 @@ const UserAdNestedModal = ({
                   <MenuItem
                     value={"headphones"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Écouteurs
@@ -285,104 +271,86 @@ const UserAdNestedModal = ({
                   <MenuItem
                     value={"others"}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#131a22",
-                      fontSize: "14px",
+                      ...caterogryMenuItemStyle,
                     }}
                   >
                     Autres
                   </MenuItem>
                 </Select>
-                {errors.category && (
-                  <p className="form-error">{errors.category.message}</p>
-                )}
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
+              </Grid>
+              <Grid xs={12} md={5} lg={5} xl={5}>
                 <CssTextField
                   id="outlined-basic"
                   label="Prix"
                   variant="outlined"
                   type="number"
-                  value={adData.price}
+                  value={formik.values.price}
                   name="price"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">€</InputAdornment>
+                      <InputAdornment position="start">
+                        <Box component="span" m="{1}" sx={{ color: "#fff" }}>
+                          €
+                        </Box>
+                      </InputAdornment>
                     ),
                   }}
                   sx={{
-                    width: "45%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "15px",
-                    fontSize: "14px",
+                    ...textFieldStyle,
                   }}
+                  error={formik.touched.price && Boolean(formik.errors.price)}
+                  helperText={formik.touched.price && formik.errors.price}
                 />
-                {errors.price && (
-                  <p className="form-error">{errors.price.message}</p>
-                )}
+              </Grid>
+              <Grid xs={12} md={5} lg={5} xl={5}>
                 <CssTextField
                   id="outlined-basic"
                   label="Url de l'image"
                   variant="outlined"
-                  value={adData.image}
+                  value={formik.values.image}
                   name="image"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   sx={{
-                    width: "45%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "15px",
-                    fontSize: "14px",
+                    ...textFieldStyle,
                   }}
+                  error={formik.touched.image && Boolean(formik.errors.image)}
+                  helperText={formik.touched.image && formik.errors.image}
                 />
-                {errors.image && (
-                  <p className="form-error">{errors.image.message}</p>
-                )}
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
+              </Grid>
+              <Grid xs={12}>
                 <CssTextField
                   id="outlined-multiline-flexible"
-                  value={adData.description}
+                  value={formik.values.description}
                   label="Description de l'annonce"
                   multiline
-                  maxRows={3}
+                  maxRows={2}
                   name="description"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
                   sx={{
-                    width: "45%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "15px",
-                    fontSize: "14px",
+                    ...textFieldStyle,
                   }}
+                  error={
+                    formik.touched.description &&
+                    Boolean(formik.errors.description)
+                  }
+                  helperText={
+                    formik.touched.description && formik.errors.description
+                  }
                 />
-                {errors.description && (
-                  <p className="form-error">{errors.description.message}</p>
-                )}
-              </Box>
-            </Box>
+              </Grid>
+            </Grid>
+
             <CardActions
               sx={{
-                marginBottom: "20px",
+                margin: "20px 0",
               }}
             >
               <Button
                 type="submit"
                 variant="contained"
                 endIcon={<SendIcon />}
-                disabled={isSubmitting}
+                disabled={isSubmiting}
               >
                 Valider
               </Button>

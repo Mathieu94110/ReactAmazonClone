@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@/components/Providers/AuthProvider";
-import { getUserAds, deleteAd } from "@/apis/user-ads";
-import UserAdsList from "./Components/UserAdsList/UserAdsList";
+import { createPortal } from "react-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { UserAdType } from "@/types/types";
-import { createPortal } from "react-dom";
+import { getUserAds, deleteAd } from "@/apis/user-ads";
+import { AuthContext } from "@/components/Providers/AuthProvider";
+import UserAdsList from "./Components/UserAdsList/UserAdsList";
 import UserAdModal from "@/components/UserAdModal/UserAdModal";
 
 const UserAdsPage = () => {
@@ -16,13 +16,13 @@ const UserAdsPage = () => {
   const [selectedAd, setSelectedAd] = useState<UserAdType | null>(null);
   const navigate = useNavigate();
 
+  async function fetChUserAds(): Promise<void> {
+    setIsLoading(true);
+    const userAds = await getUserAds(user._id);
+    setUserAds(userAds);
+    setIsLoading(false);
+  }
   useEffect(() => {
-    async function fetChUserAds(): Promise<void> {
-      setIsLoading(true);
-      const userAds = await getUserAds(user._id);
-      setUserAds(userAds);
-      setIsLoading(false);
-    }
     fetChUserAds();
   }, [user]);
 
@@ -39,11 +39,16 @@ const UserAdsPage = () => {
     setSelectedAd(selectedAd);
   };
 
-  const handleOpen = () => {
+  const handleOpen = (): void => {
     setIsModalOpen(true);
   };
-  const handleClose = () => {
+  const handleClose = (): void => {
     setIsModalOpen(false);
+  };
+
+  const adUpdated = (): void => {
+    handleClose();
+    fetChUserAds();
   };
 
   return (
@@ -72,6 +77,7 @@ const UserAdsPage = () => {
             isOpen={isModalOpen}
             handleOpen={handleOpen}
             handleClose={handleClose}
+            adUpdated={adUpdated}
             ad={selectedAd}
           />,
           document.body

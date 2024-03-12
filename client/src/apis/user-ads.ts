@@ -31,9 +31,9 @@ export async function deleteAd(_id) {
 }
 
 export async function updateAd(updatedAd) {
-  const { _id, ...restAd } = updatedAd;
-  const response = await fetch(`${API_USER_ADS}/${_id}`, {
-    method: "PATCH",
+  const { adId, ...restAd } = updatedAd;
+  const response = await fetch(`${API_USER_ADS}/update/${adId}`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },

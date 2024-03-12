@@ -32,11 +32,13 @@ const UserAdModal = ({
   isOpen,
   handleOpen,
   handleClose,
+  adUpdated,
 }: {
   ad: UserAdType;
   isOpen: boolean;
   handleOpen: () => void;
   handleClose: () => void;
+  adUpdated: () => void;
 }) => {
   const [openNestedModal, setOpenNestedModal] = useState(false);
   const handleOpenNestedModal = (): void => {
@@ -44,6 +46,7 @@ const UserAdModal = ({
   };
   const handleCloseNestedModal = (): void => {
     setOpenNestedModal(false);
+    handleCloseNestedModal()
   };
 
   return (
@@ -116,6 +119,7 @@ const UserAdModal = ({
         ad={ad}
         openNestedModal={openNestedModal}
         handleCloseNestedModal={handleCloseNestedModal}
+        adUpdated={adUpdated}
       />
     </div>
   );
