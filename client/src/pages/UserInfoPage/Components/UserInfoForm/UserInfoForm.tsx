@@ -5,9 +5,15 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateUserProfile } from "../../../../apis/users";
 import styles from "./UserInfoForm.module.scss";
-import { UserProfileType } from "@/types/types";
+import { UserProfileType, UserType } from "@/types/types";
 
-function UserInfoForm({ user }) {
+function UserInfoForm({
+  user,
+  updateUserInfo,
+}: {
+  user: UserType;
+  updateUserInfo: () => void;
+}) {
   const [successUpdate, setSuccessUpdate] = useState<boolean>(false);
   const [errorUpdate, SetErrorUpdate] = useState<null | string>(null);
 
@@ -83,6 +89,7 @@ function UserInfoForm({ user }) {
           });
           if (response.ok) {
             setSuccessUpdate(true);
+            updateUserInfo();
             reset();
           }
         }

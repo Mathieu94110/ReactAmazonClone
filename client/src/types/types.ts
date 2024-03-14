@@ -74,8 +74,13 @@ export type UserAdType = {
   category: string;
   price: number;
   description: string;
+  author?: string;
   _id?: string;
 };
+
+export interface UpdateUserAdType extends UserAdType {
+  adId: string;
+}
 
 export type UserAdCategoryType =
   | "televisions"

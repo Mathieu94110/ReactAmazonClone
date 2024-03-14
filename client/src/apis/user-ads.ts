@@ -1,6 +1,8 @@
+import { UpdateUserAdType, UserAdType } from "@/types/types";
+
 const API_USER_ADS = `${process.env.REACT_APP_API_USER_ADS}`;
 
-export async function getUserAds(userId) {
+export async function getUserAds(userId: string): Promise<UserAdType[]> {
   const response = await fetch(`${API_USER_ADS}/${userId}`);
   if (response.ok) {
     const body = await response.json();
@@ -10,7 +12,7 @@ export async function getUserAds(userId) {
   }
 }
 
-export async function getAd(_id) {
+export async function getAd(_id: string): Promise<Response> {
   const response = await fetch(`${API_USER_ADS}/${_id}`);
   if (response.ok) {
     return response.json();
@@ -19,7 +21,7 @@ export async function getAd(_id) {
   }
 }
 
-export async function deleteAd(_id) {
+export async function deleteAd(_id: string): Promise<Response> {
   try {
     const response = await fetch(`${API_USER_ADS}/${_id}`, {
       method: "DELETE",
@@ -30,7 +32,7 @@ export async function deleteAd(_id) {
   }
 }
 
-export async function updateAd(updatedAd) {
+export async function updateAd(updatedAd: UpdateUserAdType) {
   const { adId, ...restAd } = updatedAd;
   const response = await fetch(`${API_USER_ADS}/update/${adId}`, {
     method: "PUT",
@@ -46,8 +48,8 @@ export async function updateAd(updatedAd) {
   }
 }
 
-export async function createAd(data) {
-  const response = await fetch(`${API_USER_ADS}/`, {
+export async function createAd(data: UserAdType): Promise<Response> {
+  const response = await fetch(API_USER_ADS, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

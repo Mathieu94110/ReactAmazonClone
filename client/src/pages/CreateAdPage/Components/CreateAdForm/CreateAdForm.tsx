@@ -56,7 +56,9 @@ function CreateAdForm() {
         clearErrors();
       }, 3000);
     if (successCreate) {
-      setSuccessCreate(false);
+      setTimeout(() => {
+        setSuccessCreate(false);
+      }, 3000);
     }
   }, [errors, clearErrors, successCreate]);
 
@@ -71,7 +73,11 @@ function CreateAdForm() {
         setSuccessCreate(true);
       }
     } catch (e) {
-      setError("generic", { type: "generic", message: "Il y a eu une erreur" });
+      const message =
+        e.response && e.response.data.message
+          ? e.response.data.message
+          : e.message;
+      setError("generic", { type: "generic", message: message });
     }
   }
 

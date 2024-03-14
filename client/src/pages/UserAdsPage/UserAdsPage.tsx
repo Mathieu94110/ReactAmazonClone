@@ -12,15 +12,26 @@ const UserAdsPage = () => {
   const { user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [userAds, setUserAds] = useState<UserAdType[]>([]);
   const [selectedAd, setSelectedAd] = useState<UserAdType | null>(null);
   const navigate = useNavigate();
 
   async function fetChUserAds(): Promise<void> {
     setIsLoading(true);
-    const userAds = await getUserAds(user._id);
-    setUserAds(userAds);
-    setIsLoading(false);
+    try {
+      const userAds = await getUserAds(user._id);
+      setUserAds(userAds);
+    } catch (e) {
+      const message = e.errors
+        ? e.errors[0]
+        : e.message
+        ? e.message
+        : "Problème serveur";
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
   }
   useEffect(() => {
     fetChUserAds();
@@ -39,9 +50,6 @@ const UserAdsPage = () => {
     setSelectedAd(selectedAd);
   };
 
-  const handleOpen = (): void => {
-    setIsModalOpen(true);
-  };
   const handleClose = (): void => {
     setIsModalOpen(false);
   };
@@ -60,6 +68,8 @@ const UserAdsPage = () => {
       </div>
       {isLoading ? (
         <h2>Chargement en cours</h2>
+      ) : error ? (
+        <h2>{error}</h2>
       ) : userAds.length > 0 ? (
         <UserAdsList
           ads={userAds}
@@ -75,7 +85,6 @@ const UserAdsPage = () => {
         createPortal(
           <UserAdModal
             isOpen={isModalOpen}
-            handleOpen={handleOpen}
             handleClose={handleClose}
             adUpdated={adUpdated}
             ad={selectedAd}
