@@ -5,6 +5,7 @@
   grid-template-columns: 2fr 1fr 1fr;
   grid-gap: 40px;
   margin: 30px 20px;
+
   @include mixins.md-lt {
     display: flex;
     flex-direction: column;
@@ -20,12 +21,15 @@
   align-items: center;
   background-color: var(--secondary);
   border: 1px solid;
+
   &:hover {
     cursor: pointer;
   }
-  & > span {
+
+  &>span {
     margin-left: 10px;
   }
+
   @include mixins.xs {
     display: flex;
   }
@@ -53,6 +57,7 @@
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 16px;
+
   @include mixins.xs {
     font-size: 20px;
   }
@@ -62,6 +67,7 @@
   margin-top: 16px;
   font-size: 24px;
 }
+
 .pdDesc {
   margin-top: 14px;
 }
@@ -89,21 +95,26 @@
 .supplySuccess {
   color: rgba(0, 60, 255, 0.863);
   font-weight: 800;
+
   @include mixins.xs {
     font-weight: 600;
     font-size: 15px;
   }
+
   @include mixins.lg {
     font-size: 12px;
   }
 }
+
 .supplyError {
   color: rgb(255, 0, 0);
   font-weight: 800;
+
   @include mixins.xs {
     font-weight: 600;
     font-size: 15px;
   }
+
   @include mixins.lg {
     font-size: 12px;
   }

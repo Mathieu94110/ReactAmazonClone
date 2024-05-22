@@ -1,31 +1,45 @@
 @use "@/assets/styles/mixins" as mixins;
 
 .homeProductContainer {
-  max-width: 1600px;
-  margin: auto;
   background-color: rgb(235, 235, 235);
   padding: 20px;
+  margin-bottom: 30px;
+
   @include mixins.sm-lt {
     margin-top: 30px;
   }
 }
 
-.productContainer {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-gap: 20px;
 
-  @include mixins.sm-lt {
+.productContainer {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+
+
+  grid-template-columns: repeat(1, 1fr);
+
+
+  @include mixins.sm {
     grid-template-columns: repeat(2, 1fr);
-    margin: 0;
   }
-  @include mixins.xs-lt {
-    margin: 60px auto;
+
+  @include mixins.md {
+    gap: 20px;
     grid-template-columns: repeat(3, 1fr);
   }
+
+  @include mixins.lg {
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @include mixins.xl {
-    margin: 80px 26px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include mixins.xxl {
     grid-template-columns: repeat(5, 1fr);
   }
 }
@@ -33,11 +47,14 @@
 .secTitle {
   margin: 26px;
   color: rgb(88, 88, 88);
-  @include mixins.sm-lt {
-    margin: 20px 0;
-  }
+  text-align: left;
+
   @include mixins.xs {
     text-align: center;
+  }
+
+  @include mixins.sm-lt {
+    margin: 20px 0;
   }
 }
 

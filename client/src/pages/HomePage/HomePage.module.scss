@@ -1,5 +1,8 @@
+@use "@/assets/styles/mixins" as mixins;
+
 .homePageContainer {
   max-width: 1600px;
+  width: 90%;
   margin: auto;
   overflow: hidden;
 }
@@ -7,6 +10,7 @@
 .bannerContainer {
   margin-bottom: 40px;
 }
+
 .banners {
   height: 26vw;
 }
@@ -17,18 +21,26 @@
 }
 
 .homeProductSlider {
-  padding: 20px;
+  padding: 30px 20px;
   background-color: rgb(235, 235, 235);
+  margin-bottom: 30px;
 }
 
 .slides .slickPrev,
 .slides .slickNext {
   top: 50%;
 }
+
 .secTitle {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-left: 26px;
+  text-align: left;
+
+  @include mixins.xs {
+    text-align: center;
+  }
 }
+
 .slickNext {
   margin-right: 5%;
 }

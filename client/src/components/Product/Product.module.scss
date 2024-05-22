@@ -1,18 +1,32 @@
 @use "@/assets/styles/mixins" as mixins;
 
+a {
+  // for horizontaly center wrapped link content
+  justify-self: center;
+}
+
 .productCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
   border: 2px solid grey;
+  width: 250px;
   border-radius: var(--border-radius);
   background-color: white;
   box-shadow: var(--box-shadow);
 
+  &:hover {
+    cursor: pointer;
+  }
+
+  padding: 10px;
+  border-radius: 5px;
+
   @include mixins.md-lt {
     height: 280px;
   }
+
   @include mixins.lg {
     height: 330px;
   }
@@ -31,10 +45,12 @@
 .productImage img {
   width: 100%;
 }
+
 .productCard h2 {
   font-size: 16px;
   margin: 14px 0;
 }
+
 .productCard p {
   font-size: 22px;
   font-weight: 600;
